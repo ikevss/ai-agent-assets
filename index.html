@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="scroll-padding-top:60px">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent 部署资产手册 v8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" onerror="document.body.classList.add('no-lucide')"></script>
+<style>
+:root{--bg:#FAF8F5;--card:#FFF;--ink:#1A1A2E;--ink2:#4A4A5A;--ink3:#7A7A8A;--line:#E8E4DF;--line2:#F0ECE7;--pri:#4338CA;--pri-l:#EEF2FF;--pri-d:#3730A3;--amb:#D97706;--amb-l:#FFFBEB;--em:#059669;--em-l:#ECFDF5;--ro:#E11D48;--ro-l:#FFF1F2;--vi:#7C3AED;--vi-l:#F5F3FF}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'Outfit','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body:not(.icons-ready) i[data-lucide]{visibility:hidden}
+.container{max-width:1320px;margin:0 auto;padding:0 32px}
+h1,h2,h3,h4{font-family:'Fraunces','PingFang SC',serif;font-weight:700;line-height:1.25}
+.section-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--pri);margin-bottom:8px}
+.section-title{font-size:clamp(26px,3.5vw,38px);margin-bottom:12px}
+.section-desc{font-size:17px;color:var(--ink2);max-width:720px;line-height:1.75}
+.tier{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;margin-left:6px;vertical-align:middle}
+.tier-1{color:#059669;background:#ECFDF5}.tier-2{color:#D97706;background:#FFFBEB}.tier-3{color:#7C3AED;background:#F5F3FF}
+.tier-legend{display:flex;gap:16px;margin:12px 0 20px;flex-wrap:wrap}
+.tier-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink3)}
+.sticky-nav{position:sticky;top:0;z-index:100;background:rgba(250,248,245,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transform:translateY(-100%);opacity:0;transition:all .3s ease;pointer-events:none}
+.sticky-nav.visible{transform:translateY(0);opacity:1;pointer-events:all}
+.sticky-nav-inner{display:flex;align-items:center;gap:4px;height:48px;overflow-x:auto}
+.sticky-nav-inner::-webkit-scrollbar{display:none}
+.nav-link{padding:6px 14px;border-radius:6px;font-size:13px;font-weight:500;color:var(--ink3);text-decoration:none;white-space:nowrap;transition:all .15s}
+.nav-link:hover{background:var(--line2);color:var(--ink)}.nav-link.active{background:var(--pri-l);color:var(--pri);font-weight:600}
+.nav-sep{width:1px;height:16px;background:var(--line);flex-shrink:0;margin:0 4px}
+.hero{padding:72px 0 56px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-120px;right:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(67,56,202,.06) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--pri);background:var(--pri-l);padding:6px 16px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-size:clamp(32px,5vw,52px);line-height:1.15;margin-bottom:16px;max-width:800px}
+.hero h1 em{font-style:normal;color:var(--pri);position:relative}
+.hero h1 em::after{content:'';position:absolute;bottom:2px;left:0;right:0;height:8px;background:rgba(67,56,202,.12);border-radius:4px;z-index:-1}
+.hero-sub{font-size:19px;color:var(--ink2);max-width:680px;line-height:1.8;margin-bottom:32px}
+.hero-stats{display:flex;gap:20px;flex-wrap:wrap}
+.hero-stat{flex:1;min-width:140px;padding:20px 24px;background:var(--card);border:1px solid var(--line);border-radius:12px;position:relative;overflow:hidden}
+.hero-stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.hero-stat:nth-child(1)::before{background:linear-gradient(90deg,#4338CA,#7C3AED)}.hero-stat:nth-child(2)::before{background:linear-gradient(90deg,#059669,#0891B2)}.hero-stat:nth-child(3)::before{background:linear-gradient(90deg,#D97706,#EA580C)}.hero-stat:nth-child(4)::before{background:linear-gradient(90deg,#E11D48,#BE123C)}
+.hero-stat .stat-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.hero-stat .stat-icon svg{width:18px;height:18px;color:#fff}
+.hero-stat:nth-child(1) .stat-icon{background:linear-gradient(135deg,#4338CA,#7C3AED)}.hero-stat:nth-child(2) .stat-icon{background:linear-gradient(135deg,#059669,#0891B2)}.hero-stat:nth-child(3) .stat-icon{background:linear-gradient(135deg,#D97706,#EA580C)}.hero-stat:nth-child(4) .stat-icon{background:linear-gradient(135deg,#E11D48,#BE123C)}
+.hero-stat .num{font-family:'Fraunces',serif;font-size:32px;font-weight:800;color:var(--pri)}
+.hero-stat .lbl{font-size:14px;color:var(--ink3);margin-top:2px}
+.hero-version{font-size:12px;color:var(--ink3);margin-top:16px}
+.flow-wrap{background:linear-gradient(135deg,#0F172A,#1E293B);border-radius:20px;padding:48px 40px;margin:40px 0;position:relative;overflow:hidden}
+.flow-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(67,56,202,.1),transparent 60%);pointer-events:none}
+.flow-title{text-align:center;font-family:'Fraunces',serif;font-size:28px;color:#F1F5F9;margin-bottom:6px;position:relative}
+.flow-sub{text-align:center;font-size:15px;color:#94A3B8;margin-bottom:40px;position:relative}
+.flow-pipeline{display:flex;align-items:flex-start;justify-content:center;position:relative;z-index:1}
+.flow-node{flex:0 0 auto;width:160px;text-align:center;opacity:0;transform:translateY(24px);animation:nodeUp .6s ease forwards}
+.flow-node:nth-child(1){animation-delay:.15s}.flow-node:nth-child(3){animation-delay:.5s}.flow-node:nth-child(5){animation-delay:.85s}.flow-node:nth-child(7){animation-delay:1.2s}.flow-node:nth-child(9){animation-delay:1.55s}.flow-node:nth-child(11){animation-delay:1.9s}
+@keyframes nodeUp{to{opacity:1;transform:translateY(0)}}
+.flow-icon{width:64px;height:64px;border-radius:16px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.1);position:relative}
+.flow-icon i{color:#fff;width:28px;height:28px}
+.flow-icon::after{content:'';position:absolute;inset:-5px;border-radius:20px;border:2px solid transparent;animation:ringPulse 2.5s ease-in-out infinite}
+@keyframes ringPulse{0%,100%{border-color:transparent}50%{border-color:rgba(96,165,250,.25)}}
+.flow-node:nth-child(1) .flow-icon{background:linear-gradient(135deg,#3B82F6,#2563EB)}.flow-node:nth-child(3) .flow-icon{background:linear-gradient(135deg,#8B5CF6,#7C3AED)}.flow-node:nth-child(5) .flow-icon{background:linear-gradient(135deg,#06B6D4,#0891B2)}.flow-node:nth-child(7) .flow-icon{background:linear-gradient(135deg,#10B981,#059669)}.flow-node:nth-child(9) .flow-icon{background:linear-gradient(135deg,#F59E0B,#D97706)}.flow-node:nth-child(11) .flow-icon{background:linear-gradient(135deg,#22C55E,#16A34a)}
+.flow-node:nth-child(1) .flow-icon::after{animation-delay:0s}.flow-node:nth-child(3) .flow-icon::after{animation-delay:.4s}.flow-node:nth-child(5) .flow-icon::after{animation-delay:.8s}.flow-node:nth-child(7) .flow-icon::after{animation-delay:1.2s}.flow-node:nth-child(9) .flow-icon::after{animation-delay:1.6s}.flow-node:nth-child(11) .flow-icon::after{animation-delay:2s}
+.flow-name{color:#F1F5F9;font-size:15px;font-weight:600;margin-bottom:4px}
+.flow-desc{color:#94A3B8;font-size:13px;line-height:1.5;padding:0 8px}
+.flow-arrow{flex:0 0 auto;display:flex;align-items:center;padding-top:22px;opacity:0;animation:arrIn .4s ease forwards}
+.flow-arrow:nth-child(2){animation-delay:.35s}.flow-arrow:nth-child(4){animation-delay:.7s}.flow-arrow:nth-child(6){animation-delay:1.05s}.flow-arrow:nth-child(8){animation-delay:1.4s}.flow-arrow:nth-child(10){animation-delay:1.75s}
+@keyframes arrIn{to{opacity:1}}
+.flow-arrow svg{width:52px;height:20px}
+.flow-arrow .ln{stroke:#334155;stroke-width:2;stroke-dasharray:6 4;animation:dash 1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-10}}
+.flow-arrow .dt{fill:#60A5FA;animation:dtmv 1s ease-in-out infinite}
+@keyframes dtmv{0%{cx:4}100%{cx:48}}
+.flow-threads{display:flex;justify-content:center;gap:20px;margin-top:28px;position:relative;z-index:1;opacity:0;animation:nodeUp .5s ease 2.3s forwards}
+.flow-thread{display:flex;align-items:center;gap:8px;color:#94A3B8;font-size:13px;padding:8px 16px;border:1px solid rgba(255,255,255,.08);border-radius:10px;background:rgba(255,255,255,.03)}
+.flow-thread svg{width:14px;height:14px;flex-shrink:0}.flow-thread .tdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.arch-wrap{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:40px;margin:40px 0}
+.arch-head{margin-bottom:32px}
+.arch-layers{display:flex;flex-direction:column;gap:8px}
+.arch-row{display:flex;align-items:stretch;gap:12px;opacity:0;transform:translateX(-16px);animation:rowIn .4s ease forwards}
+@keyframes rowIn{to{opacity:1;transform:translateX(0)}}
+.arch-tag{flex:0 0 130px;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;font-size:14px;font-weight:600;color:#fff}
+.arch-tag svg{width:18px;height:18px;flex-shrink:0}
+.arch-items{flex:1;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.arch-chip{display:flex;align-items:center;gap:7px;padding:9px 16px;border-radius:8px;font-size:14px;font-weight:500;border:1px solid var(--line);background:var(--card);cursor:default;transition:all .15s;color:var(--ink)}
+.arch-chip:hover{border-color:var(--pri);background:var(--pri-l)}
+.arch-chip svg{width:15px;height:15px;color:var(--ink3);flex-shrink:0}
+.arch-sep{display:flex;justify-content:center;padding:0 0 0 140px}
+.arch-sep svg{width:16px;height:12px}
+.arch-sep .ap{fill:#CBD5E1;animation:apPulse 1.5s ease infinite}
+@keyframes apPulse{0%,100%{opacity:.3}50%{opacity:1}}
+.arch-guard{margin-top:12px;padding:16px 20px;border-radius:12px;background:linear-gradient(90deg,rgba(225,29,72,.04),rgba(225,29,72,.02),rgba(225,29,72,.04));border:1.5px dashed rgba(225,29,72,.2);display:flex;align-items:center;gap:12px;font-size:14px;color:#9F1239;opacity:0;animation:rowIn .4s ease .4s forwards}
+.arch-guard svg{width:22px;height:22px;flex-shrink:0;color:#E11D48}
+.struct-wrap{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:40px;margin:40px 0;overflow:hidden}
+.struct-head{margin-bottom:32px;text-align:center}
+.struct-svg-wrap{width:100%;overflow-x:auto;margin-bottom:32px}
+.struct-svg-wrap svg{display:block;margin:0 auto}
+.struct-svg-wrap svg text{font-family:'Outfit','PingFang SC',sans-serif}
+.struct-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.struct-cat{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;transition:all .2s;position:relative;overflow:hidden}
+.struct-cat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.struct-cat:nth-child(1)::before,.struct-cat:nth-child(2)::before,.struct-cat:nth-child(3)::before,.struct-cat:nth-child(4)::before{background:#4338CA}
+.struct-cat:nth-child(5)::before,.struct-cat:nth-child(6)::before{background:#E11D48}
+.struct-cat:nth-child(7)::before,.struct-cat:nth-child(8)::before{background:#D97706}
+.struct-cat:hover{border-color:var(--pri);box-shadow:0 4px 16px rgba(67,56,202,.06)}
+.struct-cat-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.struct-cat-head svg{width:16px;height:16px;color:var(--pri);flex-shrink:0}
+.struct-cat-head h4{font-size:14px;font-family:'Fraunces',serif;font-weight:600}
+.struct-cat-count{font-size:11px;color:var(--ink3);margin-left:auto}
+.struct-items{display:flex;flex-wrap:wrap;gap:4px}
+.struct-item{font-size:12px;padding:3px 8px;border-radius:4px;background:var(--card);border:1px solid var(--line);color:var(--ink2);white-space:nowrap}
+.roles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:32px 0;justify-items:center}
+.role-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;transition:all .2s;width:100%}
+.role-card:hover{border-color:var(--pri);box-shadow:0 4px 24px rgba(67,56,202,.06)}
+.role-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.role-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.role-icon svg{width:24px;height:24px;color:#fff}
+.role-card h3{font-size:20px;font-family:'Fraunces',serif}
+.role-card .role-sub{font-size:13px;color:var(--ink3);margin-top:2px}
+.role-body{font-size:15px;color:var(--ink2);line-height:1.75}.role-body p{margin-bottom:12px}
+.role-focus{margin-top:16px;padding:14px 16px;background:var(--pri-l);border-radius:10px;font-size:14px;color:var(--pri-d);line-height:1.7}
+.role-focus strong{font-weight:600}
+.role-jump{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;font-weight:500;color:var(--pri);text-decoration:none;transition:all .15s}
+.role-jump:hover{color:var(--pri-d);gap:8px}.role-jump svg{width:14px;height:14px}
+.tabs-bar{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0 0}
+.tab-btn{padding:10px 20px;border:1px solid var(--line);border-radius:10px;background:var(--line2);color:var(--ink3);font-size:14px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:'Outfit',sans-serif;position:relative}
+.tab-btn:hover{background:#E8E4DF;color:var(--ink)}
+.tab-btn.active{background:var(--card);color:var(--pri);font-weight:600;border-color:var(--pri);box-shadow:0 2px 8px rgba(67,56,202,.1)}
+.tab-btn.locked{border-color:var(--pri);box-shadow:0 0 0 3px rgba(67,56,202,.12)}
+.tab-hint{font-size:12px;color:var(--ink3);margin-top:8px;display:flex;align-items:center;gap:4px}
+.tab-hint svg{width:14px;height:14px}
+.tab-panel{display:none;background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:12px;overflow:hidden}
+.tab-panel.active{display:block}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tbl-scroll-hint{text-align:right;font-size:11px;color:var(--ink3);padding:4px 8px;opacity:.6}
+table{width:100%;border-collapse:collapse;min-width:900px}
+thead th{background:#F0EDE8;padding:14px 16px;text-align:left;font-weight:600;font-size:13px;color:var(--ink2);border-bottom:2px solid var(--line);white-space:nowrap;text-transform:uppercase;letter-spacing:.5px}
+tbody td{padding:14px 16px;border-bottom:1px solid #F5F2EE;vertical-align:top;font-size:14.5px;line-height:1.65;color:var(--ink2)}
+tbody tr:nth-child(even){background:#FDFCFA}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#F8F6F2}
+.asset-name{font-weight:600;color:var(--ink);font-size:15px;white-space:nowrap}
+.asset-en{font-size:12px;color:var(--ink3);margin-top:2px}
+.bl-cell{font-size:13.5px;color:var(--pri-d);font-weight:500;line-height:1.6}
+.land-wrap{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:40px;margin:40px 0}
+.land-intro{font-size:16px;color:var(--ink2);line-height:1.8;margin-bottom:28px;max-width:800px}
+.land-group{margin-bottom:28px}
+.land-group-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:8px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+.land-group-title svg{width:18px;height:18px;color:var(--pri)}
+.land-table{width:100%;border-collapse:collapse;font-size:14px}
+.land-table th{background:#F0EDE8;padding:10px 14px;text-align:left;font-weight:600;font-size:12px;color:var(--ink2);border-bottom:2px solid var(--line);text-transform:uppercase;letter-spacing:.5px}
+.land-table td{padding:10px 14px;border-bottom:1px solid #F5F2EE;vertical-align:top;color:var(--ink2);line-height:1.6}
+.land-table tr:last-child td{border-bottom:none}
+.land-table tr:hover td{background:#FDFCFA}
+.land-asset{font-weight:600;color:var(--ink);white-space:nowrap}
+.land-tool{font-size:13px;color:var(--pri-d);background:var(--pri-l);padding:2px 6px;border-radius:4px;display:inline-block;margin:2px}
+.land-note{font-size:13px;color:var(--ink3)}
+.pm-section{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:40px;margin:40px 0}
+.pm-intro{font-size:16px;color:var(--ink2);line-height:1.8;margin-bottom:32px;max-width:800px}
+.pm-layer-group{margin-bottom:28px}
+.pm-layer-title{font-size:15px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+.pm-layer-title svg{width:18px;height:18px;flex-shrink:0}
+.pm-layer-title .pm-layer-tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;margin-left:8px}
+.pm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
+.pm-card{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:24px;transition:all .2s}
+.pm-card:hover{border-color:var(--pri);box-shadow:0 4px 20px rgba(67,56,202,.06)}
+.pm-card-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.pm-card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.pm-card-icon svg{width:20px;height:20px;color:#fff}
+.pm-card h4{font-size:17px;font-family:'Fraunces',serif}
+.pm-card-body{font-size:14px;color:var(--ink2);line-height:1.7;margin-bottom:12px}
+.pm-card-baseline{padding:12px 14px;background:var(--pri-l);border-radius:8px;font-size:13px;color:var(--pri-d);line-height:1.6}
+.pm-card-baseline strong{font-weight:600}
+.guides-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:20px;margin:32px 0}
+.guide-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;position:relative;overflow:hidden}
+.guide-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.guide-card.g-eval::before{background:linear-gradient(90deg,var(--pri),var(--vi))}
+.guide-card.g-base::before{background:linear-gradient(90deg,var(--amb),#EA580C)}
+.guide-card.g-iter::before{background:linear-gradient(90deg,var(--em),#0891B2)}
+.guide-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.guide-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.guide-icon svg{width:22px;height:22px;color:#fff}
+.guide-card h3{font-size:20px;font-family:'Fraunces',serif}
+.guide-body{font-size:14.5px;color:var(--ink2);line-height:1.8}.guide-body p{margin-bottom:12px}
+.guide-step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.guide-num{flex:0 0 auto;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;margin-top:2px}
+.guide-step-text{font-size:14.5px;color:var(--ink2);line-height:1.7}.guide-step-text strong{color:var(--ink);font-weight:600}
+.guide-example{margin-top:16px;padding:16px;background:#F8FAFC;border-radius:10px;border:1px solid var(--line)}
+.guide-example h4{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.guide-example table{font-size:13px;min-width:auto}
+.guide-example th{font-size:12px;padding:8px 10px;background:#F0EDE8}
+.guide-example td{padding:8px 10px;font-size:13px}
+.foot-note{margin-top:48px;padding:28px 32px;background:var(--pri-l);border:1px solid rgba(67,56,202,.15);border-radius:16px;font-size:15px;color:var(--pri-d);line-height:1.8}
+.foot-note strong{font-weight:600}
+@media(max-width:1200px){.struct-cats{grid-template-columns:repeat(2,1fr)}.flow-pipeline{flex-wrap:wrap;gap:10px;justify-content:center}.flow-arrow{display:none}.flow-node{width:130px}.flow-name{font-size:13px}.flow-desc{font-size:11px}.flow-node:nth-child(n){animation-delay:0s}}
+@media(max-width:1100px){.roles-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.container{padding:0 16px}.sticky-nav{padding:0 16px}.flow-node{width:110px}.arch-row{flex-direction:column;gap:6px}.arch-tag{flex:none;width:100%;padding:10px 14px;font-size:13px}.arch-sep{padding-left:0}.roles-grid,.pm-grid,.struct-cats{grid-template-columns:1fr}.guides-grid{grid-template-columns:1fr}.tab-btn{padding:8px 12px;font-size:13px}thead th,tbody td{padding:10px 12px;font-size:13px}.hero-stats{gap:12px}.hero-stat{min-width:120px;padding:14px 16px}.pm-section,.arch-wrap,.flow-wrap,.struct-wrap,.land-wrap{padding:24px}.land-table{font-size:13px}.land-table th,.land-table td{padding:8px 10px}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<nav class="sticky-nav" id="stickyNav"><div class="sticky-nav-inner">
+<a href="#sec-overview" class="nav-link" data-sec="sec-overview">概览</a><span class="nav-sep"></span>
+<a href="#sec-arch" class="nav-link" data-sec="sec-arch">架构</a><span class="nav-sep"></span>
+<a href="#sec-struct" class="nav-link" data-sec="sec-struct">资产结构</a><span class="nav-sep"></span>
+<a href="#sec-roles" class="nav-link" data-sec="sec-roles">角色</a><span class="nav-sep"></span>
+<a href="#sec-assets" class="nav-link" data-sec="sec-assets">资产明细</a><span class="nav-sep"></span>
+<a href="#sec-landing" class="nav-link" data-sec="sec-landing">落地对照</a><span class="nav-sep"></span>
+<a href="#sec-pm" class="nav-link" data-sec="sec-pm">PM 案例</a><span class="nav-sep"></span>
+<a href="#sec-guides" class="nav-link" data-sec="sec-guides">实操指南</a>
+</div></nav>
+
+<!-- HERO -->
+<section class="hero" id="sec-overview">
+<div class="hero-eyebrow"><i data-lucide="sparkles"></i> AI Agent 落地部署手册</div>
+<h1>让每个人都看懂：<em>部署一个 AI Agent</em> 到底在管什么</h1>
+<p class="hero-sub">无论你是使用 Agent 的个人、推动团队协作的管理者、负责运维的工程师，还是制定评测标准的 AI 中台负责人 —— 这份手册帮你快速定位自己需要关注的资产、理解自己的职责、掌握实操方法。</p>
+<div class="hero-stats">
+<div class="hero-stat"><div class="stat-icon"><i data-lucide="layers"></i></div><div class="num">8</div><div class="lbl">资产大类</div></div>
+<div class="hero-stat"><div class="stat-icon"><i data-lucide="package"></i></div><div class="num">32</div><div class="lbl">具体资产项</div></div>
+<div class="hero-stat"><div class="stat-icon"><i data-lucide="users"></i></div><div class="num">5</div><div class="lbl">角色视角</div></div>
+<div class="hero-stat"><div class="stat-icon"><i data-lucide="gauge"></i></div><div class="num">5+1</div><div class="lbl">评估维度</div></div>
+</div>
+<div class="hero-version">v8.0 · 2026-03-31 · 含资产结构图 + 落地对照表</div>
+</section>
+
+<!-- FLOW -->
+<div class="flow-wrap">
+<div class="flow-title">一个请求的完整旅程</div>
+<div class="flow-sub">当你向 AI 助手提问时，背后发生了什么？</div>
+<div class="flow-pipeline">
+<div class="flow-node" style="animation-delay:.15s"><div class="flow-icon"><i data-lucide="send"></i></div><div class="flow-name">用户提问</div><div class="flow-desc">"帮我分析这份销售数据"</div></div>
+<div class="flow-arrow" style="animation-delay:.35s"><svg viewBox="0 0 52 20"><line class="ln" x1="0" y1="10" x2="52" y2="10"/><circle class="dt" cy="10" r="3"/></svg></div>
+<div class="flow-node" style="animation-delay:.5s"><div class="flow-icon"><i data-lucide="brain"></i></div><div class="flow-name">大脑思考</div><div class="flow-desc">理解意图、拆解步骤</div></div>
+<div class="flow-arrow" style="animation-delay:.7s"><svg viewBox="0 0 52 20"><line class="ln" x1="0" y1="10" x2="52" y2="10"/><circle class="dt" cy="10" r="3"/></svg></div>
+<div class="flow-node" style="animation-delay:.85s"><div class="flow-icon"><i data-lucide="wrench"></i></div><div class="flow-name">调用工具</div><div class="flow-desc">读文件、搜索、查数据库</div></div>
+<div class="flow-arrow" style="animation-delay:1.05s"><svg viewBox="0 0 52 20"><line class="ln" x1="0" y1="10" x2="52" y2="10"/><circle class="dt" cy="10" r="3"/></svg></div>
+<div class="flow-node" style="animation-delay:1.2s"><div class="flow-icon"><i data-lucide="book-open"></i></div><div class="flow-name">查知识+回忆</div><div class="flow-desc">检索知识库、回忆偏好</div></div>
+<div class="flow-arrow" style="animation-delay:1.4s"><svg viewBox="0 0 52 20"><line class="ln" x1="0" y1="10" x2="52" y2="10"/><circle class="dt" cy="10" r="3"/></svg></div>
+<div class="flow-node" style="animation-delay:1.55s"><div class="flow-icon"><i data-lucide="shield-check"></i></div><div class="flow-name">检查输出</div><div class="flow-desc">安全护栏审核</div></div>
+<div class="flow-arrow" style="animation-delay:1.75s"><svg viewBox="0 0 52 20"><line class="ln" x1="0" y1="10" x2="52" y2="10"/><circle class="dt" cy="10" r="3"/></svg></div>
+<div class="flow-node" style="animation-delay:1.9s"><div class="flow-icon"><i data-lucide="sparkles"></i></div><div class="flow-name">返回结果</div><div class="flow-desc">图表+分析结论</div></div>
+</div>
+<div class="flow-threads">
+<div class="flow-thread"><span class="tdot" style="background:#3B82F6"></span><i data-lucide="history" style="color:#60A5FA"></i>全程有「记忆」参与</div>
+<div class="flow-thread"><span class="tdot" style="background:#8B5CF6"></span><i data-lucide="shield" style="color:#A78BFA"></i>全程有「安全护栏」守护</div>
+<div class="flow-thread"><span class="tdot" style="background:#10B981"></span><i data-lucide="scroll-text" style="color:#34D399"></i>每一步都有日志可追溯</div>
+</div>
+</div>
+
+<!-- ARCHITECTURE -->
+<div class="arch-wrap" id="sec-arch">
+<div class="arch-head"><div class="section-label">系统架构</div><h2 class="section-title">一层一层搭起来</h2><p class="section-desc">从上到下：用户看到什么 → 背后靠什么支撑 → 安全如何贯穿始终。</p></div>
+<div class="arch-layers">
+<div class="arch-row" style="animation-delay:.05s"><div class="arch-tag" style="background:linear-gradient(135deg,#3B82F6,#2563EB)"><i data-lucide="users"></i>用户层</div><div class="arch-items"><div class="arch-chip"><i data-lucide="user"></i>个人用户</div><div class="arch-chip"><i data-lucide="user-check"></i>团队协作</div><div class="arch-chip"><i data-lucide="zap"></i>快捷指令</div></div></div>
+<div class="arch-sep"><svg viewBox="0 0 16 12"><polygon class="ap" points="4,0 12,0 8,8"/></svg></div>
+<div class="arch-row" style="animation-delay:.1s"><div class="arch-tag" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED)"><i data-lucide="brain"></i>大脑层</div><div class="arch-items"><div class="arch-chip"><i data-lucide="bot"></i>AI 大脑</div><div class="arch-chip"><i data-lucide="router"></i>网关调度</div><div class="arch-chip"><i data-lucide="workflow"></i>推理引擎</div><div class="arch-chip"><i data-lucide="file-text"></i>全局指令</div><div class="arch-chip"><i data-lucide="mask"></i>专家人设</div></div></div>
+<div class="arch-sep"><svg viewBox="0 0 16 12"><polygon class="ap" points="4,0 12,0 8,8"/></svg></div>
+<div class="arch-row" style="animation-delay:.15s"><div class="arch-tag" style="background:linear-gradient(135deg,#06B6D4,#0891B2)"><i data-lucide="database"></i>知识层</div><div class="arch-items"><div class="arch-chip"><i data-lucide="book"></i>知识库</div><div class="arch-chip"><i data-lucide="history"></i>记忆库</div><div class="arch-chip"><i data-lucide="hard-drive"></i>业务数据库</div><div class="arch-chip"><i data-lucide="search"></i>智能检索</div><div class="arch-chip"><i data-lucide="files"></i>上下文文件</div></div></div>
+<div class="arch-sep"><svg viewBox="0 0 16 12"><polygon class="ap" points="4,0 12,0 8,8"/></svg></div>
+<div class="arch-row" style="animation-delay:.2s"><div class="arch-tag" style="background:linear-gradient(135deg,#10B981,#059669)"><i data-lucide="blocks"></i>能力层</div><div class="arch-items"><div class="arch-chip"><i data-lucide="puzzle"></i>技能库</div><div class="arch-chip"><i data-lucide="plug"></i>外部连接器</div><div class="arch-chip"><i data-lucide="terminal"></i>命令行工具</div><div class="arch-chip"><i data-lucide="palette"></i>原子能力</div><div class="arch-chip"><i data-lucide="globe"></i>网络搜索</div><div class="arch-chip"><i data-lucide="git-merge"></i>工作流编排</div></div></div>
+<div class="arch-sep"><svg viewBox="0 0 16 12"><polygon class="ap" points="4,0 12,0 8,8"/></svg></div>
+<div class="arch-row" style="animation-delay:.25s"><div class="arch-tag" style="background:linear-gradient(135deg,#F59E0B,#D97706)"><i data-lucide="server"></i>基础设施</div><div class="arch-items"><div class="arch-chip"><i data-lucide="container"></i>服务器</div><div class="arch-chip"><i data-lucide="activity"></i>监控告警</div><div class="arch-chip"><i data-lucide="clock"></i>定时任务</div><div class="arch-chip"><i data-lucide="key-round"></i>密钥管理</div><div class="arch-chip"><i data-lucide="scroll-text"></i>对话日志</div><div class="arch-chip"><i data-lucide="clipboard-check"></i>审计追踪</div></div></div>
+<div class="arch-sep"><svg viewBox="0 0 16 12"><polygon class="ap" points="4,0 12,0 8,8"/></svg></div>
+<div class="arch-row" style="animation-delay:.3s"><div class="arch-tag" style="background:linear-gradient(135deg,#EF4444,#DC2626)"><i data-lucide="bar-chart-3"></i>质量保障</div><div class="arch-items"><div class="arch-chip"><i data-lucide="test-tubes"></i>评测数据集</div><div class="arch-chip"><i data-lucide="target"></i>指标体系</div><div class="arch-chip"><i data-lucide="file-bar-chart"></i>评测报告</div><div class="arch-chip"><i data-lucide="rocket"></i>版本发布</div><div class="arch-chip"><i data-lucide="toggle-right"></i>功能开关</div><div class="arch-chip"><i data-lucide="git-commit-horizontal"></i>变更日志</div></div></div>
+</div>
+<div class="arch-guard" style="animation-delay:.4s"><i data-lucide="shield-check"></i><span><strong>安全护栏 & 权限管控</strong> — 贯穿每一层</span></div>
+</div>
+
+<!-- ASSET STRUCTURE DIAGRAM -->
+<div class="struct-wrap" id="sec-struct">
+<div class="struct-head"><div class="section-label">资产信息结构</div><h2 class="section-title">32 项资产如何构成一个完整的 Agent</h2><p class="section-desc" style="margin:0 auto">8 大类资产按层级关系组织，从用户触达到底层基础设施，再到质量保障闭环。</p></div>
+<div class="struct-svg-wrap">
+<svg viewBox="0 0 1100 490" width="1100" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="g0" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4338CA"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient>
+<linearGradient id="g1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#4338CA"/><stop offset="100%" stop-color="#6366F1"/></linearGradient>
+<linearGradient id="g2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0891B2"/><stop offset="100%" stop-color="#06B6D4"/></linearGradient>
+<linearGradient id="g3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#059669"/><stop offset="100%" stop-color="#10B981"/></linearGradient>
+<linearGradient id="g4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient>
+<linearGradient id="g5" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#E11D48"/><stop offset="100%" stop-color="#F43F5E"/></linearGradient>
+<linearGradient id="g6" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#BE123C"/><stop offset="100%" stop-color="#E11D48"/></linearGradient>
+<linearGradient id="g7" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D97706"/><stop offset="100%" stop-color="#F59E0B"/></linearGradient>
+<linearGradient id="g8" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#EA580C"/><stop offset="100%" stop-color="#F97316"/></linearGradient>
+</defs>
+<!-- Root -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin=".2s" fill="freeze"/><rect x="420" y="10" width="260" height="48" rx="12" fill="url(#g0)"/><text x="550" y="40" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">AI Agent 部署资产</text></g>
+<!-- Trunk -->
+<line x1="550" y1="58" x2="550" y2="85" stroke="#CBD5E1" stroke-width="2" opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".3s" begin=".5s" fill="freeze"/></line>
+<!-- Branch -->
+<line x1="75" y1="85" x2="1025" y2="85" stroke="#CBD5E1" stroke-width="2" opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".4s" begin=".6s" fill="freeze"/></line>
+<!-- Drops -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".3s" begin=".8s" fill="freeze"/>
+<line x1="75" y1="85" x2="75" y2="115" stroke="#4338CA" stroke-width="2"/><line x1="205" y1="85" x2="205" y2="115" stroke="#4338CA" stroke-width="2"/><line x1="340" y1="85" x2="340" y2="115" stroke="#4338CA" stroke-width="2"/><line x1="475" y1="85" x2="475" y2="115" stroke="#7C3AED" stroke-width="2"/><line x1="615" y1="85" x2="615" y2="115" stroke="#E11D48" stroke-width="2"/><line x1="750" y1="85" x2="750" y2="115" stroke="#BE123C" stroke-width="2"/><line x1="890" y1="85" x2="890" y2="115" stroke="#D97706" stroke-width="2"/><line x1="1025" y1="85" x2="1025" y2="115" stroke="#EA580C" stroke-width="2"/>
+</g>
+<!-- Cat 1 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="1s" fill="freeze"/><rect x="10" y="115" width="130" height="38" rx="8" fill="url(#g1)"/><text x="75" y="139" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">核心行为</text><text x="75" y="170" text-anchor="middle" fill="#7A7A8A" font-size="11">5 项</text>
+<rect x="5" y="182" width="58" height="20" rx="4" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="1"/><text x="34" y="196" text-anchor="middle" fill="#4338CA" font-size="10">全局指令</text>
+<rect x="68" y="182" width="58" height="20" rx="4" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="1"/><text x="97" y="196" text-anchor="middle" fill="#4338CA" font-size="10">快捷指令</text>
+<rect x="5" y="206" width="58" height="20" rx="4" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="1"/><text x="34" y="220" text-anchor="middle" fill="#4338CA" font-size="10">专家人设</text>
+<rect x="68" y="206" width="58" height="20" rx="4" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="1"/><text x="97" y="220" text-anchor="middle" fill="#4338CA" font-size="10">能力说明</text>
+<rect x="5" y="230" width="58" height="20" rx="4" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="1"/><text x="34" y="244" text-anchor="middle" fill="#4338CA" font-size="10">安全护栏</text>
+</g>
+<!-- Cat 2 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="1.15s" fill="freeze"/><rect x="140" y="115" width="130" height="38" rx="8" fill="url(#g2)"/><text x="205" y="139" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">知识与记忆</text><text x="205" y="170" text-anchor="middle" fill="#7A7A8A" font-size="11">4 项</text>
+<rect x="145" y="182" width="50" height="20" rx="4" fill="#ECFEFF" stroke="#A5F3FC" stroke-width="1"/><text x="170" y="196" text-anchor="middle" fill="#0891B2" font-size="10">知识库</text>
+<rect x="200" y="182" width="50" height="20" rx="4" fill="#ECFEFF" stroke="#A5F3FC" stroke-width="1"/><text x="225" y="196" text-anchor="middle" fill="#0891B2" font-size="10">记忆库</text>
+<rect x="145" y="206" width="58" height="20" rx="4" fill="#ECFEFF" stroke="#A5F3FC" stroke-width="1"/><text x="174" y="220" text-anchor="middle" fill="#0891B2" font-size="10">业务数据库</text>
+<rect x="208" y="206" width="58" height="20" rx="4" fill="#ECFEFF" stroke="#A5F3FC" stroke-width="1"/><text x="237" y="220" text-anchor="middle" fill="#0891B2" font-size="10">上下文文件</text>
+</g>
+<!-- Cat 3 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="1.3s" fill="freeze"/><rect x="275" y="115" width="130" height="38" rx="8" fill="url(#g3)"/><text x="340" y="139" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">能力与工具</text><text x="340" y="170" text-anchor="middle" fill="#7A7A8A" font-size="11">6 项</text>
+<rect x="278" y="182" width="46" height="20" rx="4" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/><text x="301" y="196" text-anchor="middle" fill="#059669" font-size="10">技能库</text>
+<rect x="328" y="182" width="58" height="20" rx="4" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/><text x="357" y="196" text-anchor="middle" fill="#059669" font-size="10">外部连接器</text>
+<rect x="278" y="206" width="56" height="20" rx="4" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/><text x="306" y="220" text-anchor="middle" fill="#059669" font-size="10">命令行工具</text>
+<rect x="338" y="206" width="56" height="20" rx="4" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/><text x="366" y="220" text-anchor="middle" fill="#059669" font-size="10">原子能力库</text>
+<rect x="278" y="230" width="46" height="20" rx="4" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/><text x="301" y="244" text-anchor="middle" fill="#059669" font-size="10">网络搜索</text>
+<rect x="328" y="230" width="58" height="20" rx="4" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/><text x="357" y="244" text-anchor="middle" fill="#059669" font-size="10">工作流编排</text>
+</g>
+<!-- Cat 4 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="1.45s" fill="freeze"/><rect x="410" y="115" width="130" height="38" rx="8" fill="url(#g4)"/><text x="475" y="139" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">AI 引擎</text><text x="475" y="170" text-anchor="middle" fill="#7A7A8A" font-size="11">4 项</text>
+<rect x="413" y="182" width="58" height="20" rx="4" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/><text x="442" y="196" text-anchor="middle" fill="#7C3AED" font-size="10">大脑+网关</text>
+<rect x="476" y="182" width="52" height="20" rx="4" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/><text x="502" y="196" text-anchor="middle" fill="#7C3AED" font-size="10">推理引擎</text>
+<rect x="413" y="206" width="58" height="20" rx="4" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/><text x="442" y="220" text-anchor="middle" fill="#7C3AED" font-size="10">智能检索</text>
+<rect x="476" y="206" width="52" height="20" rx="4" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/><text x="502" y="220" text-anchor="middle" fill="#7C3AED" font-size="10">指令组装</text>
+</g>
+<!-- Cat 5 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="1.6s" fill="freeze"/><rect x="550" y="115" width="130" height="38" rx="8" fill="url(#g5)"/><text x="615" y="139" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">安全与权限</text><text x="615" y="170" text-anchor="middle" fill="#7A7A8A" font-size="11">3 项</text>
+<rect x="553" y="182" width="52" height="20" rx="4" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1"/><text x="579" y="196" text-anchor="middle" fill="#E11D48" font-size="10">权限管控</text>
+<rect x="610" y="182" width="52" height="20" rx="4" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1"/><text x="636" y="196" text-anchor="middle" fill="#E11D48" font-size="10">审计日志</text>
+<rect x="553" y="206" width="52" height="20" rx="4" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1"/><text x="579" y="220" text-anchor="middle" fill="#E11D48" font-size="10">密钥凭证</text>
+</g>
+<!-- Cat 6 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="1.75s" fill="freeze"/><rect x="685" y="115" width="130" height="38" rx="8" fill="url(#g6)"/><text x="750" y="139" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">评测与质量</text><text x="750" y="170" text-anchor="middle" fill="#7A7A8A" font-size="11">3 项</text>
+<rect x="688" y="182" width="58" height="20" rx="4" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1"/><text x="717" y="196" text-anchor="middle" fill="#BE123C" font-size="10">评测数据集</text>
+<rect x="751" y="182" width="50" height="20" rx="4" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1"/><text x="776" y="196" text-anchor="middle" fill="#BE123C" font-size="10">指标体系</text>
+<rect x="688" y="206" width="58" height="20" rx="4" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1"/><text x="717" y="220" text-anchor="middle" fill="#BE123C" font-size="10">评测报告</text>
+</g>
+<!-- Cat 7 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="1.9s" fill="freeze"/><rect x="825" y="115" width="130" height="38" rx="8" fill="url(#g7)"/><text x="890" y="139" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">基础设施</text><text x="890" y="170" text-anchor="middle" fill="#7A7A8A" font-size="11">4 项</text>
+<rect x="828" y="182" width="58" height="20" rx="4" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1"/><text x="857" y="196" text-anchor="middle" fill="#D97706" font-size="10">服务器容器</text>
+<rect x="891" y="182" width="50" height="20" rx="4" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1"/><text x="916" y="196" text-anchor="middle" fill="#D97706" font-size="10">对话日志</text>
+<rect x="828" y="206" width="50" height="20" rx="4" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1"/><text x="853" y="220" text-anchor="middle" fill="#D97706" font-size="10">监控告警</text>
+<rect x="883" y="206" width="50" height="20" rx="4" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1"/><text x="908" y="220" text-anchor="middle" fill="#D97706" font-size="10">定时任务</text>
+</g>
+<!-- Cat 8 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="2.05s" fill="freeze"/><rect x="960" y="115" width="130" height="38" rx="8" fill="url(#g8)"/><text x="1025" y="139" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">版本与发布</text><text x="1025" y="170" text-anchor="middle" fill="#7A7A8A" font-size="11">3 项</text>
+<rect x="963" y="182" width="50" height="20" rx="4" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1"/><text x="988" y="196" text-anchor="middle" fill="#EA580C" font-size="10">版本标签</text>
+<rect x="1018" y="182" width="50" height="20" rx="4" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1"/><text x="1043" y="196" text-anchor="middle" fill="#EA580C" font-size="10">变更日志</text>
+<rect x="963" y="206" width="50" height="20" rx="4" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1"/><text x="988" y="220" text-anchor="middle" fill="#EA580C" font-size="10">功能开关</text>
+</g>
+<!-- Bottom labels -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".6s" begin="2.4s" fill="freeze"/>
+<rect x="10" y="275" width="1080" height="1" fill="#E8E4DF"/>
+<text x="550" y="305" text-anchor="middle" fill="#7A7A8A" font-size="13" font-weight="600">5 类角色 × 6 个评估维度 = 每项资产都有 Owner / Consumer / Verifier</text>
+<rect x="100" y="325" width="120" height="34" rx="8" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="1"/><text x="160" y="347" text-anchor="middle" fill="#4338CA" font-size="12">个人使用者</text>
+<rect x="240" y="325" width="100" height="34" rx="8" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/><text x="290" y="347" text-anchor="middle" fill="#059669" font-size="12">团队协作</text>
+<rect x="360" y="325" width="110" height="34" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1"/><text x="415" y="347" text-anchor="middle" fill="#D97706" font-size="12">维护者/运维</text>
+<rect x="490" y="325" width="110" height="34" rx="8" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/><text x="545" y="347" text-anchor="middle" fill="#7C3AED" font-size="12">版本迭代者</text>
+<rect x="620" y="325" width="130" height="34" rx="8" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1"/><text x="685" y="347" text-anchor="middle" fill="#E11D48" font-size="12">评测效果评价者</text>
+<rect x="770" y="325" width="100" height="34" rx="8" fill="#ECFEFF" stroke="#A5F3FC" stroke-width="1"/><text x="820" y="347" text-anchor="middle" fill="#0891B2" font-size="12">基准线</text>
+</g>
+<!-- Tier legend -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="2.7s" fill="freeze"/>
+<rect x="10" y="385" width="1080" height="1" fill="#E8E4DF"/>
+<text x="550" y="415" text-anchor="middle" fill="#7A7A8A" font-size="13" font-weight="600">复杂度分级</text>
+<rect x="330" y="430" width="60" height="24" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/><text x="360" y="447" text-anchor="middle" fill="#059669" font-size="11" font-weight="600">基础 12</text>
+<rect x="400" y="430" width="60" height="24" rx="6" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1"/><text x="430" y="447" text-anchor="middle" fill="#D97706" font-size="11" font-weight="600">进阶 13</text>
+<rect x="470" y="430" width="60" height="24" rx="6" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/><text x="500" y="447" text-anchor="middle" fill="#7C3AED" font-size="11" font-weight="600">高级 7</text>
+</g>
+<!-- Pulse -->
+<circle cx="550" cy="34" r="0" fill="none" stroke="#4338CA" stroke-width="1.5"><animate attributeName="r" from="20" to="60" dur="2s" begin=".5s" repeatCount="indefinite"/><animate attributeName="opacity" from=".4" to="0" dur="2s" begin=".5s" repeatCount="indefinite"/></circle>
+</svg>
+</div>
+<div class="struct-cats">
+<div class="struct-cat"><div class="struct-cat-head"><i data-lucide="shield"></i><h4>核心行为</h4><span class="struct-cat-count">5 项</span></div><div class="struct-items"><span class="struct-item">全局指令</span><span class="struct-item">快捷指令</span><span class="struct-item">专家人设</span><span class="struct-item">能力说明书</span><span class="struct-item">安全护栏</span></div></div>
+<div class="struct-cat"><div class="struct-cat-head"><i data-lucide="book-open"></i><h4>知识与记忆</h4><span class="struct-cat-count">4 项</span></div><div class="struct-items"><span class="struct-item">知识库</span><span class="struct-item">记忆库</span><span class="struct-item">业务数据库</span><span class="struct-item">上下文文件</span></div></div>
+<div class="struct-cat"><div class="struct-cat-head"><i data-lucide="blocks"></i><h4>能力与工具</h4><span class="struct-cat-count">6 项</span></div><div class="struct-items"><span class="struct-item">技能库</span><span class="struct-item">外部连接器</span><span class="struct-item">命令行工具</span><span class="struct-item">原子能力库</span><span class="struct-item">网络搜索</span><span class="struct-item">工作流编排</span></div></div>
+<div class="struct-cat"><div class="struct-cat-head"><i data-lucide="cpu"></i><h4>AI 引擎</h4><span class="struct-cat-count">4 项</span></div><div class="struct-items"><span class="struct-item">AI 大脑+网关</span><span class="struct-item">推理引擎</span><span class="struct-item">智能检索</span><span class="struct-item">指令组装</span></div></div>
+<div class="struct-cat"><div class="struct-cat-head"><i data-lucide="lock"></i><h4>安全与权限</h4><span class="struct-cat-count">3 项</span></div><div class="struct-items"><span class="struct-item">权限管控</span><span class="struct-item">审计日志</span><span class="struct-item">密钥凭证</span></div></div>
+<div class="struct-cat"><div class="struct-cat-head"><i data-lucide="target"></i><h4>评测与质量</h4><span class="struct-cat-count">3 项</span></div><div class="struct-items"><span class="struct-item">评测数据集</span><span class="struct-item">指标体系</span><span class="struct-item">评测报告</span></div></div>
+<div class="struct-cat"><div class="struct-cat-head"><i data-lucide="server"></i><h4>基础设施</h4><span class="struct-cat-count">4 项</span></div><div class="struct-items"><span class="struct-item">服务器容器</span><span class="struct-item">对话日志</span><span class="struct-item">监控告警</span><span class="struct-item">定时任务</span></div></div>
+<div class="struct-cat"><div class="struct-cat-head"><i data-lucide="rocket"></i><h4>版本与发布</h4><span class="struct-cat-count">3 项</span></div><div class="struct-items"><span class="struct-item">版本标签</span><span class="struct-item">变更日志</span><span class="struct-item">功能开关</span></div></div>
+</div>
+</div>
+
+<!-- ROLES -->
+<section id="sec-roles">
+<div class="section-label">角色视角</div>
+<h2 class="section-title">不同角色，各自关注什么？</h2>
+<p class="section-desc">每个人不需要管全部 32 项资产。找到你的角色，聚焦你需要关注的那几项。</p>
+<div class="roles-grid">
+<div class="role-card"><div class="role-head"><div class="role-icon" style="background:linear-gradient(135deg,#3B82F6,#2563EB)"><i data-lucide="user"></i></div><div><h3>个人使用者</h3><div class="role-sub">日常用户</div></div></div><div class="role-body"><p>你只需要关心一件事：<strong>Agent 能不能帮我把活干好？</strong></p><p>了解 Agent 能做什么，自定义人设语气，用快捷指令一键完成高频操作。</p></div><div class="role-focus"><strong>你要维护的：</strong>个人记忆库、快捷指令、个人知识库。</div><a href="#sec-assets" class="role-jump" data-jump-tab="t2"><i data-lucide="arrow-right"></i>查看你关注的资产</a></div>
+<div class="role-card"><div class="role-head"><div class="role-icon" style="background:linear-gradient(135deg,#10B981,#059669)"><i data-lucide="users"></i></div><div><h3>团队协作</h3><div class="role-sub">团队管理者</div></div></div><div class="role-body"><p>核心目标：<strong>让所有人用同一个 Agent 时，体验一致、知识共享、效率倍增。</strong></p><p>建立团队公共知识库，统一行为基线和人设风格，共享技能和工作流。</p></div><div class="role-focus"><strong>你要维护的：</strong>团队知识库、共享技能库、工作流编排、权限模型。</div><a href="#sec-assets" class="role-jump" data-jump-tab="t3"><i data-lucide="arrow-right"></i>查看你关注的资产</a></div>
+<div class="role-card"><div class="role-head"><div class="role-icon" style="background:linear-gradient(135deg,#F59E0B,#D97706)"><i data-lucide="settings"></i></div><div><h3>维护者 / 运维</h3><div class="role-sub">技术运维</div></div></div><div class="role-body"><p>你是 Agent 的"保姆"——<strong>确保它 7x24 稳定运行，出问题能快速恢复。</strong></p><p>关注服务器健康、模型网关可用性、工具连接器连通性、密钥凭证安全。</p></div><div class="role-focus"><strong>你要维护的：</strong>环境配置、监控告警、密钥凭证、审计日志、定时任务。</div><a href="#sec-assets" class="role-jump" data-jump-tab="t7"><i data-lucide="arrow-right"></i>查看你关注的资产</a></div>
+<div class="role-card"><div class="role-head"><div class="role-icon" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED)"><i data-lucide="git-branch"></i></div><div><h3>版本迭代者</h3><div class="role-sub">产品负责人</div></div></div><div class="role-body"><p>你负责 Agent 的<strong>持续进化</strong>——每次升级都要让它变更好，而不是变差。</p><p>管理版本号策略、记录变更动机和影响、控制灰度发布。</p></div><div class="role-focus"><strong>你要维护的：</strong>版本标签、变更日志、功能开关。</div><a href="#sec-assets" class="role-jump" data-jump-tab="t8"><i data-lucide="arrow-right"></i>查看你关注的资产</a></div>
+<div class="role-card"><div class="role-head"><div class="role-icon" style="background:linear-gradient(135deg,#E11D48,#BE123C)"><i data-lucide="target"></i></div><div><h3>评测效果评价者</h3><div class="role-sub">AI 中台负责人</div></div></div><div class="role-body"><p>你是 Agent 质量的<strong>最终裁判</strong>——你说了算"这个版本能不能上线"。</p><p>三件套：评测数据集、指标体系、评测报告。为每个资产设定基准线。</p></div><div class="role-focus"><strong>你要维护的：</strong>评测数据集、指标体系、评测报告、基准线定义。</div><a href="#sec-assets" class="role-jump" data-jump-tab="t6"><i data-lucide="arrow-right"></i>查看你关注的资产</a></div>
+</div>
+</section>
+
+<!-- ASSETS (abbreviated for space - same structure as before) -->
+<section id="sec-assets">
+<div class="section-label">资产明细</div>
+<h2 class="section-title">32 项资产，逐项拆解</h2>
+<p class="section-desc">每项资产对 5 类角色的具体作用 + 基准线参考。悬停标签切换分类，点击可锁定。</p>
+<div class="tier-legend"><span class="tier-legend-item"><span class="tier tier-1">基础</span> 任何部署都需要</span><span class="tier-legend-item"><span class="tier tier-2">进阶</span> 重要但可逐步完善</span><span class="tier-legend-item"><span class="tier tier-3">高级</span> 需要较大基础设施投入</span></div>
+<div class="tabs-bar" id="tabs">
+<button class="tab-btn active" data-tab="t1">一、核心行为</button><button class="tab-btn" data-tab="t2">二、知识与记忆</button><button class="tab-btn" data-tab="t3">三、能力与工具</button><button class="tab-btn" data-tab="t4">四、AI 引擎</button><button class="tab-btn" data-tab="t5">五、安全与权限</button><button class="tab-btn" data-tab="t6">六、评测与质量</button><button class="tab-btn" data-tab="t7">七、基础设施</button><button class="tab-btn" data-tab="t8">八、版本与发布</button>
+</div>
+<div class="tab-hint"><i data-lucide="scan"></i> 悬停标签切换分类，点击可锁定当前标签</div>
+<div class="tab-panel active" id="t1"><div class="tbl-wrap"><table><thead><tr><th style="width:170px">资产对象</th><th>个人</th><th>团队协作</th><th>维护者</th><th>迭代者</th><th>评测者</th><th style="width:160px">基准线参考</th></tr></thead><tbody>
+<tr><td><div class="asset-name">全局指令<span class="tier tier-1">基础</span></div><div class="asset-en">System Prompt</div></td><td>决定回答风格与理解深度</td><td>统一行为基线</td><td>第一排查项</td><td>核心变更需记录动机</td><td>变更前后对比</td><td class="bl-cell">任务完成率>=85%；安全拦截100%</td></tr>
+<tr><td><div class="asset-name">快捷指令<span class="tier tier-1">基础</span></div><div class="asset-en">Prompt Templates</div></td><td>高频操作一键触发</td><td>标准化指令库</td><td>监控使用率</td><td>变更需有记录</td><td>执行成功率</td><td class="bl-cell">覆盖>=80%高频场景；成功率>=95%</td></tr>
+<tr><td><div class="asset-name">专家人设<span class="tier tier-1">基础</span></div><div class="asset-en">Persona / SOUL</div></td><td>语气影响信任感</td><td>品牌一致性</td><td>客诉判断参照</td><td>验证满意度影响</td><td>主观评分</td><td class="bl-cell">满意度>=4.0/5</td></tr>
+<tr><td><div class="asset-name">能力说明书<span class="tier tier-1">基础</span></div><div class="asset-en">Agent Manifest</div></td><td>建立正确预期</td><td>新成员了解边界</td><td>运维第一参考</td><td>升级时同步更新</td><td>按声明设计用例</td><td class="bl-cell">覆盖率100%；文档与行为一致</td></tr>
+<tr><td><div class="asset-name">安全护栏<span class="tier tier-1">基础</span></div><div class="asset-en">Guardrails</div></td><td>安全底线</td><td>企业合规屏障</td><td>误拦/漏拦调优</td><td>新威胁响应</td><td>红队通过率</td><td class="bl-cell">安全拦截100%；误拦率<=2%</td></tr>
+</tbody></table></div></div>
+<div class="tab-panel" id="t2"><div class="tbl-wrap"><table><thead><tr><th style="width:170px">资产对象</th><th>个人</th><th>团队协作</th><th>维护者</th><th>迭代者</th><th>评测者</th><th style="width:160px">基准线参考</th></tr></thead><tbody>
+<tr><td><div class="asset-name">知识库<span class="tier tier-1">基础</span></div><div class="asset-en">Knowledge Base</div></td><td>个性化知识</td><td>公共知识沉淀</td><td>过期检测</td><td>增删改有记录</td><td>召回率、忠实度</td><td class="bl-cell">召回率>=90%；忠实度>=95%</td></tr>
+<tr><td><div class="asset-name">记忆库<span class="tier tier-2">进阶</span></div><div class="asset-en">Memory System</div></td><td>跨会话记住偏好</td><td>项目级记忆延续</td><td>容量、隐私合规</td><td>架构演进</td><td>召回准确率</td><td class="bl-cell">准确率>=90%；隐私合规100%</td></tr>
+<tr><td><div class="asset-name">业务数据库<span class="tier tier-2">进阶</span></div><div class="asset-en">Database</div></td><td>个人数据持久存储</td><td>共享数据层</td><td>备份、性能调优</td><td>结构变更可回退</td><td>读写准确性</td><td class="bl-cell">可用性>=99.9%；延迟<=50ms</td></tr>
+<tr><td><div class="asset-name">上下文文件<span class="tier tier-1">基础</span></div><div class="asset-en">Context Files</div></td><td>理解工作环境</td><td>协作约定数字化</td><td>加载性能</td><td>协议演进</td><td>指令遵循率</td><td class="bl-cell">加载<=200ms；遵循率>=90%</td></tr>
+</tbody></table></div></div>
+<div class="tab-panel" id="t3"><div class="tbl-wrap"><table><thead><tr><th style="width:170px">资产对象</th><th>个人</th><th>团队协作</th><th>维护者</th><th>迭代者</th><th>评测者</th><th style="width:160px">基准线参考</th></tr></thead><tbody>
+<tr><td><div class="asset-name">技能库<span class="tier tier-2">进阶</span></div><div class="asset-en">Skills</div></td><td>安装/自定义技能</td><td>共享最佳实践</td><td>冲突检测</td><td>向后兼容</td><td>成功率</td><td class="bl-cell">成功率>=95%</td></tr>
+<tr><td><div class="asset-name">外部连接器<span class="tier tier-2">进阶</span></div><div class="asset-en">MCP Services</div></td><td>连接外部工具</td><td>统一管控集成</td><td>连接稳定性</td><td>协议兼容</td><td>调用成功率</td><td class="bl-cell">可用性>=99.5%</td></tr>
+<tr><td><div class="asset-name">命令行工具<span class="tier tier-2">进阶</span></div><div class="asset-en">CLI Tools</div></td><td>本地效率工具</td><td>跨机器一致</td><td>分发更新</td><td>兼容旧脚本</td><td>跨平台兼容</td><td class="bl-cell">通过率100%</td></tr>
+<tr><td><div class="asset-name">原子能力库<span class="tier tier-3">高级</span></div><div class="asset-en">Capability Library</div></td><td>多模态即调即用</td><td>统一封装计费</td><td>故障降级</td><td>逐步放量</td><td>质量评分</td><td class="bl-cell">可用性>=99%</td></tr>
+<tr><td><div class="asset-name">网络搜索<span class="tier tier-2">进阶</span></div><div class="asset-en">Web Search</div></td><td>实时获取信息</td><td>信息源管控</td><td>缓存策略</td><td>多源聚合</td><td>引用准确性</td><td class="bl-cell">可用率>=99%</td></tr>
+<tr><td><div class="asset-name">工作流编排<span class="tier tier-3">高级</span></div><div class="asset-en">Workflow</div></td><td>流程自动化</td><td>标准流程固化</td><td>失败重试</td><td>逐步放量</td><td>完成率</td><td class="bl-cell">完成率>=90%</td></tr>
+</tbody></table></div></div>
+<div class="tab-panel" id="t4"><div class="tbl-wrap"><table><thead><tr><th style="width:170px">资产对象</th><th>个人</th><th>团队协作</th><th>维护者</th><th>迭代者</th><th>评测者</th><th style="width:160px">基准线参考</th></tr></thead><tbody>
+<tr><td><div class="asset-name">AI 大脑+网关<span class="tier tier-3">高级</span></div><div class="asset-en">LLM & Gateway</div></td><td>智商上限</td><td>智能分配模型</td><td>限流、负载均衡</td><td>逐步放量</td><td>跨模型对比</td><td class="bl-cell">可用性>=99.9%；延迟<=3s</td></tr>
+<tr><td><div class="asset-name">推理引擎<span class="tier tier-3">高级</span></div><div class="asset-en">Agent Framework</div></td><td>规划与纠错</td><td>统一推理方式</td><td>死循环检测</td><td>全量回归</td><td>纠错率</td><td class="bl-cell">完成率>=80%</td></tr>
+<tr><td><div class="asset-name">智能检索<span class="tier tier-3">高级</span></div><div class="asset-en">AI Retrieval</div></td><td>按画像匹配</td><td>跨系统搜索</td><td>召回率监控</td><td>模型升级对比</td><td>检索准确率</td><td class="bl-cell">召回率>=85%</td></tr>
+<tr><td><div class="asset-name">指令组装<span class="tier tier-2">进阶</span></div><div class="asset-en">Prompt Engine</div></td><td>影响精准度</td><td>共享组装规范</td><td>注入正确性</td><td>覆盖全场景</td><td>质量影响</td><td class="bl-cell">错误率=0</td></tr>
+</tbody></table></div></div>
+<div class="tab-panel" id="t5"><div class="tbl-wrap"><table><thead><tr><th style="width:170px">资产对象</th><th>个人</th><th>团队协作</th><th>维护者</th><th>迭代者</th><th>评测者</th><th style="width:160px">基准线参考</th></tr></thead><tbody>
+<tr><td><div class="asset-name">权限管控<span class="tier tier-2">进阶</span></div><div class="asset-en">RBAC</div></td><td>访问边界</td><td>角色分级</td><td>账号管理</td><td>权限演进</td><td>越权测试</td><td class="bl-cell">越权=0</td></tr>
+<tr><td><div class="asset-name">审计日志<span class="tier tier-1">基础</span></div><div class="asset-en">Audit Logs</div></td><td>历史回溯</td><td>全程可追溯</td><td>合规留存</td><td>格式兼容</td><td>完整性</td><td class="bl-cell">记录率100%</td></tr>
+<tr><td><div class="asset-name">密钥凭证<span class="tier tier-2">进阶</span></div><div class="asset-en">API Keys</div></td><td>费用控制</td><td>凭证轮转</td><td>泄露应急</td><td>加密升级</td><td>有效性</td><td class="bl-cell">泄露=0；轮转<=90天</td></tr>
+</tbody></table></div></div>
+<div class="tab-panel" id="t6"><div class="tbl-wrap"><table><thead><tr><th style="width:170px">资产对象</th><th>个人</th><th>团队协作</th><th>维护者</th><th>迭代者</th><th>评测者</th><th style="width:160px">基准线参考</th></tr></thead><tbody>
+<tr><td><div class="asset-name">评测数据集<span class="tier tier-2">进阶</span></div><div class="asset-en">Eval Datasets</div></td><td>提交测试用例</td><td>统一衡量尺子</td><td>标注质量</td><td>配套新用例</td><td><strong>核心对象</strong></td><td class="bl-cell">覆盖>=90%场景</td></tr>
+<tr><td><div class="asset-name">指标体系<span class="tier tier-3">高级</span></div><div class="asset-en">Eval Metrics</div></td><td>质量信号</td><td>质量共识</td><td>计算准确性</td><td>新维度</td><td><strong>核心对象</strong></td><td class="bl-cell">误差=0</td></tr>
+<tr><td><div class="asset-name">评测报告<span class="tier tier-2">进阶</span></div><div class="asset-en">Reports</div></td><td>了解趋势</td><td>决策依据</td><td>自动化</td><td>增益分析</td><td><strong>核心产出</strong></td><td class="bl-cell">自动化率>=90%</td></tr>
+</tbody></table></div></div>
+<div class="tab-panel" id="t7"><div class="tbl-wrap"><table><thead><tr><th style="width:170px">资产对象</th><th>个人</th><th>团队协作</th><th>维护者</th><th>迭代者</th><th>评测者</th><th style="width:160px">基准线参考</th></tr></thead><tbody>
+<tr><td><div class="asset-name">服务器容器<span class="tier tier-2">进阶</span></div><div class="asset-en">Environment</div></td><td>环境一致</td><td>环境统一</td><td><strong>核心对象</strong></td><td>代码化</td><td>排除干扰</td><td class="bl-cell">回退<=5min</td></tr>
+<tr><td><div class="asset-name">对话日志<span class="tier tier-1">基础</span></div><div class="asset-en">Logs</div></td><td>历史回溯</td><td>行为分析</td><td>脱敏合规</td><td>格式兼容</td><td>评测素材</td><td class="bl-cell">完整率100%</td></tr>
+<tr><td><div class="asset-name">监控告警<span class="tier tier-2">进阶</span></div><div class="asset-en">Monitoring</div></td><td>可用性感知</td><td>健康看板</td><td><strong>核心对象</strong></td><td>重点观察</td><td>触发评测</td><td class="bl-cell">发现<=5min</td></tr>
+<tr><td><div class="asset-name">定时任务<span class="tier tier-1">基础</span></div><div class="asset-en">Cron</div></td><td>定时报告</td><td>统一调度</td><td>漏执行监控</td><td>评估影响</td><td>成功率</td><td class="bl-cell">成功率>=99.9%</td></tr>
+</tbody></table></div></div>
+<div class="tab-panel" id="t8"><div class="tbl-wrap"><table><thead><tr><th style="width:170px">资产对象</th><th>个人</th><th>团队协作</th><th>维护者</th><th>迭代者</th><th>评测者</th><th style="width:160px">基准线参考</th></tr></thead><tbody>
+<tr><td><div class="asset-name">版本标签<span class="tier tier-1">基础</span></div><div class="asset-en">Version Tags</div></td><td>版本选择</td><td>统一基线</td><td>快速回退</td><td><strong>核心对象</strong></td><td>版本对比</td><td class="bl-cell">回退100%</td></tr>
+<tr><td><div class="asset-name">变更日志<span class="tier tier-1">基础</span></div><div class="asset-en">Changelog</div></td><td>判断升级</td><td>信息同步</td><td>故障排查</td><td><strong>核心对象</strong></td><td>关联分析</td><td class="bl-cell">覆盖100%</td></tr>
+<tr><td><div class="asset-name">功能开关<span class="tier tier-2">进阶</span></div><div class="asset-en">Feature Flags</div></td><td>体验新功能</td><td>灰度节奏</td><td>清理过期</td><td>并行控制</td><td>A/B对比</td><td class="bl-cell">生效<=1min</td></tr>
+</tbody></table></div></div>
+</section>
+
+<!-- LANDING REFERENCE -->
+<section id="sec-landing">
+<div class="land-wrap">
+<div class="section-label">资产落地对照</div>
+<h2 class="section-title">抽象概念在具体工具里长什么样？</h2>
+<p class="land-intro">32 项资产是抽象分类。在实际工作中，它们对应到具体的文件、配置、服务。以下按主流工具逐项映射，帮你从"概念理解"落地到"动手操作"。</p>
+<div class="land-group">
+<div class="land-group-title"><i data-lucide="shield"></i> 核心行为 + 知识记忆</div>
+<table class="land-table"><thead><tr><th>资产</th><th>Claude Code</th><th>Cursor / QwenWork</th><th>企业 AI 中台</th><th>个人要维护什么</th></tr></thead><tbody>
+<tr><td class="land-asset">全局指令</td><td><span class="land-tool">CLAUDE.md</span></td><td><span class="land-tool">.cursorrules</span> <span class="land-tool">AGENTS.md</span></td><td><span class="land-tool">System Prompt 配置页</span></td><td class="land-note">通常由团队统一管理。个人可在本地 CLAUDE.md 补充偏好。</td></tr>
+<tr><td class="land-asset">快捷指令</td><td><span class="land-tool">/slash commands</span></td><td><span class="land-tool">Skills / 自定义指令</span></td><td><span class="land-tool">Prompt 模板库</span></td><td class="land-note">个人可创建高频操作的快捷指令。</td></tr>
+<tr><td class="land-asset">专家人设</td><td><span class="land-tool">CLAUDE.md 人格段落</span></td><td><span class="land-tool">SOUL.md</span></td><td><span class="land-tool">Agent 人设配置</span></td><td class="land-note">个人可调整语气偏好。</td></tr>
+<tr><td class="land-asset">安全护栏</td><td><span class="land-tool">内置安全层 + permission prompts</span></td><td><span class="land-tool">内容过滤配置</span></td><td><span class="land-tool">Guardrails 服务</span></td><td class="land-note">个人不需要维护，由安全团队配置。</td></tr>
+<tr><td class="land-asset">知识库</td><td><span class="land-tool">项目文件自动索引</span></td><td><span class="land-tool">@codebase / RAG 文档库</span></td><td><span class="land-tool">向量数据库</span></td><td class="land-note">个人可上传私有文档。</td></tr>
+<tr><td class="land-asset">记忆库</td><td><span class="land-tool">MEMORY.md / USER.md</span></td><td><span class="land-tool">Memory 系统</span></td><td><span class="land-tool">用户画像服务</span></td><td class="land-note">Agent 自动维护。个人通过对话告诉 Agent 偏好。</td></tr>
+<tr><td class="land-asset">上下文文件</td><td><span class="land-tool">CLAUDE.md / AGENTS.md</span></td><td><span class="land-tool">AGENTS.md / USER.md</span></td><td><span class="land-tool">项目配置中心</span></td><td class="land-note">个人可编辑项目根目录的上下文文件。</td></tr>
+</tbody></table>
+</div>
+<div class="land-group">
+<div class="land-group-title"><i data-lucide="blocks"></i> 能力工具 + AI 引擎</div>
+<table class="land-table"><thead><tr><th>资产</th><th>Claude Code</th><th>Cursor / QwenWork</th><th>企业 AI 中台</th><th>个人要维护什么</th></tr></thead><tbody>
+<tr><td class="land-asset">技能库</td><td><span class="land-tool">内置工具集</span></td><td><span class="land-tool">Skills 目录 / SKILL.md</span></td><td><span class="land-tool">技能市场</span></td><td class="land-note">个人可安装/卸载/创建技能。</td></tr>
+<tr><td class="land-asset">外部连接器</td><td><span class="land-tool">MCP Server</span></td><td><span class="land-tool">MCP 配置 / Connector</span></td><td><span class="land-tool">集成平台 / API Gateway</span></td><td class="land-note">个人可配置 MCP 连接自己的工具。</td></tr>
+<tr><td class="land-asset">命令行工具</td><td><span class="land-tool">Bash / git / npm</span></td><td><span class="land-tool">Terminal 集成</span></td><td><span class="land-tool">CI/CD Pipeline</span></td><td class="land-note">不需要维护。Agent 自动调用。</td></tr>
+<tr><td class="land-asset">原子能力库</td><td><span class="land-tool">内置图片理解</span></td><td><span class="land-tool">ImageGen / TTS</span></td><td><span class="land-tool">DALL-E / 语音 API</span></td><td class="land-note">不需要维护。由平台接入。</td></tr>
+<tr><td class="land-asset">网络搜索</td><td><span class="land-tool">内置搜索</span></td><td><span class="land-tool">WebSearch</span></td><td><span class="land-tool">Bing / Google API</span></td><td class="land-note">不需要维护。</td></tr>
+<tr><td class="land-asset">AI 大脑+网关</td><td><span class="land-tool">Claude 模型</span></td><td><span class="land-tool">模型选择器</span></td><td><span class="land-tool">LiteLLM / 自建网关</span></td><td class="land-note">个人可选模型，网关由运维管理。</td></tr>
+<tr><td class="land-asset">推理引擎</td><td><span class="land-tool">内置 ReAct 循环</span></td><td><span class="land-tool">Agent 模式</span></td><td><span class="land-tool">LangGraph / AutoGen</span></td><td class="land-note">不需要维护。由工程团队管理。</td></tr>
+</tbody></table>
+</div>
+<div class="land-group">
+<div class="land-group-title"><i data-lucide="server"></i> 安全 / 基础设施 / 版本</div>
+<table class="land-table"><thead><tr><th>资产</th><th>Claude Code</th><th>Cursor / QwenWork</th><th>企业 AI 中台</th><th>个人要维护什么</th></tr></thead><tbody>
+<tr><td class="land-asset">权限管控</td><td><span class="land-tool">permission prompts</span></td><td><span class="land-tool">RBAC 配置</span></td><td><span class="land-tool">IAM / RBAC</span></td><td class="land-note">不需要维护。遵守规则即可。</td></tr>
+<tr><td class="land-asset">密钥凭证</td><td><span class="land-tool">.env 环境变量</span></td><td><span class="land-tool">API Key 管理</span></td><td><span class="land-tool">Vault / KMS</span></td><td class="land-note">个人管理自己的 API Key。</td></tr>
+<tr><td class="land-asset">监控告警</td><td><span class="land-tool">Anthropic 监控</span></td><td><span class="land-tool">内置健康检查</span></td><td><span class="land-tool">Prometheus + Grafana</span></td><td class="land-note">不需要维护。异常时反馈给运维。</td></tr>
+<tr><td class="land-asset">版本标签</td><td><span class="land-tool">Anthropic 版本</span></td><td><span class="land-tool">产品版本号</span></td><td><span class="land-tool">Git Tag / SemVer</span></td><td class="land-note">个人选择版本。版本管理由迭代者负责。</td></tr>
+<tr><td class="land-asset">功能开关</td><td><span class="land-tool">—</span></td><td><span class="land-tool">实验性功能开关</span></td><td><span class="land-tool">Feature Flag 平台</span></td><td class="land-note">个人可开关实验性功能。</td></tr>
+</tbody></table>
+</div>
+</div>
+</section>
+
+<!-- PM CASE -->
+<section id="sec-pm">
+<div class="pm-section">
+<div class="section-label">案例：AI 时代新范式下的 PM</div>
+<h2 class="section-title">产品经理需要重点维护哪些资产？</h2>
+<p class="pm-intro">PM 的角色从"写 PRD 协调工程"转变为"定义约束、验证产出、控制迭代"。以下按三层管控模型组织。</p>
+<div class="pm-layer-group">
+<div class="pm-layer-title"><i data-lucide="anchor" style="color:#D97706"></i> 锚点层 — 极少变动，一改全局对齐 <span class="pm-layer-tag" style="color:#D97706;background:#FFFBEB">2-3 次/项目</span></div>
+<div class="pm-grid">
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="anchor"></i></div><h4>AGENTS.md</h4></div><div class="pm-card-body">项目级 AI 指令文件。定义技术栈、编码规范、架构边界。AI Agent 直接消费。</div><div class="pm-card-baseline"><strong>基准线：</strong>变更后 100% 触发全局偏移检测。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="file-text"></i></div><h4>Design Brief</h4></div><div class="pm-card-body">一页纸：业务目标+用户+策略+标准+约束。替代几十页 PRD。</div><div class="pm-card-baseline"><strong>基准线：</strong>1 页纸；5 个必填字段；下游可追溯。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="git-commit-horizontal"></i></div><h4>ADR 决策记录</h4></div><div class="pm-card-body">技术选型决策+上下文+约束+后果。PM 做技术决策时留痕。</div><div class="pm-card-baseline"><strong>基准线：</strong>每个关键决策 1 条；偏离时自动告警。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="blocks"></i></div><h4>Design Tokens</h4></div><div class="pm-card-body">机器可读设计规范。确保多人 AI 产出视觉一致。</div><div class="pm-card-baseline"><strong>基准线：</strong>覆盖 19 类 token；QA 偏差<=2%。</div></div>
+</div></div>
+<div class="pm-layer-group">
+<div class="pm-layer-title"><i data-lucide="trending-up" style="color:#0D9488"></i> 进度层 — 随进度增量追加 <span class="pm-layer-tag" style="color:#0D9488;background:#CCFBF1">每迭代追加</span></div>
+<div class="pm-grid">
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="list-checks"></i></div><h4>BDD Scenarios</h4></div><div class="pm-card-body">Given/When/Then 行为规格。AI 自动生成测试代码。</div><div class="pm-card-baseline"><strong>基准线：</strong>每功能>=3 场景；测试通过率>=95%。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="network"></i></div><h4>Sitemap</h4></div><div class="pm-card-body">信息架构骨架。AI 从 Brief+用户故事自动生成。</div><div class="pm-card-baseline"><strong>基准线：</strong>唯一路由命名；层级<=3。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="alert-triangle"></i></div><h4>Edge Case Matrix</h4></div><div class="pm-card-body">每屏×6 状态穷举。防止 AI 只生成 happy path。</div><div class="pm-card-baseline"><strong>基准线：</strong>6 状态 100% 穷举。</div></div>
+</div></div>
+<div class="pm-layer-group">
+<div class="pm-layer-title"><i data-lucide="check-circle" style="color:#7C3AED"></i> 执行层 — 发布前验证 <span class="pm-layer-tag" style="color:#7C3AED;background:#F5F3FF">每次发布必跑</span></div>
+<div class="pm-grid">
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="check-circle"></i></div><h4>AC Trace Matrix</h4></div><div class="pm-card-body">每功能×AC 完成状态。替代 Story Point 估点。</div><div class="pm-card-baseline"><strong>基准线：</strong>AC 完成率>=90% 方可发布。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="search-check"></i></div><h4>Design QA Report</h4></div><div class="pm-card-body">实现 vs Tokens 偏差清单。AI 自动对比。</div><div class="pm-card-baseline"><strong>基准线：</strong>严重偏差 0 容忍。</div></div>
+</div></div>
+</div>
+</section>
+
+<!-- GUIDES -->
+<section id="sec-guides">
+<div class="section-label" style="margin-top:56px">实操指南</div>
+<h2 class="section-title">评测 / 基准线 / 迭代</h2>
+<p class="section-desc">给 AI 中台负责人的三张实操卡。</p>
+<div class="guides-grid">
+<div class="guide-card g-eval"><div class="guide-head"><div class="guide-icon" style="background:linear-gradient(135deg,#4338CA,#7C3AED)"><i data-lucide="test-tubes"></i></div><h3>如何评测？</h3></div><div class="guide-body">
+<div class="guide-step"><div class="guide-num" style="background:var(--pri)">1</div><div class="guide-step-text"><strong>建评测集</strong>：从真实对话提取高频场景。初始 200-500 条。</div></div>
+<div class="guide-step"><div class="guide-num" style="background:var(--pri)">2</div><div class="guide-step-text"><strong>定评分标准</strong>：5 分制打分。多人标注 Kappa>=0.8。</div></div>
+<div class="guide-step"><div class="guide-num" style="background:var(--pri)">3</div><div class="guide-step-text"><strong>跑评测+出报告</strong>：回答三个问题——好了还是差了？差在哪？要回滚吗？</div></div>
+</div></div>
+<div class="guide-card g-base"><div class="guide-head"><div class="guide-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="target"></i></div><h3>基准线怎么定？</h3></div><div class="guide-body">
+<p><strong>不能拍脑袋。</strong></p>
+<div class="guide-step"><div class="guide-num" style="background:var(--amb)">1</div><div class="guide-step-text"><strong>摸底</strong>：当前版本跑评测集，记录实际得分。</div></div>
+<div class="guide-step"><div class="guide-num" style="background:var(--amb)">2</div><div class="guide-step-text"><strong>对齐</strong>：和业务方确认容忍度。</div></div>
+<div class="guide-step"><div class="guide-num" style="background:var(--amb)">3</div><div class="guide-step-text"><strong>三级线</strong>：红线/黄线/绿线。</div></div>
+</div>
+<div class="guide-example"><h4>示例：客服场景</h4><table><thead><tr><th>指标</th><th>红线</th><th>黄线</th><th>绿线</th><th>依据</th></tr></thead><tbody>
+<tr><td>准确率</td><td>>=85%</td><td>>=92%</td><td>>=96%</td><td>容忍10次错1-2次</td></tr>
+<tr><td>延迟P99</td><td><=5s</td><td><=3s</td><td><=1.5s</td><td>超5s流失升40%</td></tr>
+<tr><td>安全拦截</td><td>100%</td><td>100%</td><td>100%</td><td>合规无商量</td></tr>
+</tbody></table></div>
+</div>
+<div class="guide-card g-iter"><div class="guide-head"><div class="guide-icon" style="background:linear-gradient(135deg,#059669,#0891B2)"><i data-lucide="git-branch"></i></div><h3>如何迭代？</h3></div><div class="guide-body">
+<div class="guide-step"><div class="guide-num" style="background:var(--em)">1</div><div class="guide-step-text"><strong>小步快跑</strong>：每次只改一个变量。</div></div>
+<div class="guide-step"><div class="guide-num" style="background:var(--em)">2</div><div class="guide-step-text"><strong>灰度发布</strong>：5%→20%→50%→100%。红线跌破立即回滚。</div></div>
+<div class="guide-step"><div class="guide-num" style="background:var(--em)">3</div><div class="guide-step-text"><strong>变更必记录</strong>：改了什么、为什么、影响什么。</div></div>
+<div class="guide-step"><div class="guide-num" style="background:var(--em)">4</div><div class="guide-step-text"><strong>定期复盘</strong>：每月评测，每季度对齐基准线。</div></div>
+</div></div>
+</div>
+</section>
+
+<div class="foot-note"><strong>总结：</strong>部署一个 AI Agent 本质上是管理 <strong>8 大类 32 项资产</strong>。每项资产都有 Owner、Consumer 和 Verifier。个人关注"好不好用"，团队关注"一不一致"，运维关注"稳不稳定"，迭代者关注"变好还是变差"，评测者关注"拿什么证明"。</div>
+
+</div>
+
+<script>
+if(typeof lucide!=='undefined'){lucide.createIcons()}
+document.body.classList.add('icons-ready');
+(function(){
+  var btns=document.querySelectorAll('.tab-btn'),panels=document.querySelectorAll('.tab-panel'),timer=null,locked=null;
+  function activate(b){btns.forEach(function(x){x.classList.remove('active')});panels.forEach(function(x){x.classList.remove('active')});b.classList.add('active');document.getElementById(b.getAttribute('data-tab')).classList.add('active')}
+  btns.forEach(function(b){
+    b.addEventListener('mouseenter',function(){if(locked===b)return;clearTimeout(timer);timer=setTimeout(function(){activate(b)},200)});
+    b.addEventListener('click',function(){clearTimeout(timer);if(locked===b){locked=null;b.classList.remove('locked')}else{if(locked)locked.classList.remove('locked');locked=b;b.classList.add('locked')}activate(b)});
+    b.addEventListener('mouseleave',function(){clearTimeout(timer)});
+  });
+  document.querySelectorAll('.role-jump').forEach(function(a){
+    a.addEventListener('click',function(){var tid=a.getAttribute('data-jump-tab');if(!tid)return;var t=document.querySelector('.tab-btn[data-tab="'+tid+'"]');if(t){clearTimeout(timer);if(locked)locked.classList.remove('locked');locked=t;t.classList.add('locked');activate(t)}});
+  });
+})();
+(function(){
+  var nav=document.getElementById('stickyNav'),hero=document.querySelector('.hero'),secs=document.querySelectorAll('[id^="sec-"]'),links=document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll',function(){nav.classList.toggle('visible',hero.getBoundingClientRect().bottom<0);var cur='';secs.forEach(function(s){if(s.getBoundingClientRect().top<120)cur=s.id});links.forEach(function(l){l.classList.toggle('active',l.getAttribute('data-sec')===cur)})},{passive:true});
+})();
+</script>
+</body>
+</html>
