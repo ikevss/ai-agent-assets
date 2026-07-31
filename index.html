@@ -207,6 +207,7 @@ tbody tr:hover{background:#F8F6F2}
 <a href="#sec-assets" class="nav-link" data-sec="sec-assets">资产明细</a><span class="nav-sep"></span>
 <a href="#sec-landing" class="nav-link" data-sec="sec-landing">落地对照</a><span class="nav-sep"></span>
 <a href="#sec-pm" class="nav-link" data-sec="sec-pm">PM 案例</a><span class="nav-sep"></span>
+<a href="#sec-focus" class="nav-link" data-sec="sec-focus">聚焦指南</a><span class="nav-sep"></span>
 <a href="#sec-guides" class="nav-link" data-sec="sec-guides">实操指南</a>
 </div></nav>
 
@@ -510,23 +511,64 @@ tbody tr:hover{background:#F8F6F2}
 <div class="pm-layer-group">
 <div class="pm-layer-title"><i data-lucide="anchor" style="color:#D97706"></i> 锚点层 — 极少变动，一改全局对齐 <span class="pm-layer-tag" style="color:#D97706;background:#FFFBEB">2-3 次/项目</span></div>
 <div class="pm-grid">
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="anchor"></i></div><h4>AGENTS.md</h4></div><div class="pm-card-body">项目级 AI 指令文件。定义技术栈、编码规范、架构边界。AI Agent 直接消费。</div><div class="pm-card-baseline"><strong>基准线：</strong>变更后 100% 触发全局偏移检测。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="file-text"></i></div><h4>Design Brief</h4></div><div class="pm-card-body">一页纸：业务目标+用户+策略+标准+约束。替代几十页 PRD。</div><div class="pm-card-baseline"><strong>基准线：</strong>1 页纸；5 个必填字段；下游可追溯。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="git-commit-horizontal"></i></div><h4>ADR 决策记录</h4></div><div class="pm-card-body">技术选型决策+上下文+约束+后果。PM 做技术决策时留痕。</div><div class="pm-card-baseline"><strong>基准线：</strong>每个关键决策 1 条；偏离时自动告警。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="blocks"></i></div><h4>Design Tokens</h4></div><div class="pm-card-body">机器可读设计规范。确保多人 AI 产出视觉一致。</div><div class="pm-card-baseline"><strong>基准线：</strong>覆盖 19 类 token；QA 偏差<=2%。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="anchor"></i></div><h4>AGENTS.md（项目级 AI 指令文件）</h4></div><div class="pm-card-body">项目级 AI 指令文件。定义技术栈、编码规范、架构边界。AI Agent 直接消费，是所有下游产出的参照系。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="file-text"></i></div><h4>Design Brief（设计简报）</h4></div><div class="pm-card-body">一页纸：业务目标+用户+策略+标准+约束。替代几十页 PRD，是所有下游设计/开发产出的起点锚点。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="git-commit-horizontal"></i></div><h4>ADR（架构决策记录）</h4></div><div class="pm-card-body">技术选型决策+上下文+约束+后果。PM 做技术决策时留痕，AI 执行时参考，防止"为什么选这个方案"的反复讨论。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="blocks"></i></div><h4>Design Tokens（设计规范 JSON）</h4></div><div class="pm-card-body">机器可读设计规范：色彩、字体、间距、圆角、阴影、动效参数。确保多人 AI 产出视觉一致。</div></div>
 </div></div>
 <div class="pm-layer-group">
 <div class="pm-layer-title"><i data-lucide="trending-up" style="color:#0D9488"></i> 进度层 — 随进度增量追加 <span class="pm-layer-tag" style="color:#0D9488;background:#CCFBF1">每迭代追加</span></div>
 <div class="pm-grid">
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="list-checks"></i></div><h4>BDD Scenarios</h4></div><div class="pm-card-body">Given/When/Then 行为规格。AI 自动生成测试代码。</div><div class="pm-card-baseline"><strong>基准线：</strong>每功能>=3 场景；测试通过率>=95%。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="network"></i></div><h4>Sitemap</h4></div><div class="pm-card-body">信息架构骨架。AI 从 Brief+用户故事自动生成。</div><div class="pm-card-baseline"><strong>基准线：</strong>唯一路由命名；层级<=3。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="alert-triangle"></i></div><h4>Edge Case Matrix</h4></div><div class="pm-card-body">每屏×6 状态穷举。防止 AI 只生成 happy path。</div><div class="pm-card-baseline"><strong>基准线：</strong>6 状态 100% 穷举。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="list-checks"></i></div><h4>BDD Scenarios（行为驱动开发场景）</h4></div><div class="pm-card-body">Given/When/Then 格式的行为规格。可执行的 PRD——AI 从中自动生成测试代码。随功能推进增量追加。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="network"></i></div><h4>Sitemap（站点地图）</h4></div><div class="pm-card-body">信息架构骨架：主导航+页面层级+路由命名。AI 从 Brief+用户故事自动生成。随功能增加增量追加页面。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="alert-triangle"></i></div><h4>Edge Case Matrix（异常态矩阵）</h4></div><div class="pm-card-body">每屏×6 大状态（空/加载/错误/边界数据/权限/离线）穷举。防止 AI 只生成 happy path。PM 主动定义异常态。</div></div>
 </div></div>
 <div class="pm-layer-group">
 <div class="pm-layer-title"><i data-lucide="check-circle" style="color:#7C3AED"></i> 执行层 — 发布前验证 <span class="pm-layer-tag" style="color:#7C3AED;background:#F5F3FF">每次发布必跑</span></div>
 <div class="pm-grid">
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="check-circle"></i></div><h4>AC Trace Matrix</h4></div><div class="pm-card-body">每功能×AC 完成状态。替代 Story Point 估点。</div><div class="pm-card-baseline"><strong>基准线：</strong>AC 完成率>=90% 方可发布。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="search-check"></i></div><h4>Design QA Report</h4></div><div class="pm-card-body">实现 vs Tokens 偏差清单。AI 自动对比。</div><div class="pm-card-baseline"><strong>基准线：</strong>严重偏差 0 容忍。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="check-circle"></i></div><h4>AC Trace Matrix（验收追溯矩阵）</h4></div><div class="pm-card-body">每功能×AC（验收标准）完成状态矩阵。替代传统 Story Point 估点和燃尽图。PM 用 AC 完成率追踪进度。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="search-check"></i></div><h4>Design QA Report（设计走查报告）</h4></div><div class="pm-card-body">实现 vs Design Tokens 偏差清单。AI 自动对比代码与 token 定义，输出 deviations（偏差）列表。PM 判断哪些需要修复。</div></div>
+</div></div>
+</div>
+</section>
+
+<!-- FOCUS MODULES -->
+<section id="sec-focus">
+<div class="pm-section">
+<div class="section-label">聚焦指南：每个角色最该维护什么</div>
+<h2 class="section-title">三个角色，三份清单</h2>
+<p class="pm-intro">32 项资产不需要每个人都管。以下是三个关键角色的"最小维护清单"——只维护这些，就能让 Agent 从"能用"变成"好用"。</p>
+
+<div class="pm-layer-group">
+<div class="pm-layer-title"><i data-lucide="user" style="color:#3B82F6"></i> 作为个人，最应该维护哪些？ <span class="pm-layer-tag" style="color:#3B82F6;background:#DBEAFE">3 项核心资产</span></div>
+<div class="pm-grid">
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#3B82F6,#2563EB)"><i data-lucide="history"></i></div><h4>个人记忆库（Memory）</h4></div><div class="pm-card-body">你的偏好、习惯、历史决策。Agent 通过记忆库"记住"你，下次交互更顺畅。维护方式：主动告诉 Agent 你的偏好（如"我喜欢用柱状图""代码风格用 Prettier"），Agent 会自动存入记忆。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#3B82F6,#2563EB)"><i data-lucide="zap"></i></div><h4>快捷指令（Prompt Templates）</h4></div><div class="pm-card-body">你高频操作的"一键触发"。维护方式：把重复性操作封装成快捷指令（如"日报生成""代码审查""会议纪要"），下次直接调用，节省 80% 的重复输入时间。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#3B82F6,#2563EB)"><i data-lucide="book"></i></div><h4>个人知识库（Knowledge Base）</h4></div><div class="pm-card-body">你的私有文档、笔记、参考资料。维护方式：上传个人文档到知识库，Agent 回答时会优先参考你的私有知识，而不是通用知识。</div></div>
+</div></div>
+
+<div class="pm-layer-group">
+<div class="pm-layer-title"><i data-lucide="users" style="color:#10B981"></i> 作为团队负责人，最应该维护哪些？ <span class="pm-layer-tag" style="color:#10B981;background:#D1FAE5">5 项核心资产</span></div>
+<div class="pm-grid">
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#10B981,#059669)"><i data-lucide="book-open"></i></div><h4>团队知识库（Team Knowledge Base）</h4></div><div class="pm-card-body">产品文档、FAQ、流程规范、最佳实践。维护方式：建立团队文档中心，定期更新，确保所有人用同一个 Agent 时获得一致的回答。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#10B981,#059669)"><i data-lucide="puzzle"></i></div><h4>共享技能库（Shared Skills）</h4></div><div class="pm-card-body">团队共用的工作流封装。维护方式：把团队高频操作封装成技能（如"需求评审""设计走查""代码合并"），避免每个人重复造轮子。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#10B981,#059669)"><i data-lucide="git-merge"></i></div><h4>工作流编排（Workflow）</h4></div><div class="pm-card-body">跨角色、跨系统的自动化流程。维护方式：定义团队标准流程（如"需求→设计→开发→测试→发布"），让 Agent 自动串联，减少人工协调成本。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#10B981,#059669)"><i data-lucide="lock"></i></div><h4>权限模型（Permission / RBAC）</h4></div><div class="pm-card-body">谁能看什么、做什么。维护方式：按角色定义权限（如"产品经理可编辑需求，工程师可编辑代码，设计师可编辑设计稿"），确保数据隔离和操作合规。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#10B981,#059669)"><i data-lucide="file-text"></i></div><h4>全局指令（System Prompt）</h4></div><div class="pm-card-body">Agent 的"宪法"。维护方式：和团队对齐 Agent 的行为基线（如"回答必须引用来源""代码必须符合 PEP8""设计必须遵循 Design Tokens"），确保多人使用时表现一致。</div></div>
+</div></div>
+
+<div class="pm-layer-group">
+<div class="pm-layer-title"><i data-lucide="target" style="color:#E11D48"></i> 作为产品经理 AI Coding，最应该维护哪些？ <span class="pm-layer-tag" style="color:#E11D48;background:#FFF1F2">9 项核心资产（三层管控）</span></div>
+<div class="pm-grid">
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="anchor"></i></div><h4>AGENTS.md（项目级 AI 指令文件）</h4></div><div class="pm-card-body">定义技术栈、编码规范、架构边界。这是所有 AI 产出的参照系，变更后必须触发全局偏移检测。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="file-text"></i></div><h4>Design Brief（设计简报）</h4></div><div class="pm-card-body">一页纸对齐业务目标、用户、策略、标准、约束。替代几十页 PRD，是所有下游产出的起点锚点。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="git-commit-horizontal"></i></div><h4>ADR（架构决策记录）</h4></div><div class="pm-card-body">技术选型决策+上下文+约束+后果。PM 做技术决策时留痕，防止"为什么选这个方案"的反复讨论。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="blocks"></i></div><h4>Design Tokens（设计规范 JSON）</h4></div><div class="pm-card-body">机器可读设计规范。确保多人 AI 产出视觉一致，是设计走查的参照基准。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="list-checks"></i></div><h4>BDD Scenarios（行为驱动开发场景）</h4></div><div class="pm-card-body">Given/When/Then 格式的可执行 PRD。AI 从中自动生成测试代码，是验收标准的源头。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="network"></i></div><h4>Sitemap（站点地图）</h4></div><div class="pm-card-body">信息架构骨架：主导航+页面层级+路由命名。AI 从 Brief+用户故事自动生成，是页面结构的源头。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="alert-triangle"></i></div><h4>Edge Case Matrix（异常态矩阵）</h4></div><div class="pm-card-body">每屏×6 大状态穷举。防止 AI 只生成 happy path，是异常态设计的源头。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="check-circle"></i></div><h4>AC Trace Matrix（验收追溯矩阵）</h4></div><div class="pm-card-body">每功能×AC 完成状态。替代 Story Point 估点，是进度追踪的唯一指标。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="search-check"></i></div><h4>Design QA Report（设计走查报告）</h4></div><div class="pm-card-body">实现 vs Design Tokens 偏差清单。AI 自动对比，PM 判断哪些需要修复，是发布前的最后一道关卡。</div></div>
 </div></div>
 </div>
 </section>
@@ -547,12 +589,6 @@ tbody tr:hover{background:#F8F6F2}
 <div class="guide-step"><div class="guide-num" style="background:var(--amb)">1</div><div class="guide-step-text"><strong>摸底</strong>：当前版本跑评测集，记录实际得分。</div></div>
 <div class="guide-step"><div class="guide-num" style="background:var(--amb)">2</div><div class="guide-step-text"><strong>对齐</strong>：和业务方确认容忍度。</div></div>
 <div class="guide-step"><div class="guide-num" style="background:var(--amb)">3</div><div class="guide-step-text"><strong>三级线</strong>：红线/黄线/绿线。</div></div>
-</div>
-<div class="guide-example"><h4>示例：客服场景</h4><table><thead><tr><th>指标</th><th>红线</th><th>黄线</th><th>绿线</th><th>依据</th></tr></thead><tbody>
-<tr><td>准确率</td><td>>=85%</td><td>>=92%</td><td>>=96%</td><td>容忍10次错1-2次</td></tr>
-<tr><td>延迟P99</td><td><=5s</td><td><=3s</td><td><=1.5s</td><td>超5s流失升40%</td></tr>
-<tr><td>安全拦截</td><td>100%</td><td>100%</td><td>100%</td><td>合规无商量</td></tr>
-</tbody></table></div>
 </div>
 <div class="guide-card g-iter"><div class="guide-head"><div class="guide-icon" style="background:linear-gradient(135deg,#059669,#0891B2)"><i data-lucide="git-branch"></i></div><h3>如何迭代？</h3></div><div class="guide-body">
 <div class="guide-step"><div class="guide-num" style="background:var(--em)">1</div><div class="guide-step-text"><strong>小步快跑</strong>：每次只改一个变量。</div></div>
