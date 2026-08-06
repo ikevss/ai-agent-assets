@@ -209,6 +209,49 @@ tbody tr:hover{background:#F8F6F2}
 .xr-drop-panel a b{display:block;font-size:.88rem;font-weight:600;margin-bottom:3px}
 .xr-drop-panel a small{display:block;font-size:.76rem;opacity:.5;line-height:1.5}
 
+/* FOUNDATION — 桩基理论 */
+.foundation-wrap{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:44px 40px;margin:40px 0;position:relative;overflow:hidden}
+.foundation-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--pri),var(--vi),var(--amb),var(--em))}
+.foundation-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:28px 0}
+.foundation-sink{background:#FFF5F5;border:1px solid rgba(225,29,72,.16);border-radius:14px;padding:24px;position:relative}
+.foundation-sink::before{content:'流沙';position:absolute;top:14px;right:16px;font-size:11px;font-weight:700;color:var(--ro);background:var(--ro-l);padding:3px 10px;border-radius:5px;font-family:'Outfit',sans-serif;text-transform:uppercase;letter-spacing:.5px}
+.foundation-sink h4{font-size:16px;color:var(--ro);margin-bottom:16px;padding-right:100px;font-family:'Fraunces',serif}
+.foundation-sink ul{list-style:none;padding:0;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.foundation-sink li{padding:6px 0;padding-left:20px;position:relative}
+.foundation-sink li::before{content:'\00d7';position:absolute;left:0;color:var(--ro);font-weight:700}
+.foundation-pile{background:#F0FDF4;border:1px solid rgba(5,150,105,.16);border-radius:14px;padding:24px;position:relative}
+.foundation-pile::before{content:'打桩';position:absolute;top:14px;right:16px;font-size:11px;font-weight:700;color:var(--em);background:var(--em-l);padding:3px 10px;border-radius:5px;font-family:'Outfit',sans-serif;text-transform:uppercase;letter-spacing:.5px}
+.foundation-pile h4{font-size:16px;color:var(--em);margin-bottom:16px;padding-right:100px;font-family:'Fraunces',serif}
+.foundation-pile ul{list-style:none;padding:0;color:var(--ink2);font-size:14.5px;line-height:1.8}
+.foundation-pile li{padding:6px 0;padding-left:20px;position:relative}
+.foundation-pile li::before{content:'\2713';position:absolute;left:0;color:var(--em);font-weight:700}
+.foundation-arrow{display:flex;justify-content:center;margin:16px 0}
+.foundation-arrow svg{width:40px;height:24px;color:var(--pri)}
+.foundation-5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}
+.foundation-5 .f5-item{text-align:center;padding:18px 10px;border:1px solid var(--line);border-radius:12px;background:var(--bg);transition:all .2s}
+.foundation-5 .f5-item:hover{border-color:var(--pri);box-shadow:0 4px 16px rgba(67,56,202,.06)}
+.foundation-5 .f5-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.foundation-5 .f5-icon svg{width:18px;height:18px;color:#fff}
+.foundation-5 .f5-name{font-family:'Fraunces',serif;font-size:14px;font-weight:600;margin-bottom:3px}
+.foundation-5 .f5-desc{font-size:12px;color:var(--ink3);line-height:1.5}
+/* FIVE PILES — 五个桩详解 */
+.fivepile-wrap{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:44px 40px;margin:40px 0}
+.fivepile-intro{font-size:16px;color:var(--ink2);line-height:1.8;margin-bottom:28px;max-width:800px}
+.fivepile-card{display:grid;grid-template-columns:160px 1fr;gap:20px;padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--bg);transition:all .2s;align-items:start;margin-bottom:12px}
+.fivepile-card:hover{border-color:var(--pri);box-shadow:0 4px 20px rgba(67,56,202,.06)}
+.fivepile-card .fp-left{display:flex;flex-direction:column;align-items:center;text-align:center}
+.fivepile-card .fp-l-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.fivepile-card .fp-l-icon svg{width:20px;height:20px;color:#fff}
+.fivepile-card .fp-l-name{font-family:'Fraunces',serif;font-size:14px;font-weight:700}
+.fivepile-card .fp-l-en{font-size:10.5px;color:var(--ink3);margin-top:2px}
+.fivepile-card .fp-r h4{font-size:15.5px;font-family:'Fraunces',serif;margin-bottom:4px}
+.fivepile-card .fp-r .fp-r-desc{font-size:14px;color:var(--ink2);line-height:1.7;margin-bottom:4px}
+.fivepile-card .fp-r .fp-r-meta{display:flex;flex-wrap:wrap;gap:6px;font-size:12px;color:var(--ink3)}
+.fivepile-card .fp-r .fp-r-meta span{background:var(--line2);padding:2px 8px;border-radius:5px}
+.fivepile-map{overflow-x:auto;margin-top:24px}
+.fivepile-map table{min-width:640px}
+@media(max-width:900px){.foundation-grid{grid-template-columns:1fr}.foundation-5{grid-template-columns:repeat(2,1fr)}.fivepile-card{grid-template-columns:1fr;gap:10px;text-align:center}.fivepile-card .fp-left{flex-direction:row;gap:10px}}
+
 </style>
 </head>
 <body>
@@ -218,6 +261,7 @@ tbody tr:hover{background:#F8F6F2}
 <a href="#sec-overview" class="nav-link" data-sec="sec-overview">概览</a><span class="nav-sep"></span>
 <a href="#sec-arch" class="nav-link" data-sec="sec-arch">架构</a><span class="nav-sep"></span>
 <a href="#sec-struct" class="nav-link" data-sec="sec-struct">资产结构</a><span class="nav-sep"></span>
+<a href="#sec-fivepiles" class="nav-link" data-sec="sec-fivepiles">五个桩</a><span class="nav-sep"></span>
 <a href="#sec-roles" class="nav-link" data-sec="sec-roles">角色</a><span class="nav-sep"></span>
 <a href="#sec-assets" class="nav-link" data-sec="sec-assets">资产明细</a><span class="nav-sep"></span>
 <a href="#sec-landing" class="nav-link" data-sec="sec-landing">落地对照</a><span class="nav-sep"></span>
@@ -255,6 +299,42 @@ tbody tr:hover{background:#F8F6F2}
 </div>
 <div class="hero-version">v8.0 · 2026-03-31 · 含资产结构图 + 落地对照表</div>
 </section>
+
+<!-- FOUNDATION — 桩基理论 -->
+<div class="foundation-wrap">
+<div class="section-label">为什么是"桩"而不是"地基"？</div>
+<h2 style="font-size:clamp(24px,3vw,32px);font-family:'Fraunces',serif;margin-bottom:10px">框架是他们的，资产是你的</h2>
+<p class="section-desc">OpenAI、Anthropic、Google 每年数十亿美元砸在模型训练与推理基础设施上，WorkBuddy 这样的传统大厂用成熟工程资源做通用平台——那是地基，不由我们来建。<strong>但很多团队在做相反的事：在流沙上盖房子。</strong>业务规则写进聊天框、知识散落在对话记录里、配置绑死在某个工具的私有格式。换模型、换工具，全部重来。</p>
+<div class="foundation-grid">
+  <div class="foundation-sink">
+    <h4>流水花园里的沙堡 —— 流沙上建房</h4>
+    <ul>
+      <li>需求只存在于对话记录里，换个会话就没了</li>
+      <li>规则是口头约定的，AI 每次猜到哪算哪</li>
+      <li>知识库绑在某一个工具上，工具一换数据归零</li>
+      <li>配置是硬编码的，换个模型整套提示词都要重写</li>
+    </ul>
+  </div>
+  <div class="foundation-pile">
+    <h4>纯文本桩基 —— 换什么 Agent 都能平移</h4>
+    <ul>
+      <li>规则写成独立文件，AI 每次启动自动加载</li>
+      <li>技能用 Markdown 打包，跨工具可直接复用</li>
+      <li>知识库与记忆库以标准化格式持久存储</li>
+      <li>外部连接通过统一协议接入，换平台不改配置</li>
+    </ul>
+  </div>
+</div>
+<div class="foundation-arrow"><svg viewBox="0 0 40 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 12h34M28 5l7 7-7 7"/></svg></div>
+<p style="text-align:center;font-size:16px;color:var(--ink2);margin-bottom:20px">落地时，这些桩最常见的五种形态是：</p>
+<div class="foundation-5">
+  <div class="f5-item"><div class="f5-icon" style="background:linear-gradient(135deg,#3B82F6,#2563EB)"><i data-lucide="file-text"></i></div><div class="f5-name">Skills</div><div class="f5-desc">技能文件</div></div>
+  <div class="f5-item"><div class="f5-icon" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED)"><i data-lucide="plug-2"></i></div><div class="f5-name">MCP</div><div class="f5-desc">外部连接协议</div></div>
+  <div class="f5-item"><div class="f5-icon" style="background:linear-gradient(135deg,#F59E0B,#D97706)"><i data-lucide="zap"></i></div><div class="f5-name">Hooks</div><div class="f5-desc">自动化触发</div></div>
+  <div class="f5-item"><div class="f5-icon" style="background:linear-gradient(135deg,#10B981,#059669)"><i data-lucide="shield"></i></div><div class="f5-name">Rules</div><div class="f5-desc">项目约束文件</div></div>
+  <div class="f5-item"><div class="f5-icon" style="background:linear-gradient(135deg,#E11D48,#BE123C)"><i data-lucide="command"></i></div><div class="f5-name">Commands</div><div class="f5-desc">快捷指令</div></div>
+</div>
+</div>
 
 <!-- FLOW -->
 <div class="flow-wrap">
@@ -414,6 +494,49 @@ tbody tr:hover{background:#F8F6F2}
 <div class="struct-cat"><div class="struct-cat-head"><i data-lucide="server"></i><h4>基础设施</h4><span class="struct-cat-count">4 项</span></div><div class="struct-items"><span class="struct-item">服务器容器</span><span class="struct-item">对话日志</span><span class="struct-item">监控告警</span><span class="struct-item">定时任务</span></div></div>
 <div class="struct-cat"><div class="struct-cat-head"><i data-lucide="rocket"></i><h4>版本与发布</h4><span class="struct-cat-count">3 项</span></div><div class="struct-items"><span class="struct-item">版本标签</span><span class="struct-item">变更日志</span><span class="struct-item">功能开关</span></div></div>
 </div>
+</div>
+</div>
+
+<!-- FIVE PILES -->
+<div class="fivepile-wrap" id="sec-fivepiles">
+<div class="section-label">落地形态</div>
+<h2 class="section-title">五个桩：每个都对应一项实战资产</h2>
+<p class="fivepile-intro">上面 32 项资产是"要管什么"的分类学。下面五个词是"实际怎么管"的落地形态——<strong>它们不是新概念，而是你的资产在 AI 编程工具里长成的具体文件。</strong></p>
+
+<div class="fivepile-card">
+  <div class="fp-left"><div class="fp-l-icon" style="background:linear-gradient(135deg,#3B82F6,#2563EB)"><i data-lucide="file-text"></i></div><div class="fp-l-name">Skills</div><div class="fp-l-en">技能</div></div>
+  <div class="fp-r"><h4>告诉 AI"按这个流程走"</h4><div class="fp-r-desc">一个 Skill 就是一个 Markdown 文件，包含指令、模板和工作流程。纯文本，跨工具可复用，不绑定任何特定模型——换一个支持 Skill 机制的工具，文件拷过去就能用。</div><div class="fp-r-meta"><span>对应资产：技能库</span><span>文件形态：skills/ 目录下的 .md</span></div></div>
+</div>
+<div class="fivepile-card">
+  <div class="fp-left"><div class="fp-l-icon" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED)"><i data-lucide="plug-2"></i></div><div class="fp-l-name">MCP</div><div class="fp-l-en">Model Context Protocol</div></div>
+  <div class="fp-r"><h4>AI 连接外部工具的标准化插座</h4><div class="fp-r-desc">Anthropic 推出的开放协议，让 AI 通过统一接口连接数据库、API、文件系统。每个 MCP Server 是一个独立进程——数据源属于 PM，查询逻辑属于项目，换一个支持 MCP 的 AI 工具，同一个 Server 照用不误。</div><div class="fp-r-meta"><span>对应资产：外部连接器</span><span>配置位置：settings.json → mcpServers</span></div></div>
+</div>
+<div class="fivepile-card">
+  <div class="fp-left"><div class="fp-l-icon" style="background:linear-gradient(135deg,#F59E0B,#D97706)"><i data-lucide="zap"></i></div><div class="fp-l-name">Hooks</div><div class="fp-l-en">钩子 / 自动化</div></div>
+  <div class="fp-r"><h4>"当 X 发生时，自动执行 Y"</h4><div class="fp-r-desc">事件驱动的自动化——每次调用 Bash 前检查安全性、会话结束前保存上下文、文件写入后自动格式化。Hooks 在不打断工作流的前提下，把安全与质量无声织入每次操作。</div><div class="fp-r-meta"><span>对应资产：安全护栏</span><span>配置位置：settings.json → hooks</span></div></div>
+</div>
+<div class="fivepile-card">
+  <div class="fp-left"><div class="fp-l-icon" style="background:linear-gradient(135deg,#10B981,#059669)"><i data-lucide="shield"></i></div><div class="fp-l-name">Rules</div><div class="fp-l-en">规则 / 宪章</div></div>
+  <div class="fp-r"><h4>AI 每次启动必读的约束文件</h4><div class="fp-r-desc">全部资产中最重要的桩。定义项目是什么、技术栈为何、绝不能犯什么错、与 PM 如何配合。被错误喂养、随项目生长，纯文本，拷贝即生效——<strong>是所有规则资产的不动锚点。</strong></div><div class="fp-r-meta"><span>对应资产：全局指令</span><span>文件名：CLAUDE.md / AGENTS.md</span></div></div>
+</div>
+<div class="fivepile-card">
+  <div class="fp-left"><div class="fp-l-icon" style="background:linear-gradient(135deg,#E11D48,#BE123C)"><i data-lucide="command"></i></div><div class="fp-l-name">Commands</div><div class="fp-l-en">命令 / 快捷指令</div></div>
+  <div class="fp-r"><h4>一键触发的高频操作入口</h4><div class="fp-r-desc">五个桩里唯一面向"人直接操作"的形态。内置命令覆盖常用场景，自定义命令将重复 prompt 封装为单次输入——是用户与 Agent 最短距离的触点。</div><div class="fp-r-meta"><span>对应资产：快捷指令</span><span>使用方式：/ 斜杠命令 + 自定义命令</span></div></div>
+</div>
+
+<div class="fivepile-map">
+<div class="section-label" style="margin-bottom:10px">五个桩 ↔ 32 资产映射</div>
+<div class="tbl-wrap"><table>
+<thead><tr><th>桩</th><th>所承载的资产（手册类别）</th><th>编号</th></tr></thead>
+<tbody>
+<tr><td class="pill"><span style="background:#DBEAFE;color:#1D4ED8">Skills</span></td><td>核心行为 → 能力说明书 / 专家人设 · 能力与工具 → 技能库</td><td>#04, #09</td></tr>
+<tr><td class="pill"><span style="background:#EDE9FE;color:#6D28D9">MCP</span></td><td>能力与工具 → 外部连接器 · 安全与权限 → 密钥凭证</td><td>#10, #24</td></tr>
+<tr><td class="pill"><span style="background:#FEF3C7;color:#B45309">Hooks</span></td><td>安全与权限 → 安全护栏 / 审计日志 · 评测与质量 → 自动化</td><td>#06, #25, #27</td></tr>
+<tr><td class="pill"><span style="background:#D1FAE5;color:#047857">Rules</span></td><td>核心行为 → 全局指令 · 知识与记忆 → 上下文文件</td><td>#01, #08</td></tr>
+<tr><td class="pill"><span style="background:#FFE4E6;color:#9F1239">Commands</span></td><td>核心行为 → 快捷指令 · 能力与工具 → 工作流编排</td><td>#02, #14</td></tr>
+</tbody></table></div>
+</div>
+
 </div>
 
 <!-- ROLES -->
