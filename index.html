@@ -21,8 +21,8 @@ h1,h2,h3,h4{font-family:'Fraunces','PingFang SC',serif;font-weight:700;line-heig
 .section-desc{font-size:17px;color:var(--ink2);max-width:720px;line-height:1.75}
 .tier{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;margin-left:6px;vertical-align:middle}
 .tier-1{color:#047857;background:#ECFDF5}.tier-2{color:#B45309;background:#FFFBEB}.tier-3{color:#6D28D9;background:#F5F3FF}
-.tier-legend{display:flex;gap:16px;margin:12px 0 20px;flex-wrap:wrap}
-.tier-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink3)}
+
+
 a:focus-visible,button:focus-visible,[tabindex="0"]:focus-visible{outline:2px solid var(--pri);outline-offset:2px;border-radius:4px}
 .skip-link{position:absolute;left:-9999px;top:0;background:var(--pri);color:#fff;padding:10px 18px;border-radius:0 0 10px 0;z-index:999;font-size:14px;text-decoration:none}
 .skip-link:focus{left:0}
@@ -453,10 +453,6 @@ tbody tr:hover{background:#F8F6F2}
 <!-- Tier legend -->
 <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="2.7s" fill="freeze"/>
 <rect x="10" y="385" width="1080" height="1" fill="#E8E4DF"/>
-<text x="550" y="415" text-anchor="middle" fill="#7A7A8A" font-size="13" font-weight="600">复杂度分级</text>
-<rect x="330" y="430" width="60" height="24" rx="6" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/><text x="360" y="447" text-anchor="middle" fill="#059669" font-size="11" font-weight="600">基础 12</text>
-<rect x="400" y="430" width="60" height="24" rx="6" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1"/><text x="430" y="447" text-anchor="middle" fill="#D97706" font-size="11" font-weight="600">进阶 13</text>
-<rect x="470" y="430" width="60" height="24" rx="6" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/><text x="500" y="447" text-anchor="middle" fill="#7C3AED" font-size="11" font-weight="600">高级 7</text>
 </g>
 <!-- Pulse -->
 <circle cx="550" cy="34" r="0" fill="none" stroke="#4338CA" stroke-width="1.5"><animate attributeName="r" from="20" to="60" dur="2s" begin=".5s" repeatCount="indefinite"/><animate attributeName="opacity" from=".4" to="0" dur="2s" begin=".5s" repeatCount="indefinite"/></circle>
@@ -553,7 +549,7 @@ tbody tr:hover{background:#F8F6F2}
 <div class="section-label">资产明细</div>
 <h2 class="section-title">33 项资产，逐项拆解</h2>
 <p class="section-desc">每项资产对 5 类角色的具体作用 + 基准线参考。悬停标签切换分类，点击可锁定。</p>
-<div class="tier-legend"><span class="tier-legend-item"><span class="tier tier-1">基础</span> 任何部署都需要</span><span class="tier-legend-item"><span class="tier tier-2">进阶</span> 重要但可逐步完善</span><span class="tier-legend-item"><span class="tier tier-3">高级</span> 需要较大基础设施投入</span></div>
+
 <div class="tabs-bar" id="tabs" role="tablist" aria-label="资产分类">
 <button class="tab-btn active" data-tab="t1">一、核心行为</button><button class="tab-btn" data-tab="t2">二、知识与记忆</button><button class="tab-btn" data-tab="t3">三、能力与工具</button><button class="tab-btn" data-tab="t4">四、AI 引擎</button><button class="tab-btn" data-tab="t5">五、安全与权限</button><button class="tab-btn" data-tab="t6">六、评测与质量</button><button class="tab-btn" data-tab="t7">七、基础设施</button><button class="tab-btn" data-tab="t8">八、版本与发布</button>
 </div>
