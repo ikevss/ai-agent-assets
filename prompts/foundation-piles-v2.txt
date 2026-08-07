@@ -1,0 +1,46 @@
+# 桩基理论对比图 · 优化提示词
+# 尺寸: 2048x1152 (16:9) · 模型: gpt-image-2
+
+提示词：
+
+A professional infographic diagram for a Chinese technical documentation page about AI agent deployment. Clean flat-vector illustration style with crisp linework and minimal shading — like a Notion or GitBook explanatory diagram.
+
+LAYOUT: The image is split vertically into two equal halves by a thin neutral gray divider line.
+
+=== LEFT HALF (warm reddish theme #FEF2F2 background) ===
+Title at top in large bold Chinese: "流沙上建房" with a small red X icon beside it.
+
+Central visual: An ornate, elaborate sandcastle built on visibly flowing/rippling sand — the castle is tilting to one side at a 15-degree angle, with small pieces crumbling off the top. The sand beneath has wave-like ripple lines suggesting instability and motion. The castle looks impressive but precarious — about to collapse.
+
+Four red callout boxes with red X marks, arranged around the castle:
+- "规则口头约定" (Rules are verbal agreements)
+- "知识库绑定某工具" (Knowledge base tied to one tool)
+- "配置硬编码" (Configuration is hardcoded)
+- "换会话就丢失" (Lost when you switch sessions)
+
+The callout boxes are clean rounded rectangles with thin red borders, light red backgrounds, and concise text. Red arrows or lines connect each callout to relevant parts of the sandcastle.
+
+Overall mood: fragile, temporary, a beautiful effort wasted on unstable ground.
+
+=== RIGHT HALF (fresh green theme #F0FDF4 background) ===
+Title at top in large bold Chinese: "纯文本打桩" with a small green checkmark icon beside it.
+
+Central visual: Three solid square concrete piles driven deep into firm, stable ground (shown as layered earth cross-section). The piles are clean, geometric, perfectly vertical. On top of each pile rests a clean document/file icon — one .md file, one .json file, one .yaml file — each glowing slightly with a green checkmark badge on its corner. Green root-like lines extend downward from the piles into the earth, suggesting deep anchoring.
+
+Four green callout boxes with green checkmarks, arranged around the piles:
+- "规则写成文件自动加载" (Rules as files, auto-loaded on startup)
+- "Markdown 技能跨工具复用" (Markdown skills reusable across tools)
+- "标准化格式持久存储" (Standardized formats for persistent storage)
+- "统一协议换平台不改配置" (Unified protocol, swap platforms without reconfiguration)
+
+The callout boxes match the left side in style but use green borders and light green backgrounds.
+
+Overall mood: solid, permanent, portable — assets that survive any platform change.
+
+=== TYPOGRAPHY & STYLE NOTES ===
+- All text in clean sans-serif Chinese (PingFang SC / Microsoft YaHei weight)
+- Titles: large, bold, centered
+- Callout text: medium weight, clearly legible at document-embed sizes
+- No photorealism, no 3D rendering, no heavy gradients or drop shadows
+- Color palette: muted warm reds on left, muted fresh greens on right, neutral divider
+- The two halves should feel like a clear "before vs after" or "wrong way vs right way" comparison

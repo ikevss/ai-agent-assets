@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" onerror="document.body.classList.add('no-lucide')"></script>
 <style>
-:root{--bg:#FAF8F5;--card:#FFF;--ink:#1A1A2E;--ink2:#4A4A5A;--ink3:#7A7A8A;--line:#E8E4DF;--line2:#F0ECE7;--pri:#4338CA;--pri-l:#EEF2FF;--pri-d:#3730A3;--amb:#D97706;--amb-l:#FFFBEB;--em:#059669;--em-l:#ECFDF5;--ro:#E11D48;--ro-l:#FFF1F2;--vi:#7C3AED;--vi-l:#F5F3FF}
+:root{--bg:#FAF8F5;--card:#FFF;--ink:#1A1A2E;--ink2:#4A4A5A;--ink3:#7A7A8A;--line:#E8E4DF;--line2:#F0ECE7;--pri:#4338CA;--pri-l:#EEF2FF;--pri-d:#3730A3;--amb:#B45309;--amb-l:#FFFBEB;--em:#047857;--em-l:#ECFDF5;--ro:#BE123C;--ro-l:#FFF1F2;--vi:#7C3AED;--vi-l:#F5F3FF}
 *{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;scroll-behavior:smooth}
 body{font-family:'Outfit','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
@@ -20,16 +20,21 @@ h1,h2,h3,h4{font-family:'Fraunces','PingFang SC',serif;font-weight:700;line-heig
 .section-title{font-size:clamp(26px,3.5vw,38px);margin-bottom:12px}
 .section-desc{font-size:17px;color:var(--ink2);max-width:720px;line-height:1.75}
 .tier{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;margin-left:6px;vertical-align:middle}
-.tier-1{color:#059669;background:#ECFDF5}.tier-2{color:#D97706;background:#FFFBEB}.tier-3{color:#7C3AED;background:#F5F3FF}
+.tier-1{color:#047857;background:#ECFDF5}.tier-2{color:#B45309;background:#FFFBEB}.tier-3{color:#6D28D9;background:#F5F3FF}
 .tier-legend{display:flex;gap:16px;margin:12px 0 20px;flex-wrap:wrap}
 .tier-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink3)}
-.sticky-nav{position:sticky;top:0;z-index:100;background:rgba(250,248,245,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transform:translateY(-100%);opacity:0;transition:all .3s ease;pointer-events:none}
-.sticky-nav.visible{transform:translateY(0);opacity:1;pointer-events:all}
-.sticky-nav-inner{display:flex;align-items:center;gap:4px;height:48px;overflow-x:auto}
-.sticky-nav-inner::-webkit-scrollbar{display:none}
-.nav-link{padding:6px 14px;border-radius:6px;font-size:13px;font-weight:500;color:var(--ink3);text-decoration:none;white-space:nowrap;transition:all .15s}
-.nav-link:hover{background:var(--line2);color:var(--ink)}.nav-link.active{background:var(--pri-l);color:var(--pri);font-weight:600}
-.nav-sep{width:1px;height:16px;background:var(--line);flex-shrink:0;margin:0 4px}
+a:focus-visible,button:focus-visible,[tabindex="0"]:focus-visible{outline:2px solid var(--pri);outline-offset:2px;border-radius:4px}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--pri);color:#fff;padding:10px 18px;border-radius:0 0 10px 0;z-index:999;font-size:14px;text-decoration:none}
+.skip-link:focus{left:0}
+.tab-btn.previewing{background:var(--card);color:var(--ink);border-color:var(--line)}
+.struct-svg-note{display:none;font-size:13px;color:var(--ink2);background:var(--line2);border-radius:8px;padding:10px 14px;margin-bottom:16px}
+
+
+
+
+
+
+
 .hero{padding:72px 0 56px;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-120px;right:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(67,56,202,.06) 0%,transparent 70%);pointer-events:none}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--pri);background:var(--pri-l);padding:6px 16px;border-radius:20px;margin-bottom:20px}
@@ -39,8 +44,6 @@ h1,h2,h3,h4{font-family:'Fraunces','PingFang SC',serif;font-weight:700;line-heig
 .hero-sub{font-size:19px;color:var(--ink2);max-width:680px;line-height:1.8;margin-bottom:32px}
 .hero-stats{display:flex;gap:20px;flex-wrap:wrap}
 .hero-stat{flex:1;min-width:140px;padding:20px 24px;background:var(--card);border:1px solid var(--line);border-radius:12px;position:relative;overflow:hidden}
-.hero-stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.hero-stat:nth-child(1)::before{background:linear-gradient(90deg,#4338CA,#7C3AED)}.hero-stat:nth-child(2)::before{background:linear-gradient(90deg,#059669,#0891B2)}.hero-stat:nth-child(3)::before{background:linear-gradient(90deg,#D97706,#EA580C)}.hero-stat:nth-child(4)::before{background:linear-gradient(90deg,#E11D48,#BE123C)}
 .hero-stat .stat-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
 .hero-stat .stat-icon svg{width:18px;height:18px;color:#fff}
 .hero-stat:nth-child(1) .stat-icon{background:linear-gradient(135deg,#4338CA,#7C3AED)}.hero-stat:nth-child(2) .stat-icon{background:linear-gradient(135deg,#059669,#0891B2)}.hero-stat:nth-child(3) .stat-icon{background:linear-gradient(135deg,#D97706,#EA580C)}.hero-stat:nth-child(4) .stat-icon{background:linear-gradient(135deg,#E11D48,#BE123C)}
@@ -98,10 +101,6 @@ h1,h2,h3,h4{font-family:'Fraunces','PingFang SC',serif;font-weight:700;line-heig
 .struct-svg-wrap svg text{font-family:'Outfit','PingFang SC',sans-serif}
 .struct-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .struct-cat{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;transition:all .2s;position:relative;overflow:hidden}
-.struct-cat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.struct-cat:nth-child(1)::before,.struct-cat:nth-child(2)::before,.struct-cat:nth-child(3)::before,.struct-cat:nth-child(4)::before{background:#4338CA}
-.struct-cat:nth-child(5)::before,.struct-cat:nth-child(6)::before{background:#E11D48}
-.struct-cat:nth-child(7)::before,.struct-cat:nth-child(8)::before{background:#D97706}
 .struct-cat:hover{border-color:var(--pri);box-shadow:0 4px 16px rgba(67,56,202,.06)}
 .struct-cat-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .struct-cat-head svg{width:16px;height:16px;color:var(--pri);flex-shrink:0}
@@ -171,12 +170,10 @@ tbody tr:hover{background:#F8F6F2}
 .pm-card-body{font-size:14px;color:var(--ink2);line-height:1.7;margin-bottom:12px}
 .pm-card-baseline{padding:12px 14px;background:var(--pri-l);border-radius:8px;font-size:13px;color:var(--pri-d);line-height:1.6}
 .pm-card-baseline strong{font-weight:600}
-.guides-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:20px;margin:32px 0}
+.guides-full{display:flex;flex-direction:column;gap:20px;margin-bottom:20px}
+.guides-full .guide-card{width:100%}
+.guides-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:20px;margin:0 0 32px}
 .guide-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;position:relative;overflow:hidden}
-.guide-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.guide-card.g-eval::before{background:linear-gradient(90deg,var(--pri),var(--vi))}
-.guide-card.g-base::before{background:linear-gradient(90deg,var(--amb),#EA580C)}
-.guide-card.g-iter::before{background:linear-gradient(90deg,var(--em),#0891B2)}
 .guide-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
 .guide-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center}
 .guide-icon svg{width:22px;height:22px;color:#fff}
@@ -194,47 +191,31 @@ tbody tr:hover{background:#F8F6F2}
 .foot-note strong{font-weight:600}
 @media(max-width:1200px){.struct-cats{grid-template-columns:repeat(2,1fr)}.flow-pipeline{flex-wrap:wrap;gap:10px;justify-content:center}.flow-arrow{display:none}.flow-node{width:130px}.flow-name{font-size:13px}.flow-desc{font-size:11px}.flow-node:nth-child(n){animation-delay:0s}}
 @media(max-width:1100px){.roles-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:900px){.container{padding:0 16px}.sticky-nav{padding:0 16px}.flow-node{width:110px}.arch-row{flex-direction:column;gap:6px}.arch-tag{flex:none;width:100%;padding:10px 14px;font-size:13px}.arch-sep{padding-left:0}.roles-grid,.pm-grid,.struct-cats{grid-template-columns:1fr}.guides-grid{grid-template-columns:1fr}.tab-btn{padding:8px 12px;font-size:13px}thead th,tbody td{padding:10px 12px;font-size:13px}.hero-stats{gap:12px}.hero-stat{min-width:120px;padding:14px 16px}.pm-section,.arch-wrap,.flow-wrap,.struct-wrap,.land-wrap{padding:24px}.land-table{font-size:13px}.land-table th,.land-table td{padding:8px 10px}}
+@media(max-width:900px){.container{padding:0 16px}.flow-node{width:110px}.arch-row{flex-direction:column;gap:6px}.arch-tag{flex:none;width:100%;padding:10px 14px;font-size:13px}.arch-sep{padding-left:0}.roles-grid,.pm-grid,.struct-cats{grid-template-columns:1fr}.guides-grid{grid-template-columns:1fr}.tab-btn{padding:8px 12px;font-size:13px}thead th,tbody td{padding:10px 12px;font-size:13px}.hero-stats{gap:12px}.hero-stat{min-width:120px;padding:14px 16px}.pm-section,.arch-wrap,.flow-wrap,.struct-wrap,.land-wrap{padding:24px}.land-table{font-size:13px}.land-table th,.land-table td{padding:8px 10px}}
 
 /* xr-drop — ikevss 资源下拉 */
 .xr-drop-trigger:hover .xr-chevron,.xr-drop-trigger:active .xr-chevron{transform:rotate(180deg);opacity:1}
 
-.xr-drop-panel a{display:block;padding:14px;border-radius:10px;text-decoration:none;color:inherit;transition:background .2s,border-color .2s;border:1px solid transparent}
-.xr-drop-panel a:hover{background:var(--xr-hover,#f0fdf8);border-color:var(--xr-accent,#16a085)}
-.xr-drop-panel a b{display:block;font-size:.88rem;font-weight:600;margin-bottom:3px;color:inherit}
-.xr-drop-panel a small{display:block;font-size:.76rem;opacity:.55;line-height:1.5;color:inherit}
 
-.xr-drop-panel a{display:block;padding:14px;border-radius:10px;text-decoration:none;color:#e8eaee;transition:background .2s,border-color .2s;border:1px solid transparent}
-.xr-drop-panel a:hover{background:rgba(52,211,153,.1);border-color:#34d399}
-.xr-drop-panel a b{display:block;font-size:.88rem;font-weight:600;margin-bottom:3px}
-.xr-drop-panel a small{display:block;font-size:.76rem;opacity:.5;line-height:1.5}
+
+
+
+
+
+
+
+
 
 /* FOUNDATION — 桩基理论 */
-.foundation-wrap{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:44px 40px;margin:40px 0;position:relative;overflow:hidden}
-.foundation-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--pri),var(--vi),var(--amb),var(--em))}
-.foundation-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:28px 0}
-.foundation-sink{background:#FFF5F5;border:1px solid rgba(225,29,72,.16);border-radius:14px;padding:24px;position:relative}
-.foundation-sink::before{content:'流沙';position:absolute;top:14px;right:16px;font-size:11px;font-weight:700;color:var(--ro);background:var(--ro-l);padding:3px 10px;border-radius:5px;font-family:'Outfit',sans-serif;text-transform:uppercase;letter-spacing:.5px}
-.foundation-sink h4{font-size:16px;color:var(--ro);margin-bottom:16px;padding-right:100px;font-family:'Fraunces',serif}
-.foundation-sink ul{list-style:none;padding:0;color:var(--ink2);font-size:14.5px;line-height:1.8}
-.foundation-sink li{padding:6px 0;padding-left:20px;position:relative}
-.foundation-sink li::before{content:'\00d7';position:absolute;left:0;color:var(--ro);font-weight:700}
-.foundation-pile{background:#F0FDF4;border:1px solid rgba(5,150,105,.16);border-radius:14px;padding:24px;position:relative}
-.foundation-pile::before{content:'打桩';position:absolute;top:14px;right:16px;font-size:11px;font-weight:700;color:var(--em);background:var(--em-l);padding:3px 10px;border-radius:5px;font-family:'Outfit',sans-serif;text-transform:uppercase;letter-spacing:.5px}
-.foundation-pile h4{font-size:16px;color:var(--em);margin-bottom:16px;padding-right:100px;font-family:'Fraunces',serif}
-.foundation-pile ul{list-style:none;padding:0;color:var(--ink2);font-size:14.5px;line-height:1.8}
-.foundation-pile li{padding:6px 0;padding-left:20px;position:relative}
-.foundation-pile li::before{content:'\2713';position:absolute;left:0;color:var(--em);font-weight:700}
-.foundation-arrow{display:flex;justify-content:center;margin:16px 0}
-.foundation-arrow svg{width:40px;height:24px;color:var(--pri)}
-.foundation-5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}
+.foundation-wrap{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:44px 40px;margin:40px 0}
+.foundation-5{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
 .foundation-5 .f5-item{text-align:center;padding:18px 10px;border:1px solid var(--line);border-radius:12px;background:var(--bg);transition:all .2s}
 .foundation-5 .f5-item:hover{border-color:var(--pri);box-shadow:0 4px 16px rgba(67,56,202,.06)}
 .foundation-5 .f5-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
 .foundation-5 .f5-icon svg{width:18px;height:18px;color:#fff}
 .foundation-5 .f5-name{font-family:'Fraunces',serif;font-size:14px;font-weight:600;margin-bottom:3px}
 .foundation-5 .f5-desc{font-size:12px;color:var(--ink3);line-height:1.5}
-/* FIVE PILES — 五个桩详解 */
+/* FIVE PILES — 落地形态详解 */
 .fivepile-wrap{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:44px 40px;margin:40px 0}
 .fivepile-intro{font-size:16px;color:var(--ink2);line-height:1.8;margin-bottom:28px;max-width:800px}
 .fivepile-card{display:grid;grid-template-columns:160px 1fr;gap:20px;padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--bg);transition:all .2s;align-items:start;margin-bottom:12px}
@@ -250,89 +231,76 @@ tbody tr:hover{background:#F8F6F2}
 .fivepile-card .fp-r .fp-r-meta span{background:var(--line2);padding:2px 8px;border-radius:5px}
 .fivepile-map{overflow-x:auto;margin-top:24px}
 .fivepile-map table{min-width:640px}
-@media(max-width:900px){.foundation-grid{grid-template-columns:1fr}.foundation-5{grid-template-columns:repeat(2,1fr)}.fivepile-card{grid-template-columns:1fr;gap:10px;text-align:center}.fivepile-card .fp-left{flex-direction:row;gap:10px}}
+@media(max-width:900px){.foundation-5{grid-template-columns:repeat(2,1fr)}.fivepile-card{grid-template-columns:1fr;gap:10px;text-align:center}.fivepile-card .fp-left{flex-direction:row;gap:10px}.struct-svg-wrap{display:none}.struct-svg-note{display:block}}
 
 </style>
 </head>
 <body>
 <div class="container">
+<a class="skip-link" href="#sec-overview">跳到主要内容</a>
 
-<nav class="sticky-nav" id="stickyNav"><div class="sticky-nav-inner">
-<a href="#sec-overview" class="nav-link" data-sec="sec-overview">概览</a><span class="nav-sep"></span>
-<a href="#sec-arch" class="nav-link" data-sec="sec-arch">架构</a><span class="nav-sep"></span>
-<a href="#sec-struct" class="nav-link" data-sec="sec-struct">资产结构</a><span class="nav-sep"></span>
-<a href="#sec-fivepiles" class="nav-link" data-sec="sec-fivepiles">五个桩</a><span class="nav-sep"></span>
-<a href="#sec-roles" class="nav-link" data-sec="sec-roles">角色</a><span class="nav-sep"></span>
-<a href="#sec-assets" class="nav-link" data-sec="sec-assets">资产明细</a><span class="nav-sep"></span>
-<a href="#sec-landing" class="nav-link" data-sec="sec-landing">落地对照</a><span class="nav-sep"></span>
-<a href="#sec-pm" class="nav-link" data-sec="sec-pm">PM 案例</a><span class="nav-sep"></span>
-<a href="#sec-focus" class="nav-link" data-sec="sec-focus">聚焦指南</a><span class="nav-sep"></span>
-<a href="#sec-guides" class="nav-link" data-sec="sec-guides">实操指南</a>
-  <span style="position:relative;display:inline-flex;align-items:center">
-    <span class="xr-drop-trigger nav-link" style="cursor:pointer;display:inline-flex;align-items:center;gap:4px" onclick="event.preventDefault()">资源 <svg class="xr-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;opacity:.5"><polyline points="6 9 12 15 18 9"/></svg></span>
-    <div class="xr-drop-panel" style="display:none;position:absolute;right:0;top:100%;padding-top:6px;z-index:200" onmouseenter="this.style.display='block'" onmouseleave="this.style.display='none'">
-      <div style="width:680px;max-height:420px;overflow-y:auto;padding:20px;border-radius:14px;background:#ffffff;border:1px solid #E8E4DF;box-shadow:0 16px 48px rgba(0,0,0,.16),0 2px 8px rgba(0,0,0,.08);font-family:&quot;SF Pro Display&quot;,&quot;PingFang SC&quot;,&quot;Microsoft YaHei&quot;,-apple-system,sans-serif;font-size:.88rem;color:#1a1d2e;line-height:1.5">
-        <div style="font-size:.78rem;letter-spacing:.05em;font-weight:600;opacity:.5;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #E8E4DF">ikevss · 项目网络</div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-          <a href="https://ikevss.github.io/"><b>ikevss 主页</b><small>所有官网的索引页</small></a>
-<a href="https://ikevss.github.io/design-skillhub/"><b>Design SkillHub</b><small>说中文，让 AI 做设计</small></a>
-<a href="https://ikevss.github.io/ai-pm-handbook/"><b>产品经理 AI Coding 手册</b><small>从传统 PM 到 AI 原生 PM</small></a>
-<a href="https://ikevss.github.io/ikevss-tencentmeeting/"><b>腾讯会议 · 邀约洞察</b><small>从建会到复盘，一个对话框走完全程</small></a>
-<a href="https://ikevss.github.io/ikevss-c-cleaner/"><b>C 盘清理</b><small>把 C 盘的呼吸空间还给你</small></a>
-<a href="https://ikevss.github.io/zh-friendly/"><b>Agent 技能中文化</b><small>英文技能名，一眼看懂</small></a>
-        </div>
-      </div>
-    </div>
-  </span>
-</div></nav>
+<main>
+<nav class="top-nav" aria-label="主导航">
+<div class="nav-inner">
+<a class="nav-logo" href="#sec-overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M8 12h8"/></svg>AI Agent 资产手册</a>
+<div class="nav-links">
+<a href="#sec-overview">概览</a>
+<a href="#sec-arch">架构</a>
+<a href="#sec-struct">资产结构</a>
+<a href="#sec-fivepiles">落地形态</a>
+<a href="#sec-roles">角色</a>
+<a href="#sec-assets">资产明细</a>
+<a href="#sec-landing">落地对照</a>
+<a href="#sec-pm">PM 案例</a>
+<a href="#sec-focus">聚焦指南</a>
+<a href="#sec-guides">实操指南</a>
+</div>
+<div class="nav-actions">
+<span style="position:relative;display:inline-flex">
+<span class="nav-btn nav-btn-outline xr-drop-trigger" style="cursor:pointer" onclick="event.preventDefault()">资源 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="6 9 12 15 18 9"/></svg></span>
+<div class="xr-drop-panel" style="display:none;position:absolute;right:0;top:100%;padding-top:6px;z-index:200">
+<div style="width:640px;max-height:400px;overflow-y:auto;padding:18px;border-radius:12px;background:#fff;border:1px solid #E8E4DF;box-shadow:0 16px 48px rgba(0,0,0,.16);font-size:.85rem;color:var(--ink);line-height:1.5">
+<div style="font-size:.75rem;font-weight:600;opacity:.5;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line)">ikevss · 项目网络</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+<a href="https://ikevss.github.io/" style="display:block;padding:10px 12px;border-radius:8px;text-decoration:none;color:var(--ink);border:1px solid transparent;font-size:.82rem" onmouseenter="this.style.borderColor='var(--pri)';this.style.background='var(--pri-l)'" onmouseleave="this.style.borderColor='transparent';this.style.background='transparent'"><b style="display:block;font-size:.85rem;margin-bottom:2px">ikevss 主页</b><small style="color:var(--ink3);font-size:.72rem">所有官网的索引页</small></a>
+<a href="https://ikevss.github.io/design-skillhub/" style="display:block;padding:10px 12px;border-radius:8px;text-decoration:none;color:var(--ink);border:1px solid transparent;font-size:.82rem" onmouseenter="this.style.borderColor='var(--pri)';this.style.background='var(--pri-l)'" onmouseleave="this.style.borderColor='transparent';this.style.background='transparent'"><b style="display:block;font-size:.85rem;margin-bottom:2px">Design SkillHub</b><small style="color:var(--ink3);font-size:.72rem">说中文，让 AI 做设计</small></a>
+<a href="https://ikevss.github.io/ai-pm-handbook/" style="display:block;padding:10px 12px;border-radius:8px;text-decoration:none;color:var(--ink);border:1px solid transparent;font-size:.82rem" onmouseenter="this.style.borderColor='var(--pri)';this.style.background='var(--pri-l)'" onmouseleave="this.style.borderColor='transparent';this.style.background='transparent'"><b style="display:block;font-size:.85rem;margin-bottom:2px">PM AI Coding 手册</b><small style="color:var(--ink3);font-size:.72rem">从传统 PM 到 AI 原生 PM</small></a>
+<a href="https://ikevss.github.io/ikevss-tencentmeeting/" style="display:block;padding:10px 12px;border-radius:8px;text-decoration:none;color:var(--ink);border:1px solid transparent;font-size:.82rem" onmouseenter="this.style.borderColor='var(--pri)';this.style.background='var(--pri-l)'" onmouseleave="this.style.borderColor='transparent';this.style.background='transparent'"><b style="display:block;font-size:.85rem;margin-bottom:2px">腾讯会议 · 邀约洞察</b><small style="color:var(--ink3);font-size:.72rem">从建会到复盘，一个对话框走完全程</small></a>
+<a href="https://ikevss.github.io/ikevss-c-cleaner/" style="display:block;padding:10px 12px;border-radius:8px;text-decoration:none;color:var(--ink);border:1px solid transparent;font-size:.82rem" onmouseenter="this.style.borderColor='var(--pri)';this.style.background='var(--pri-l)'" onmouseleave="this.style.borderColor='transparent';this.style.background='transparent'"><b style="display:block;font-size:.85rem;margin-bottom:2px">C 盘清理</b><small style="color:var(--ink3);font-size:.72rem">把 C 盘的呼吸空间还给你</small></a>
+<a href="https://ikevss.github.io/zh-friendly/" style="display:block;padding:10px 12px;border-radius:8px;text-decoration:none;color:var(--ink);border:1px solid transparent;font-size:.82rem" onmouseenter="this.style.borderColor='var(--pri)';this.style.background='var(--pri-l)'" onmouseleave="this.style.borderColor='transparent';this.style.background='transparent'"><b style="display:block;font-size:.85rem;margin-bottom:2px">Agent 技能中文化</b><small style="color:var(--ink3);font-size:.72rem">英文技能名，一眼看懂</small></a>
+</div>
+</div>
+</div>
+</span>
+<a class="nav-btn nav-btn-gh" href="https://github.com/ikevss/ai-agent-assets" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>GitHub</a>
+</div>
+</div>
+</nav>
 
 <!-- HERO -->
 <section class="hero" id="sec-overview">
 <div class="hero-eyebrow"><i data-lucide="sparkles"></i> AI Agent 落地部署手册</div>
 <h1>让每个人都看懂：<em>部署一个 AI Agent</em> 到底在管什么</h1>
-<p class="hero-sub">无论你是使用 Agent 的个人、推动团队协作的管理者、负责运维的工程师，还是制定评测标准的 AI 中台负责人 —— 这份手册帮你快速定位自己需要关注的资产、理解自己的职责、掌握实操方法。</p>
-<div class="hero-stats">
-<div class="hero-stat"><div class="stat-icon"><i data-lucide="layers"></i></div><div class="num">8</div><div class="lbl">资产大类</div></div>
-<div class="hero-stat"><div class="stat-icon"><i data-lucide="package"></i></div><div class="num">32</div><div class="lbl">具体资产项</div></div>
-<div class="hero-stat"><div class="stat-icon"><i data-lucide="users"></i></div><div class="num">5</div><div class="lbl">角色视角</div></div>
-<div class="hero-stat"><div class="stat-icon"><i data-lucide="gauge"></i></div><div class="num">5+1</div><div class="lbl">评估维度</div></div>
-</div>
-<div class="hero-version">v8.0 · 2026-03-31 · 含资产结构图 + 落地对照表</div>
+<p class="hero-sub">无论你是使用 Agent 的个人、推动团队协作的管理者、负责运维的工程师，还是制定评测标准的 AI 中台负责人，这份手册帮你快速定位自己需要关注的资产、理解自己的职责、掌握实操方法。</p>
+<div class="hero-version">v8.1 · 2026-08-06 · 桩基理论 + 落地形态 + 质量评分卡</div>
 </section>
 
 <!-- FOUNDATION — 桩基理论 -->
 <div class="foundation-wrap">
 <div class="section-label">为什么是"桩"而不是"地基"？</div>
 <h2 style="font-size:clamp(24px,3vw,32px);font-family:'Fraunces',serif;margin-bottom:10px">框架是他们的，资产是你的</h2>
-<p class="section-desc">OpenAI、Anthropic、Google 每年数十亿美元砸在模型训练与推理基础设施上，WorkBuddy 这样的传统大厂用成熟工程资源做通用平台——那是地基，不由我们来建。<strong>但很多团队在做相反的事：在流沙上盖房子。</strong>业务规则写进聊天框、知识散落在对话记录里、配置绑死在某个工具的私有格式。换模型、换工具，全部重来。</p>
-<div class="foundation-grid">
-  <div class="foundation-sink">
-    <h4>流水花园里的沙堡 —— 流沙上建房</h4>
-    <ul>
-      <li>需求只存在于对话记录里，换个会话就没了</li>
-      <li>规则是口头约定的，AI 每次猜到哪算哪</li>
-      <li>知识库绑在某一个工具上，工具一换数据归零</li>
-      <li>配置是硬编码的，换个模型整套提示词都要重写</li>
-    </ul>
-  </div>
-  <div class="foundation-pile">
-    <h4>纯文本桩基 —— 换什么 Agent 都能平移</h4>
-    <ul>
-      <li>规则写成独立文件，AI 每次启动自动加载</li>
-      <li>技能用 Markdown 打包，跨工具可直接复用</li>
-      <li>知识库与记忆库以标准化格式持久存储</li>
-      <li>外部连接通过统一协议接入，换平台不改配置</li>
-    </ul>
-  </div>
-</div>
-<div class="foundation-arrow"><svg viewBox="0 0 40 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 12h34M28 5l7 7-7 7"/></svg></div>
-<p style="text-align:center;font-size:16px;color:var(--ink2);margin-bottom:20px">落地时，这些桩最常见的五种形态是：</p>
+<p style="font-size:17px;color:var(--ink2);line-height:1.8;margin-bottom:28px">OpenAI、Anthropic、Google 每年数十亿美元砸在模型训练与推理基础设施上，WorkBuddy 这样的传统大厂用成熟工程资源做通用平台。那是地基，不由我们来建。<strong>但很多团队一眼就看出脚下是流沙，却花巨量精力去压地基。</strong>自建模型网关、自研评测平台、从零搭知识库引擎。做了半年还没压稳，后来者什么都没做，直接用上了大厂更好的地基。回头一看，自己那套连维护都成了负资产。<strong>真正属于你的从来不是地基，是桩。</strong>业务规则写成独立文件，知识用标准化格式持久存储，技能用纯文本打包，换什么 Agent 都能平移复用。手册列的 33 项资产就是你的桩。</p>
+<img src="foundation-piles.png" alt="流沙上建房 vs 纯文本打桩：桩基理论对比图" style="width:100%;border-radius:14px;display:block;margin:20px 0" loading="lazy">
+
 <div class="foundation-5">
   <div class="f5-item"><div class="f5-icon" style="background:linear-gradient(135deg,#3B82F6,#2563EB)"><i data-lucide="file-text"></i></div><div class="f5-name">Skills</div><div class="f5-desc">技能文件</div></div>
   <div class="f5-item"><div class="f5-icon" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED)"><i data-lucide="plug-2"></i></div><div class="f5-name">MCP</div><div class="f5-desc">外部连接协议</div></div>
   <div class="f5-item"><div class="f5-icon" style="background:linear-gradient(135deg,#F59E0B,#D97706)"><i data-lucide="zap"></i></div><div class="f5-name">Hooks</div><div class="f5-desc">自动化触发</div></div>
   <div class="f5-item"><div class="f5-icon" style="background:linear-gradient(135deg,#10B981,#059669)"><i data-lucide="shield"></i></div><div class="f5-name">Rules</div><div class="f5-desc">项目约束文件</div></div>
   <div class="f5-item"><div class="f5-icon" style="background:linear-gradient(135deg,#E11D48,#BE123C)"><i data-lucide="command"></i></div><div class="f5-name">Commands</div><div class="f5-desc">快捷指令</div></div>
+  <div class="f5-item"><div class="f5-icon" style="background:linear-gradient(135deg,#06B6D4,#0891B2)"><i data-lucide="message-square-text"></i></div><div class="f5-name">Prompts</div><div class="f5-desc">提示词模板</div></div>
+  <div class="f5-item"><div class="f5-icon" style="background:linear-gradient(135deg,#EA580C,#F97316)"><i data-lucide="file-code"></i></div><div class="f5-name">Scripts</div><div class="f5-desc">自动化脚本</div></div>
+  <div class="f5-item"><div class="f5-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="test-tubes"></i></div><div class="f5-name">Tests</div><div class="f5-desc">测试套件</div></div>
 </div>
 </div>
 
@@ -360,6 +328,14 @@ tbody tr:hover{background:#F8F6F2}
 </div>
 </div>
 
+<!-- 统计卡片在旅程图之后展示——让用户先理解流程再看规模 -->
+<div class="hero-stats">
+<div class="hero-stat"><div class="stat-icon"><i data-lucide="layers"></i></div><div class="num">8</div><div class="lbl">资产大类</div></div>
+<div class="hero-stat"><div class="stat-icon"><i data-lucide="package"></i></div><div class="num">33</div><div class="lbl">具体资产项</div></div>
+<div class="hero-stat"><div class="stat-icon"><i data-lucide="users"></i></div><div class="num">5</div><div class="lbl">角色视角</div></div>
+<div class="hero-stat"><div class="stat-icon"><i data-lucide="gauge"></i></div><div class="num">5+2</div><div class="lbl">评估维度</div></div>
+</div>
+
 <!-- ARCHITECTURE -->
 <div class="arch-wrap" id="sec-arch">
 <div class="arch-head"><div class="section-label">系统架构</div><h2 class="section-title">一层一层搭起来</h2><p class="section-desc">从上到下：用户看到什么 → 背后靠什么支撑 → 安全如何贯穿始终。</p></div>
@@ -381,9 +357,10 @@ tbody tr:hover{background:#F8F6F2}
 
 <!-- ASSET STRUCTURE DIAGRAM -->
 <div class="struct-wrap" id="sec-struct">
-<div class="struct-head"><div class="section-label">资产信息结构</div><h2 class="section-title">32 项资产如何构成一个完整的 Agent</h2><p class="section-desc" style="margin:0 auto">8 大类资产按层级关系组织，从用户触达到底层基础设施，再到质量保障闭环。</p></div>
+<div class="struct-head"><div class="section-label">资产信息结构</div><h2 class="section-title">33 项资产如何构成一个完整的 Agent</h2><p class="section-desc" style="margin:0 auto">8 大类资产按层级关系组织，从用户触达到底层基础设施，再到质量保障闭环。</p></div>
+<p class="struct-svg-note">📐 结构图较宽，手机上已收起；下方 8 张分类卡片包含同样的全部内容。</p>
 <div class="struct-svg-wrap">
-<svg viewBox="0 0 1100 490" width="1100" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1100 490" width="1100" role="img" aria-label="33 项资产的 8 大类层级结构图" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <linearGradient id="g0" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4338CA"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient>
 <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#4338CA"/><stop offset="100%" stop-color="#6366F1"/></linearGradient>
@@ -443,10 +420,11 @@ tbody tr:hover{background:#F8F6F2}
 <rect x="553" y="206" width="52" height="20" rx="4" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1"/><text x="579" y="220" text-anchor="middle" fill="#E11D48" font-size="10">密钥凭证</text>
 </g>
 <!-- Cat 6 -->
-<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="1.75s" fill="freeze"/><rect x="685" y="115" width="130" height="38" rx="8" fill="url(#g6)"/><text x="750" y="139" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">评测与质量</text><text x="750" y="170" text-anchor="middle" fill="#7A7A8A" font-size="11">3 项</text>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="1.75s" fill="freeze"/><rect x="685" y="115" width="130" height="38" rx="8" fill="url(#g6)"/><text x="750" y="139" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">评测与质量</text><text x="750" y="170" text-anchor="middle" fill="#7A7A8A" font-size="11">4 项</text>
 <rect x="688" y="182" width="58" height="20" rx="4" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1"/><text x="717" y="196" text-anchor="middle" fill="#BE123C" font-size="10">评测数据集</text>
 <rect x="751" y="182" width="50" height="20" rx="4" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1"/><text x="776" y="196" text-anchor="middle" fill="#BE123C" font-size="10">指标体系</text>
 <rect x="688" y="206" width="58" height="20" rx="4" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1"/><text x="717" y="220" text-anchor="middle" fill="#BE123C" font-size="10">评测报告</text>
+<rect x="751" y="206" width="58" height="20" rx="4" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1"/><text x="780" y="220" text-anchor="middle" fill="#BE123C" font-size="10">质量标杆库</text>
 </g>
 <!-- Cat 7 -->
 <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".5s" begin="1.9s" fill="freeze"/><rect x="825" y="115" width="130" height="38" rx="8" fill="url(#g7)"/><text x="890" y="139" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">基础设施</text><text x="890" y="170" text-anchor="middle" fill="#7A7A8A" font-size="11">4 项</text>
@@ -490,42 +468,56 @@ tbody tr:hover{background:#F8F6F2}
 <div class="struct-cat"><div class="struct-cat-head"><i data-lucide="blocks"></i><h4>能力与工具</h4><span class="struct-cat-count">6 项</span></div><div class="struct-items"><span class="struct-item">技能库</span><span class="struct-item">外部连接器</span><span class="struct-item">命令行工具</span><span class="struct-item">原子能力库</span><span class="struct-item">网络搜索</span><span class="struct-item">工作流编排</span></div></div>
 <div class="struct-cat"><div class="struct-cat-head"><i data-lucide="cpu"></i><h4>AI 引擎</h4><span class="struct-cat-count">4 项</span></div><div class="struct-items"><span class="struct-item">AI 大脑+网关</span><span class="struct-item">推理引擎</span><span class="struct-item">智能检索</span><span class="struct-item">指令组装</span></div></div>
 <div class="struct-cat"><div class="struct-cat-head"><i data-lucide="lock"></i><h4>安全与权限</h4><span class="struct-cat-count">3 项</span></div><div class="struct-items"><span class="struct-item">权限管控</span><span class="struct-item">审计日志</span><span class="struct-item">密钥凭证</span></div></div>
-<div class="struct-cat"><div class="struct-cat-head"><i data-lucide="target"></i><h4>评测与质量</h4><span class="struct-cat-count">3 项</span></div><div class="struct-items"><span class="struct-item">评测数据集</span><span class="struct-item">指标体系</span><span class="struct-item">评测报告</span></div></div>
+<div class="struct-cat"><div class="struct-cat-head"><i data-lucide="target"></i><h4>评测与质量</h4><span class="struct-cat-count">4 项</span></div><div class="struct-items"><span class="struct-item">评测数据集</span><span class="struct-item">指标体系</span><span class="struct-item">评测报告</span><span class="struct-item">质量标杆库</span></div></div>
 <div class="struct-cat"><div class="struct-cat-head"><i data-lucide="server"></i><h4>基础设施</h4><span class="struct-cat-count">4 项</span></div><div class="struct-items"><span class="struct-item">服务器容器</span><span class="struct-item">对话日志</span><span class="struct-item">监控告警</span><span class="struct-item">定时任务</span></div></div>
 <div class="struct-cat"><div class="struct-cat-head"><i data-lucide="rocket"></i><h4>版本与发布</h4><span class="struct-cat-count">3 项</span></div><div class="struct-items"><span class="struct-item">版本标签</span><span class="struct-item">变更日志</span><span class="struct-item">功能开关</span></div></div>
-</div>
 </div>
 </div>
 
 <!-- FIVE PILES -->
 <div class="fivepile-wrap" id="sec-fivepiles">
 <div class="section-label">落地形态</div>
-<h2 class="section-title">五个桩：每个都对应一项实战资产</h2>
-<p class="fivepile-intro">上面 32 项资产是"要管什么"的分类学。下面五个词是"实际怎么管"的落地形态——<strong>它们不是新概念，而是你的资产在 AI 编程工具里长成的具体文件。</strong></p>
+<h2 class="section-title">落地形态：每个都对应一项实战资产</h2>
+<p class="fivepile-intro">上面 33 项资产是"要管什么"的分类学。下面是部分资产在实际工具中的落地形态。<strong>以下仅为举例，不是封闭清单。Assets 的具体形态随工具生态持续演进，但核心不变：资产必须是纯文本、跨工具可平移的独立文件。</strong></p>
 
 <div class="fivepile-card">
   <div class="fp-left"><div class="fp-l-icon" style="background:linear-gradient(135deg,#3B82F6,#2563EB)"><i data-lucide="file-text"></i></div><div class="fp-l-name">Skills</div><div class="fp-l-en">技能</div></div>
-  <div class="fp-r"><h4>告诉 AI"按这个流程走"</h4><div class="fp-r-desc">一个 Skill 就是一个 Markdown 文件，包含指令、模板和工作流程。纯文本，跨工具可复用，不绑定任何特定模型——换一个支持 Skill 机制的工具，文件拷过去就能用。</div><div class="fp-r-meta"><span>对应资产：技能库</span><span>文件形态：skills/ 目录下的 .md</span></div></div>
+  <div class="fp-r"><h4>告诉 AI"按这个流程走"</h4><div class="fp-r-desc">一个 Skill 就是一个 Markdown 文件，包含指令、模板和工作流程。纯文本，跨工具可复用，不绑定任何特定模型，换一个支持 Skill 机制的工具，文件拷过去就能用。</div><div class="fp-r-meta"><span style="background:#ECFDF5;color:#047857;font-weight:600">能力与工具</span><span>对应资产：技能库</span><span>文件形态：skills/ 目录下的 .md</span></div></div>
 </div>
 <div class="fivepile-card">
   <div class="fp-left"><div class="fp-l-icon" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED)"><i data-lucide="plug-2"></i></div><div class="fp-l-name">MCP</div><div class="fp-l-en">Model Context Protocol</div></div>
-  <div class="fp-r"><h4>AI 连接外部工具的标准化插座</h4><div class="fp-r-desc">Anthropic 推出的开放协议，让 AI 通过统一接口连接数据库、API、文件系统。每个 MCP Server 是一个独立进程——数据源属于 PM，查询逻辑属于项目，换一个支持 MCP 的 AI 工具，同一个 Server 照用不误。</div><div class="fp-r-meta"><span>对应资产：外部连接器</span><span>配置位置：settings.json → mcpServers</span></div></div>
+  <div class="fp-r"><h4>AI 连接外部工具的标准化插座</h4><div class="fp-r-desc">Anthropic 推出的开放协议，让 AI 通过统一接口连接数据库、API、文件系统。每个 MCP Server 是一个独立进程：数据源属于 PM，查询逻辑属于项目，换一个支持 MCP 的 AI 工具，同一个 Server 照用不误。</div><div class="fp-r-meta"><span style="background:#ECFDF5;color:#047857;font-weight:600">能力与工具</span><span>对应资产：外部连接器</span><span>配置位置：settings.json → mcpServers</span></div></div>
 </div>
 <div class="fivepile-card">
   <div class="fp-left"><div class="fp-l-icon" style="background:linear-gradient(135deg,#F59E0B,#D97706)"><i data-lucide="zap"></i></div><div class="fp-l-name">Hooks</div><div class="fp-l-en">钩子 / 自动化</div></div>
-  <div class="fp-r"><h4>"当 X 发生时，自动执行 Y"</h4><div class="fp-r-desc">事件驱动的自动化——每次调用 Bash 前检查安全性、会话结束前保存上下文、文件写入后自动格式化。Hooks 在不打断工作流的前提下，把安全与质量无声织入每次操作。</div><div class="fp-r-meta"><span>对应资产：安全护栏</span><span>配置位置：settings.json → hooks</span></div></div>
+  <div class="fp-r"><h4>"当 X 发生时，自动执行 Y"</h4><div class="fp-r-desc">事件驱动的自动化。每次调用 Bash 前检查安全性、会话结束前保存上下文、文件写入后自动格式化。Hooks 在不打断工作流的前提下，把安全与质量无声织入每次操作。</div><div class="fp-r-meta"><span style="background:#FFF1F2;color:#BE123C;font-weight:600">安全与权限</span><span>对应资产：安全护栏</span><span>配置位置：settings.json → hooks</span></div></div>
 </div>
 <div class="fivepile-card">
   <div class="fp-left"><div class="fp-l-icon" style="background:linear-gradient(135deg,#10B981,#059669)"><i data-lucide="shield"></i></div><div class="fp-l-name">Rules</div><div class="fp-l-en">规则 / 宪章</div></div>
-  <div class="fp-r"><h4>AI 每次启动必读的约束文件</h4><div class="fp-r-desc">全部资产中最重要的桩。定义项目是什么、技术栈为何、绝不能犯什么错、与 PM 如何配合。被错误喂养、随项目生长，纯文本，拷贝即生效——<strong>是所有规则资产的不动锚点。</strong></div><div class="fp-r-meta"><span>对应资产：全局指令</span><span>文件名：CLAUDE.md / AGENTS.md</span></div></div>
+  <div class="fp-r"><h4>AI 每次启动必读的约束文件</h4><div class="fp-r-desc">全部资产中最重要的桩。定义项目是什么、技术栈为何、绝不能犯什么错、与 PM 如何配合。被错误喂养、随项目生长，纯文本，拷贝即生效，<strong>是所有规则资产的不动锚点。</strong></div><div class="fp-r-meta"><span style="background:#EEF2FF;color:#4338CA;font-weight:600">核心行为</span><span>对应资产：全局指令</span><span>文件名：CLAUDE.md / AGENTS.md</span></div></div>
 </div>
 <div class="fivepile-card">
   <div class="fp-left"><div class="fp-l-icon" style="background:linear-gradient(135deg,#E11D48,#BE123C)"><i data-lucide="command"></i></div><div class="fp-l-name">Commands</div><div class="fp-l-en">命令 / 快捷指令</div></div>
-  <div class="fp-r"><h4>一键触发的高频操作入口</h4><div class="fp-r-desc">五个桩里唯一面向"人直接操作"的形态。内置命令覆盖常用场景，自定义命令将重复 prompt 封装为单次输入——是用户与 Agent 最短距离的触点。</div><div class="fp-r-meta"><span>对应资产：快捷指令</span><span>使用方式：/ 斜杠命令 + 自定义命令</span></div></div>
+  <div class="fp-r"><h4>一键触发的高频操作入口</h4><div class="fp-r-desc">落地形态里唯一面向"人直接操作"的形态。内置命令覆盖常用场景，自定义命令将重复 prompt 封装为单次输入，是用户与 Agent 最短距离的触点。</div><div class="fp-r-meta"><span style="background:#EEF2FF;color:#4338CA;font-weight:600">核心行为</span><span>对应资产：快捷指令</span><span>使用方式：/ 斜杠命令 + 自定义命令</span></div></div>
+</div>
+
+<div class="fivepile-card">
+  <div class="fp-left"><div class="fp-l-icon" style="background:linear-gradient(135deg,#06B6D4,#0891B2)"><i data-lucide="message-square-text"></i></div><div class="fp-l-name">Prompts</div><div class="fp-l-en">提示词模板</div></div>
+  <div class="fp-r"><h4>沉淀下来的高质量提问方式</h4><div class="fp-r-desc">把验证过有效的提示词写成模板文件，团队共享、版本管理。换模型时模板是调优的起点，而不是从零重写。纯文本，天然可移植。</div><div class="fp-r-meta"><span style="background:#EEF2FF;color:#4338CA;font-weight:600">核心行为</span><span>对应资产：快捷指令 / 指令组装</span><span>文件形态：prompts/ 目录下的 .md / .txt</span></div></div>
+</div>
+
+<div class="fivepile-card">
+  <div class="fp-left"><div class="fp-l-icon" style="background:linear-gradient(135deg,#EA580C,#F97316)"><i data-lucide="file-code"></i></div><div class="fp-l-name">Scripts</div><div class="fp-l-en">自动化脚本</div></div>
+  <div class="fp-r"><h4>Hooks 和定时任务背后的可执行资产</h4><div class="fp-r-desc">每条自动化规则背后都是一段脚本：安全检查、格式化、数据备份。脚本随项目进版本库，换平台时逻辑可以整体搬走，只改触发方式的接线。</div><div class="fp-r-meta"><span style="background:#FFF1F2;color:#BE123C;font-weight:600">安全与权限</span><span>对应资产：安全护栏 / 定时任务</span><span>文件形态：scripts/ 目录下的可执行文件</span></div></div>
+</div>
+
+<div class="fivepile-card">
+  <div class="fp-left"><div class="fp-l-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="test-tubes"></i></div><div class="fp-l-name">Tests</div><div class="fp-l-en">测试套件</div></div>
+  <div class="fp-r"><h4>用可执行用例锁住质量标准</h4><div class="fp-r-desc">BDD 场景、评测数据集、回归用例，都是把"什么叫好"写成机器可验证的断言。它们是评测体系的实体，也是换 Agent 后第一时间跑起来验证新效果的基准。</div><div class="fp-r-meta"><span style="background:#FFF1F2;color:#BE123C;font-weight:600">评测与质量</span><span>对应资产：评测数据集 / 指标体系</span><span>文件形态：tests/ 与 evals/ 目录</span></div></div>
 </div>
 
 <div class="fivepile-map">
-<div class="section-label" style="margin-bottom:10px">五个桩 ↔ 32 资产映射</div>
+<div class="section-label" style="margin-bottom:10px">落地形态 ↔ 32 资产映射</div>
 <div class="tbl-wrap"><table>
 <thead><tr><th>桩</th><th>所承载的资产（手册类别）</th><th>编号</th></tr></thead>
 <tbody>
@@ -534,6 +526,9 @@ tbody tr:hover{background:#F8F6F2}
 <tr><td class="pill"><span style="background:#FEF3C7;color:#B45309">Hooks</span></td><td>安全与权限 → 安全护栏 / 审计日志 · 评测与质量 → 自动化</td><td>#06, #25, #27</td></tr>
 <tr><td class="pill"><span style="background:#D1FAE5;color:#047857">Rules</span></td><td>核心行为 → 全局指令 · 知识与记忆 → 上下文文件</td><td>#01, #08</td></tr>
 <tr><td class="pill"><span style="background:#FFE4E6;color:#9F1239">Commands</span></td><td>核心行为 → 快捷指令 · 能力与工具 → 工作流编排</td><td>#02, #14</td></tr>
+<tr><td class="pill"><span style="background:#CFFAFE;color:#0E7490">Prompts</span></td><td>核心行为 → 快捷指令 · AI 引擎 → 指令组装</td><td>—</td></tr>
+<tr><td class="pill"><span style="background:#FFEDD5;color:#C2410C">Scripts</span></td><td>安全与权限 → 安全护栏 · 基础设施 → 定时任务</td><td>—</td></tr>
+<tr><td class="pill"><span style="background:#CCFBF1;color:#0F766E">Tests</span></td><td>评测与质量 → 评测数据集 / 指标体系</td><td>—</td></tr>
 </tbody></table></div>
 </div>
 
@@ -543,23 +538,23 @@ tbody tr:hover{background:#F8F6F2}
 <section id="sec-roles">
 <div class="section-label">角色视角</div>
 <h2 class="section-title">不同角色，各自关注什么？</h2>
-<p class="section-desc">每个人不需要管全部 32 项资产。找到你的角色，聚焦你需要关注的那几项。</p>
+<p class="section-desc">每个人不需要管全部 33 项资产。找到你的角色，聚焦你需要关注的那几项。</p>
 <div class="roles-grid">
 <div class="role-card"><div class="role-head"><div class="role-icon" style="background:linear-gradient(135deg,#3B82F6,#2563EB)"><i data-lucide="user"></i></div><div><h3>个人使用者</h3><div class="role-sub">日常用户</div></div></div><div class="role-body"><p>你只需要关心一件事：<strong>Agent 能不能帮我把活干好？</strong></p><p>了解 Agent 能做什么，自定义人设语气，用快捷指令一键完成高频操作。</p></div><div class="role-focus"><strong>你要维护的：</strong>个人记忆库、快捷指令、个人知识库。</div><a href="#sec-assets" class="role-jump" data-jump-tab="t2"><i data-lucide="arrow-right"></i>查看你关注的资产</a></div>
 <div class="role-card"><div class="role-head"><div class="role-icon" style="background:linear-gradient(135deg,#10B981,#059669)"><i data-lucide="users"></i></div><div><h3>团队协作</h3><div class="role-sub">团队管理者</div></div></div><div class="role-body"><p>核心目标：<strong>让所有人用同一个 Agent 时，体验一致、知识共享、效率倍增。</strong></p><p>建立团队公共知识库，统一行为基线和人设风格，共享技能和工作流。</p></div><div class="role-focus"><strong>你要维护的：</strong>团队知识库、共享技能库、工作流编排、权限模型。</div><a href="#sec-assets" class="role-jump" data-jump-tab="t3"><i data-lucide="arrow-right"></i>查看你关注的资产</a></div>
-<div class="role-card"><div class="role-head"><div class="role-icon" style="background:linear-gradient(135deg,#F59E0B,#D97706)"><i data-lucide="settings"></i></div><div><h3>维护者 / 运维</h3><div class="role-sub">技术运维</div></div></div><div class="role-body"><p>你是 Agent 的"保姆"——<strong>确保它 7x24 稳定运行，出问题能快速恢复。</strong></p><p>关注服务器健康、模型网关可用性、工具连接器连通性、密钥凭证安全。</p></div><div class="role-focus"><strong>你要维护的：</strong>环境配置、监控告警、密钥凭证、审计日志、定时任务。</div><a href="#sec-assets" class="role-jump" data-jump-tab="t7"><i data-lucide="arrow-right"></i>查看你关注的资产</a></div>
-<div class="role-card"><div class="role-head"><div class="role-icon" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED)"><i data-lucide="git-branch"></i></div><div><h3>版本迭代者</h3><div class="role-sub">产品负责人</div></div></div><div class="role-body"><p>你负责 Agent 的<strong>持续进化</strong>——每次升级都要让它变更好，而不是变差。</p><p>管理版本号策略、记录变更动机和影响、控制灰度发布。</p></div><div class="role-focus"><strong>你要维护的：</strong>版本标签、变更日志、功能开关。</div><a href="#sec-assets" class="role-jump" data-jump-tab="t8"><i data-lucide="arrow-right"></i>查看你关注的资产</a></div>
-<div class="role-card"><div class="role-head"><div class="role-icon" style="background:linear-gradient(135deg,#E11D48,#BE123C)"><i data-lucide="target"></i></div><div><h3>评测效果评价者</h3><div class="role-sub">AI 中台负责人</div></div></div><div class="role-body"><p>你是 Agent 质量的<strong>最终裁判</strong>——你说了算"这个版本能不能上线"。</p><p>三件套：评测数据集、指标体系、评测报告。为每个资产设定基准线。</p></div><div class="role-focus"><strong>你要维护的：</strong>评测数据集、指标体系、评测报告、基准线定义。</div><a href="#sec-assets" class="role-jump" data-jump-tab="t6"><i data-lucide="arrow-right"></i>查看你关注的资产</a></div>
+<div class="role-card"><div class="role-head"><div class="role-icon" style="background:linear-gradient(135deg,#F59E0B,#D97706)"><i data-lucide="settings"></i></div><div><h3>维护者 / 运维</h3><div class="role-sub">技术运维</div></div></div><div class="role-body"><p>你是 Agent 的"保姆"，<strong>确保它 7x24 稳定运行，出问题能快速恢复。</strong></p><p>关注服务器健康、模型网关可用性、工具连接器连通性、密钥凭证安全。</p></div><div class="role-focus"><strong>你要维护的：</strong>环境配置、监控告警、密钥凭证、审计日志、定时任务。</div><a href="#sec-assets" class="role-jump" data-jump-tab="t7"><i data-lucide="arrow-right"></i>查看你关注的资产</a></div>
+<div class="role-card"><div class="role-head"><div class="role-icon" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED)"><i data-lucide="git-branch"></i></div><div><h3>版本迭代者</h3><div class="role-sub">产品负责人</div></div></div><div class="role-body"><p>你负责 Agent 的<strong>持续进化</strong>，每次升级都要让它变更好，而不是变差。</p><p>管理版本号策略、记录变更动机和影响、控制灰度发布。</p></div><div class="role-focus"><strong>你要维护的：</strong>版本标签、变更日志、功能开关。</div><a href="#sec-assets" class="role-jump" data-jump-tab="t8"><i data-lucide="arrow-right"></i>查看你关注的资产</a></div>
+<div class="role-card"><div class="role-head"><div class="role-icon" style="background:linear-gradient(135deg,#E11D48,#BE123C)"><i data-lucide="target"></i></div><div><h3>评测效果评价者</h3><div class="role-sub">AI 中台负责人</div></div></div><div class="role-body"><p>你是 Agent 质量的<strong>最终裁判</strong>，你说了算"这个版本能不能上线"。</p><p>三件套：评测数据集、指标体系、评测报告。为每个资产设定基准线。</p></div><div class="role-focus"><strong>你要维护的：</strong>评测数据集、指标体系、评测报告、基准线定义。</div><a href="#sec-assets" class="role-jump" data-jump-tab="t6"><i data-lucide="arrow-right"></i>查看你关注的资产</a></div>
 </div>
 </section>
 
 <!-- ASSETS (abbreviated for space - same structure as before) -->
 <section id="sec-assets">
 <div class="section-label">资产明细</div>
-<h2 class="section-title">32 项资产，逐项拆解</h2>
+<h2 class="section-title">33 项资产，逐项拆解</h2>
 <p class="section-desc">每项资产对 5 类角色的具体作用 + 基准线参考。悬停标签切换分类，点击可锁定。</p>
 <div class="tier-legend"><span class="tier-legend-item"><span class="tier tier-1">基础</span> 任何部署都需要</span><span class="tier-legend-item"><span class="tier tier-2">进阶</span> 重要但可逐步完善</span><span class="tier-legend-item"><span class="tier tier-3">高级</span> 需要较大基础设施投入</span></div>
-<div class="tabs-bar" id="tabs">
+<div class="tabs-bar" id="tabs" role="tablist" aria-label="资产分类">
 <button class="tab-btn active" data-tab="t1">一、核心行为</button><button class="tab-btn" data-tab="t2">二、知识与记忆</button><button class="tab-btn" data-tab="t3">三、能力与工具</button><button class="tab-btn" data-tab="t4">四、AI 引擎</button><button class="tab-btn" data-tab="t5">五、安全与权限</button><button class="tab-btn" data-tab="t6">六、评测与质量</button><button class="tab-btn" data-tab="t7">七、基础设施</button><button class="tab-btn" data-tab="t8">八、版本与发布</button>
 </div>
 <div class="tab-hint"><i data-lucide="scan"></i> 悬停标签切换分类，点击可锁定当前标签</div>
@@ -599,6 +594,7 @@ tbody tr:hover{background:#F8F6F2}
 <tr><td><div class="asset-name">评测数据集<span class="tier tier-2">进阶</span></div><div class="asset-en">Eval Datasets</div></td><td>提交测试用例</td><td>统一衡量尺子</td><td>标注质量</td><td>配套新用例</td><td><strong>核心对象</strong></td><td class="bl-cell">覆盖>=90%场景</td></tr>
 <tr><td><div class="asset-name">指标体系<span class="tier tier-3">高级</span></div><div class="asset-en">Eval Metrics</div></td><td>质量信号</td><td>质量共识</td><td>计算准确性</td><td>新维度</td><td><strong>核心对象</strong></td><td class="bl-cell">误差=0</td></tr>
 <tr><td><div class="asset-name">评测报告<span class="tier tier-2">进阶</span></div><div class="asset-en">Reports</div></td><td>了解趋势</td><td>决策依据</td><td>自动化</td><td>增益分析</td><td><strong>核心产出</strong></td><td class="bl-cell">自动化率>=90%</td></tr>
+<tr><td><div class="asset-name">质量标杆库<span class="tier tier-2">进阶</span></div><div class="asset-en">Showcase Library</div></td><td>个人水准参照</td><td>团队共同标准</td><td>定期更新</td><td>标杆迭代</td><td><strong>核心参照</strong></td><td class="bl-cell">每里程碑>=1 件入库</td></tr>
 </tbody></table></div></div>
 <div class="tab-panel" id="t7"><div class="tbl-wrap"><table><thead><tr><th style="width:170px">资产对象</th><th>个人</th><th>团队协作</th><th>维护者</th><th>迭代者</th><th>评测者</th><th style="width:160px">基准线参考</th></tr></thead><tbody>
 <tr><td><div class="asset-name">服务器容器<span class="tier tier-2">进阶</span></div><div class="asset-en">Environment</div></td><td>环境一致</td><td>环境统一</td><td><strong>核心对象</strong></td><td>代码化</td><td>排除干扰</td><td class="bl-cell">回退<=5min</td></tr>
@@ -618,7 +614,7 @@ tbody tr:hover{background:#F8F6F2}
 <div class="land-wrap">
 <div class="section-label">资产落地对照</div>
 <h2 class="section-title">抽象概念在具体工具里长什么样？</h2>
-<p class="land-intro">32 项资产是抽象分类。在实际工作中，它们对应到具体的文件、配置、服务。以下按主流工具逐项映射，帮你从"概念理解"落地到"动手操作"。</p>
+<p class="land-intro">33 项资产是抽象分类。在实际工作中，它们对应到具体的文件、配置、服务。以下按主流工具逐项映射，帮你从"概念理解"落地到"动手操作"。</p>
 <div class="land-group">
 <div class="land-group-title"><i data-lucide="shield"></i> 核心行为 + 知识记忆</div>
 <table class="land-table"><thead><tr><th>资产</th><th>Claude Code</th><th>Cursor / QwenWork</th><th>企业 AI 中台</th><th>个人要维护什么</th></tr></thead><tbody>
@@ -661,27 +657,25 @@ tbody tr:hover{background:#F8F6F2}
 <div class="pm-section">
 <div class="section-label">案例：AI 时代新范式下的 PM</div>
 <h2 class="section-title">产品经理需要重点维护哪些资产？</h2>
-<p class="pm-intro">PM 的角色从"写 PRD 协调工程"转变为"定义约束、验证产出、控制迭代"。以下按三层管控模型组织。</p>
+<p class="pm-intro">AI 时代 PM 不再当"二传手"——不等别人实现。PM 对着 AI 把需求说明白、把验收标准讲清楚，让 AI 充当交互、开发、测试。PM 只做三件事：<strong>说清楚要什么、推进度、查结果。</strong></p>
 <div class="pm-layer-group">
-<div class="pm-layer-title"><i data-lucide="anchor" style="color:#D97706"></i> 锚点层 — 极少变动，一改全局对齐 <span class="pm-layer-tag" style="color:#D97706;background:#FFFBEB">2-3 次/项目</span></div>
+<div class="pm-layer-title"><i data-lucide="anchor" style="color:#D97706"></i> 定方向 — 这个项目是什么、给谁用、不放什么进来 <span class="pm-layer-tag" style="color:#D97706;background:#FFFBEB">项目一开始定好，很少改</span></div>
 <div class="pm-grid">
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="anchor"></i></div><h4>AGENTS.md（项目级 AI 指令文件）</h4></div><div class="pm-card-body">项目级 AI 指令文件。定义技术栈、编码规范、架构边界。AI Agent 直接消费，是所有下游产出的参照系。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="file-text"></i></div><h4>Design Brief（设计简报）</h4></div><div class="pm-card-body">一页纸：业务目标+用户+策略+标准+约束。替代几十页 PRD，是所有下游设计/开发产出的起点锚点。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="git-commit-horizontal"></i></div><h4>ADR（架构决策记录）</h4></div><div class="pm-card-body">技术选型决策+上下文+约束+后果。PM 做技术决策时留痕，AI 执行时参考，防止"为什么选这个方案"的反复讨论。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="blocks"></i></div><h4>Design Tokens（设计规范 JSON）</h4></div><div class="pm-card-body">机器可读设计规范：色彩、字体、间距、圆角、阴影、动效参数。确保多人 AI 产出视觉一致。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="file-text"></i></div><h4>项目 Brief（brief.md）</h4><div class="pm-card-body">谁在用、解决什么痛点、跟别人有什么不一样、这次不做哪些。文件 <strong>brief.md</strong> 放项目根目录。以前写几十页 PRD，现在一页纸就够了——AI 不需要被说服，它需要方向 + 边界。</div></div>
+</div>
+<<h4>项目上下文（AGENTS.md）</h4><div class="pm-card-body">用户画像、使用场景、业务常用词。写进 <strong>AGENTS.md</strong>（或 CLAUDE.md），AI 每次自动加载——不用反复解释"我们产品是干嘛的"。</div></div>
 </div></div>
 <div class="pm-layer-group">
-<div class="pm-layer-title"><i data-lucide="trending-up" style="color:#0D9488"></i> 进度层 — 随进度增量追加 <span class="pm-layer-tag" style="color:#0D9488;background:#CCFBF1">每迭代追加</span></div>
+<div class="pm-layer-title"><i data-lucide="trending-up" style="color:#0D9488"></i> 做功能 — 一个功能一个功能来，每次说清楚"要什么"和"不能怎样" <span class="pm-layer-tag" style="color:#0D9488;background:#CCFBF1">每做一个功能就补</span></div>
 <div class="pm-grid">
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="list-checks"></i></div><h4>BDD Scenarios（行为驱动开发场景）</h4></div><div class="pm-card-body">Given/When/Then 格式的行为规格。可执行的 PRD——AI 从中自动生成测试代码。随功能推进增量追加。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="network"></i></div><h4>Sitemap（站点地图）</h4></div><div class="pm-card-body">信息架构骨架：主导航+页面层级+路由命名。AI 从 Brief+用户故事自动生成。随功能增加增量追加页面。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="alert-triangle"></i></div><h4>Edge Case Matrix（异常态矩阵）</h4></div><div class="pm-card-body">每屏×6 大状态（空/加载/错误/边界数据/权限/离线）穷举。防止 AI 只生成 happy path。PM 主动定义异常态。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="message-circle"></i></div><h4>功能规格（specs/*.md）</h4><div class="pm-card-body">别写需求文档。每功能建一个 <strong>specs/功能名.md</strong>：一句话描述 + 截图 + 几条绝对不能干的事。AI 自己搞定交互和代码实现——PM 不用画 UI。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="alert-triangle"></i></div><h4>异常场景（同 spec 文件）</h4><div class="pm-card-body">AI 最容易只做 happy path。每功能顺手写一句：搜不到/断网/空数据/没权限时各长什么样。写在同一份 <strong>specs/功能名.md</strong> 里就行。</div></div>
 </div></div>
 <div class="pm-layer-group">
-<div class="pm-layer-title"><i data-lucide="check-circle" style="color:#7C3AED"></i> 执行层 — 发布前验证 <span class="pm-layer-tag" style="color:#7C3AED;background:#F5F3FF">每次发布必跑</span></div>
+<div class="pm-layer-title"><i data-lucide="check-circle" style="color:#7C3AED"></i> 验收 — PM 说了算：能不能上线 <span class="pm-layer-tag" style="color:#7C3AED;background:#F5F3FF">每次做完都要跑</span></div>
 <div class="pm-grid">
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="check-circle"></i></div><h4>AC Trace Matrix（验收追溯矩阵）</h4></div><div class="pm-card-body">每功能×AC（验收标准）完成状态矩阵。替代传统 Story Point 估点和燃尽图。PM 用 AC 完成率追踪进度。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="search-check"></i></div><h4>Design QA Report（设计走查报告）</h4></div><div class="pm-card-body">实现 vs Design Tokens 偏差清单。AI 自动对比代码与 token 定义，输出 deviations（偏差）列表。PM 判断哪些需要修复。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="check-check"></i></div><h4>验收清单（checklist/*.md）</h4><div class="pm-card-body">别写 GWT、别写 BDD——PM 不用学那些。就写"打开哪→点哪→看到什么算过关"。文件 <strong>checklist/功能名.md</strong>，AI 做一条、验一条、打勾——打完就上线。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="thumbs-up"></i></div><h4>发布判定（你说了算）</h4><div class="pm-card-body">AI 说"做完了"不等于真的做完了。PM 打开看：能用→通过；不太对→截图让 AI 改；完全不是你要的→打回去、把话说更清楚。判定标准永远是验收清单上的那几条。</div></div>
 </div></div>
 </div>
 </section>
@@ -691,7 +685,7 @@ tbody tr:hover{background:#F8F6F2}
 <div class="pm-section">
 <div class="section-label">聚焦指南：每个角色最该维护什么</div>
 <h2 class="section-title">三个角色，三份清单</h2>
-<p class="pm-intro">32 项资产不需要每个人都管。以下是三个关键角色的"最小维护清单"——只维护这些，就能让 Agent 从"能用"变成"好用"。</p>
+<p class="pm-intro">33 项资产不需要每个人都管。以下是三个关键角色的"最小维护清单"：只维护这些，就能让 Agent 从"能用"变成"好用"。</p>
 
 <div class="pm-layer-group">
 <div class="pm-layer-title"><i data-lucide="user" style="color:#3B82F6"></i> 作为个人，最应该维护哪些？ <span class="pm-layer-tag" style="color:#3B82F6;background:#DBEAFE">3 项核心资产</span></div>
@@ -712,17 +706,14 @@ tbody tr:hover{background:#F8F6F2}
 </div></div>
 
 <div class="pm-layer-group">
-<div class="pm-layer-title"><i data-lucide="target" style="color:#E11D48"></i> 作为产品经理 AI Coding，最应该维护哪些？ <span class="pm-layer-tag" style="color:#E11D48;background:#FFF1F2">9 项核心资产（三层管控）</span></div>
+<div class="pm-layer-title"><i data-lucide="target" style="color:#E11D48"></i> 作为产品经理，最应该维护哪些？ <span class="pm-layer-tag" style="color:#E11D48;background:#FFF1F2">6 项核心资产</span></div>
 <div class="pm-grid">
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="anchor"></i></div><h4>AGENTS.md（项目级 AI 指令文件）</h4></div><div class="pm-card-body">定义技术栈、编码规范、架构边界。这是所有 AI 产出的参照系，变更后必须触发全局偏移检测。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="file-text"></i></div><h4>Design Brief（设计简报）</h4></div><div class="pm-card-body">一页纸对齐业务目标、用户、策略、标准、约束。替代几十页 PRD，是所有下游产出的起点锚点。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="git-commit-horizontal"></i></div><h4>ADR（架构决策记录）</h4></div><div class="pm-card-body">技术选型决策+上下文+约束+后果。PM 做技术决策时留痕，防止"为什么选这个方案"的反复讨论。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="blocks"></i></div><h4>Design Tokens（设计规范 JSON）</h4></div><div class="pm-card-body">机器可读设计规范。确保多人 AI 产出视觉一致，是设计走查的参照基准。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="list-checks"></i></div><h4>BDD Scenarios（行为驱动开发场景）</h4></div><div class="pm-card-body">Given/When/Then 格式的可执行 PRD。AI 从中自动生成测试代码，是验收标准的源头。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="network"></i></div><h4>Sitemap（站点地图）</h4></div><div class="pm-card-body">信息架构骨架：主导航+页面层级+路由命名。AI 从 Brief+用户故事自动生成，是页面结构的源头。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="alert-triangle"></i></div><h4>Edge Case Matrix（异常态矩阵）</h4></div><div class="pm-card-body">每屏×6 大状态穷举。防止 AI 只生成 happy path，是异常态设计的源头。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="check-circle"></i></div><h4>AC Trace Matrix（验收追溯矩阵）</h4></div><div class="pm-card-body">每功能×AC 完成状态。替代 Story Point 估点，是进度追踪的唯一指标。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="search-check"></i></div><h4>Design QA Report（设计走查报告）</h4></div><div class="pm-card-body">实现 vs Design Tokens 偏差清单。AI 自动对比，PM 判断哪些需要修复，是发布前的最后一道关卡。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="file-text"></i></div><h4>项目 Brief（brief.md）</h4></div><div class="pm-card-body">谁来用、解决啥、跟我们不一样在哪、这次不做什么。AI 从这页知道方向边界。不用写 PRD——一页纸就够。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="users"></i></div><h4>项目上下文（AGENTS.md）</h4></div><div class="pm-card-body">典型用户是谁、在什么场景下用、业务里常用的词。放进项目文件，AI 每次打开自动加载，不用反复解释。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="message-circle"></i></div><h4>功能规格（specs/*.md）</h4></div><div class="pm-card-body">一句话说清这个功能、甩几张参考截图、标几条"绝对不能做"的事。PM 不用画 UI——AI 自己搞定交互方案。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="alert-triangle"></i></div><h4>异常场景（同 spec）</h4></div><div class="pm-card-body">搜不到怎么提示？断网了显示什么？数据为空呢？每做一个功能顺手问一句"如果坏了用户看到什么"——AI 最不会主动考虑这些。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="check-check"></i></div><h4>验收清单（checklist/*.md）</h4></div><div class="pm-card-body">打开哪、点哪、看到什么算过关。做完一条打一个勾。这页就是进度的全部真相——不用管什么 Story Point 和燃尽图。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="thumbs-up"></i></div><h4>发布判定</h4></div><div class="pm-card-body">AI 说"做完了"不等于做完了。PM 打开看：能用就过；不太对就截个图让 AI 改；完全不是你要的就打回去、把话说更清楚。</div></div>
 </div></div>
 </div>
 </section>
@@ -730,13 +721,13 @@ tbody tr:hover{background:#F8F6F2}
 <!-- GUIDES -->
 <section id="sec-guides">
 <div class="section-label" style="margin-top:56px">实操指南</div>
-<h2 class="section-title">评测 / 基准线 / 迭代</h2>
-<p class="section-desc">给 AI 中台负责人的三张实操卡。</p>
-<div class="guides-grid">
+<h2 class="section-title">评测 / 基准线 / 迭代 / 标杆</h2>
+<p class="section-desc">给 AI 中台负责人和团队管理者的四张实操卡。</p>
+<div class="guides-full">
 <div class="guide-card g-eval"><div class="guide-head"><div class="guide-icon" style="background:linear-gradient(135deg,#4338CA,#7C3AED)"><i data-lucide="test-tubes"></i></div><h3>如何评测？</h3></div><div class="guide-body">
 <div class="guide-step"><div class="guide-num" style="background:var(--pri)">1</div><div class="guide-step-text"><strong>建评测集</strong>：从真实对话提取高频场景。初始 200-500 条。</div></div>
 <div class="guide-step"><div class="guide-num" style="background:var(--pri)">2</div><div class="guide-step-text"><strong>定评分标准</strong>：5 分制打分。多人标注 Kappa>=0.8。</div></div>
-<div class="guide-step"><div class="guide-num" style="background:var(--pri)">3</div><div class="guide-step-text"><strong>跑评测+出报告</strong>：回答三个问题——好了还是差了？差在哪？要回滚吗？</div></div>
+<div class="guide-step"><div class="guide-num" style="background:var(--pri)">3</div><div class="guide-step-text"><strong>跑评测+出报告</strong>：回答三个问题：好了还是差了？差在哪？要回滚吗？</div></div>
 </div></div>
 <div class="guide-card g-base"><div class="guide-head"><div class="guide-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="target"></i></div><h3>基准线怎么定？</h3></div><div class="guide-body">
 <p><strong>不能拍脑袋。</strong></p>
@@ -744,17 +735,58 @@ tbody tr:hover{background:#F8F6F2}
 <div class="guide-step"><div class="guide-num" style="background:var(--amb)">2</div><div class="guide-step-text"><strong>对齐</strong>：和业务方确认容忍度。</div></div>
 <div class="guide-step"><div class="guide-num" style="background:var(--amb)">3</div><div class="guide-step-text"><strong>三级线</strong>：红线/黄线/绿线。</div></div>
 </div>
+</div>
+</div>
+<div class="guides-grid">
 <div class="guide-card g-iter"><div class="guide-head"><div class="guide-icon" style="background:linear-gradient(135deg,#059669,#0891B2)"><i data-lucide="git-branch"></i></div><h3>如何迭代？</h3></div><div class="guide-body">
 <div class="guide-step"><div class="guide-num" style="background:var(--em)">1</div><div class="guide-step-text"><strong>小步快跑</strong>：每次只改一个变量。</div></div>
 <div class="guide-step"><div class="guide-num" style="background:var(--em)">2</div><div class="guide-step-text"><strong>灰度发布</strong>：5%→20%→50%→100%。红线跌破立即回滚。</div></div>
 <div class="guide-step"><div class="guide-num" style="background:var(--em)">3</div><div class="guide-step-text"><strong>变更必记录</strong>：改了什么、为什么、影响什么。</div></div>
 <div class="guide-step"><div class="guide-num" style="background:var(--em)">4</div><div class="guide-step-text"><strong>定期复盘</strong>：每月评测，每季度对齐基准线。</div></div>
+</div>
+<div class="guide-card g-showcase"><div class="guide-head"><div class="guide-icon" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED)"><i data-lucide="gem"></i></div><h3>质量标杆库</h3></div><div class="guide-body">
+<p style="margin-bottom:14px">自动评分只能回答"及格了吗"，标杆库回答的是另一个问题：<strong>"好"应该长什么样？</strong>把团队历史上公认的最高质量产出物归档保存，记录完整产出过程——既是新人学习的范本，也是评测标准活的参照系。</p>
+<div class="guide-step"><div class="guide-num" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED)">1</div><div class="guide-step-text"><strong>收集</strong>：每次里程碑评审后，把加权总分≥3.8 的产出物归档入库。不只存代码——把需求→设计→实现→评审的完整链路上传。</div></div>
+<div class="guide-step"><div class="guide-num" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED)">2</div><div class="guide-step-text"><strong>注释</strong>：每件标杆附一份简短的"为什么好"——指出本项做到位的具体点（如异常态穷举完整、Design Token 零偏差），不要泛泛的"质量高"。</div></div>
+<div class="guide-step"><div class="guide-num" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED)">3</div><div class="guide-step-text"><strong>对比</strong>：在后续评审中，当评分卡某个维度分数不足时，用标杆库里同维度的最佳案例作为对比参照——"你离 4 分的差距在这里"。</div></div>
+<div class="guide-step"><div class="guide-num" style="background:linear-gradient(135deg,#8B5CF6,#7C3AED)">4</div><div class="guide-step-text"><strong>维护</strong>：<strong>用户角色：个人 & 团队都需要维护。</strong>个人的标杆库是自身输出质量的最高水位线，团队的标杆库是所有人的共同参照。技术迭代后及时更新标杆，保持时效性。</div></div>
+<div class="guide-example"><h4>标杆入库简表</h4>
+<table style="font-size:13px"><thead><tr><th>产出物</th><th style="width:80px">评分</th><th>关键亮点（为什么好）</th><th style="width:80px">录入人</th></tr></thead><tbody>
+<tr><td>__</td><td>__ /4.0</td><td></td><td>__</td></tr>
+</tbody></table>
+</div>
+</div></div><div class="guide-card g-quality"><div class="guide-head"><div class="guide-icon" style="background:linear-gradient(135deg,#E11D48,#BE123C)"><i data-lucide="clipboard-check"></i></div><h3>产出物质量标准模板（评分卡）</h3></div><div class="guide-body">
+<p style="margin-bottom:14px">评测基础设施回答了"跑分多少"，但 PM 还需要回答另一个问题：<strong>AI 写的这个东西，到底能不能用？</strong>下面的五维评分卡把抽象判断变成可逐项打勾的分数。<strong>里程碑节点使用</strong>，不与日常三关验收重复。</p>
+<div class="guide-example"><h4>五维评分卡</h4>
+<table style="font-size:13px"><thead><tr><th style="width:100px">维度</th><th style="width:50px">权重</th><th>检查什么</th><th style="width:120px">4 分锚定示例</th><th style="width:120px">2 分锚定示例</th></tr></thead><tbody>
+<tr><td><strong>代码质量</strong></td><td>25%</td><td>零报错、lint 全过、复杂度 &lt; 15</td><td>构建一次通过，零 warning</td><td>能跑但有 3 处 console.log 残留</td></tr>
+<tr><td><strong>UI 还原度</strong></td><td>25%</td><td>对照 Design Tokens，偏差 &lt; 3 项/屏</td><td>间距/颜色/圆角全部命中 Token</td><td>主色偏差 #3，两处圆角值不对</td></tr>
+<tr><td><strong>交互完整性</strong></td><td>20%</td><td>空态/加载/错误/边界全有处理</td><td>6 种边界态全部覆盖并可用</td><td>只有 happy path，断网时白屏</td></tr>
+<tr><td><strong>安全性</strong></td><td>15%</td><td>无密钥泄露、输入校验、越权检查</td><td>所有外部输入有校验，无硬编码凭据</td><td>调试日志打印了 API Key</td></tr>
+<tr><td><strong>一致性</strong></td><td>15%</td><td>风格匹配现有代码，无突兀引入</td><td>命名/缩进/组件复用与项目一致</td><td>新文件使用了完全不同的缩进风格</td></tr>
+</tbody></table>
+</div>
+<div class="guide-step" style="margin-top:16px"><div class="guide-num" style="background:#BE123C">1</div><div class="guide-step-text"><strong>评分</strong>：每维度 0-4 分。总分 = 各维度得分 x 权重之和。<span class="tier tier-1" style="font-size:13px;margin-left:6px">&gt;= 3.5 通过</span><span class="tier tier-2" style="font-size:13px;margin-left:6px">2.5-3.5 修正后复评</span><span class="tier tier-3" style="font-size:13px;margin-left:6px">&lt; 2.5 打回重做</span></div></div>
+<div class="guide-step"><div class="guide-num" style="background:#BE123C">2</div><div class="guide-step-text"><strong>时机</strong>：仅在里程碑节点（功能完成 / 上线前）正式评分。日常开发靠三关验收（自动检查 + 亲手试用 + 逐条打勾），评分卡是里程碑的质量审计。</div></div>
+<div class="guide-step"><div class="guide-num" style="background:#BE123C">3</div><div class="guide-step-text"><strong>模板</strong>：复制下方评分表，填入每个维度的得分与具体扣分原因。评分记录随项目归档，<strong>也是决策备忘（ADR）的质检附件</strong>。</div></div>
+<div class="guide-example"><h4>评分记录模板（可复制）</h4>
+<table style="font-size:13px"><thead><tr><th>维度</th><th>权重</th><th>得分</th><th>加权</th><th>扣分原因</th></tr></thead><tbody>
+<tr><td>代码质量</td><td>25%</td><td>__ /4</td><td>__</td><td></td></tr>
+<tr><td>UI 还原度</td><td>25%</td><td>__ /4</td><td>__</td><td></td></tr>
+<tr><td>交互完整性</td><td>20%</td><td>__ /4</td><td>__</td><td></td></tr>
+<tr><td>安全性</td><td>15%</td><td>__ /4</td><td>__</td><td></td></tr>
+<tr><td>一致性</td><td>15%</td><td>__ /4</td><td>__</td><td></td></tr>
+<tr><td colspan="2"><strong>加权总分</strong></td><td colspan="3">__ /4.0 &middot; 结论：<span class="tier tier-1">通过</span> / <span class="tier tier-2">修正后复评</span> / <span class="tier tier-3">打回</span> &middot; 评阅人：__ &middot; 日期：__</td></tr>
+</tbody></table>
+</div>
+</div></div>
 </div></div>
 </div>
 </section>
 
-<div class="foot-note"><strong>总结：</strong>部署一个 AI Agent 本质上是管理 <strong>8 大类 32 项资产</strong>。每项资产都有 Owner、Consumer 和 Verifier。个人关注"好不好用"，团队关注"一不一致"，运维关注"稳不稳定"，迭代者关注"变好还是变差"，评测者关注"拿什么证明"。</div>
+<div class="foot-note"><strong>总结：</strong>部署一个 AI Agent 本质上是管理 <strong>8 大类 33 项资产</strong>。每项资产都有 Owner、Consumer 和 Verifier。个人关注"好不好用"，团队关注"一不一致"，运维关注"稳不稳定"，迭代者关注"变好还是变差"，评测者关注"拿什么证明"。</div>
 
+</main>
 </div>
 
 <script>
@@ -762,71 +794,40 @@ if(typeof lucide!=='undefined'){lucide.createIcons()}
 document.body.classList.add('icons-ready');
 (function(){
   var btns=document.querySelectorAll('.tab-btn'),panels=document.querySelectorAll('.tab-panel'),timer=null,locked=null;
-  function activate(b){btns.forEach(function(x){x.classList.remove('active')});panels.forEach(function(x){x.classList.remove('active')});b.classList.add('active');document.getElementById(b.getAttribute('data-tab')).classList.add('active')}
-  btns.forEach(function(b){
-    b.addEventListener('mouseenter',function(){if(locked===b)return;clearTimeout(timer);timer=setTimeout(function(){activate(b)},200)});
-    b.addEventListener('click',function(){clearTimeout(timer);if(locked===b){locked=null;b.classList.remove('locked')}else{if(locked)locked.classList.remove('locked');locked=b;b.classList.add('locked')}activate(b)});
-    b.addEventListener('mouseleave',function(){clearTimeout(timer)});
+  var canHover=window.matchMedia('(hover: hover)').matches;
+  btns.forEach(function(b,i){b.setAttribute('role','tab');b.setAttribute('aria-selected',b.classList.contains('active')?'true':'false');b.setAttribute('aria-controls',b.getAttribute('data-tab'))});
+  panels.forEach(function(p){p.setAttribute('role','tabpanel')});
+  function activate(b){btns.forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false')});panels.forEach(function(x){x.classList.remove('active')});b.classList.add('active');b.setAttribute('aria-selected','true');document.getElementById(b.getAttribute('data-tab')).classList.add('active')}
+  function lockTab(b){if(locked)locked.classList.remove('locked');locked=b;b.classList.add('locked')}
+  btns.forEach(function(b,idx){
+    if(canHover){
+      b.addEventListener('mouseenter',function(){if(locked===b)return;clearTimeout(timer);b.classList.add('previewing');timer=setTimeout(function(){activate(b)},400)});
+      b.addEventListener('mouseleave',function(){clearTimeout(timer);b.classList.remove('previewing')});
+    }
+    b.addEventListener('click',function(){clearTimeout(timer);b.classList.remove('previewing');if(locked===b){locked=null;b.classList.remove('locked')}else{lockTab(b)}activate(b)});
+    b.addEventListener('focus',function(){if(locked===b)return;clearTimeout(timer);timer=setTimeout(function(){activate(b)},400)});
+    b.addEventListener('keydown',function(e){var n=null;if(e.key==='ArrowRight')n=btns[(idx+1)%btns.length];else if(e.key==='ArrowLeft')n=btns[(idx-1+btns.length)%btns.length];if(n){e.preventDefault();n.focus();if(locked){lockTab(n)}activate(n)}});
   });
   document.querySelectorAll('.role-jump').forEach(function(a){
     a.addEventListener('click',function(){var tid=a.getAttribute('data-jump-tab');if(!tid)return;var t=document.querySelector('.tab-btn[data-tab="'+tid+'"]');if(t){clearTimeout(timer);if(locked)locked.classList.remove('locked');locked=t;t.classList.add('locked');activate(t)}});
   });
 })();
-(function(){
-  var nav=document.getElementById('stickyNav'),hero=document.querySelector('.hero'),secs=document.querySelectorAll('[id^="sec-"]'),links=document.querySelectorAll('.nav-link');
-  window.addEventListener('scroll',function(){nav.classList.toggle('visible',hero.getBoundingClientRect().bottom<0);var cur='';secs.forEach(function(s){if(s.getBoundingClientRect().top<120)cur=s.id});links.forEach(function(l){l.classList.toggle('active',l.getAttribute('data-sec')===cur)})},{passive:true});
-})();
+
 </script>
-<!-- ===== ikevss 资源网络 · 互链模块（统一） ===== -->
-<section class="xr" id="xr-resources" data-theme="light" aria-labelledby="xr-title">
-  <style>
-.xr{--xr-accent:#16a085;font-family:"SF Pro Display","PingFang SC","Microsoft YaHei",-apple-system,sans-serif;padding:72px 24px 56px;margin:0}
-.xr[data-theme="light"]{--xr-bg:#f7f8fa;--xr-card:#ffffff;--xr-text:#1a1d2e;--xr-dim:#6b7280;--xr-border:#e4e7ec}
-.xr[data-theme="dark"]{--xr-bg:#0c0e12;--xr-card:#161a21;--xr-text:#e8eaee;--xr-dim:#9aa1ab;--xr-border:#262c36}
-.xr,.xr *{box-sizing:border-box}
-.xr{background:var(--xr-bg)}
-.xr .xr-wrap{max-width:1080px;margin:0 auto}
-.xr .xr-label{font-size:.8rem;letter-spacing:.06em;color:var(--xr-accent);font-weight:600;margin:0 0 10px}
-.xr .xr-title{font-size:1.6rem;font-weight:700;color:var(--xr-text);margin:0 0 8px}
-.xr .xr-desc{font-size:.95rem;color:var(--xr-dim);margin:0 0 32px;line-height:1.7}
-.xr .xr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
-.xr .xr-card{display:block;background:var(--xr-card);border:1px solid var(--xr-border);border-radius:12px;padding:18px 20px;text-decoration:none;transition:transform .25s cubic-bezier(.34,1.56,.64,1),border-color .25s,box-shadow .25s}
-.xr .xr-card:hover{transform:translateY(-3px);border-color:var(--xr-accent);box-shadow:0 8px 24px rgba(0,0,0,.08)}
-.xr .xr-card b{display:block;font-size:.98rem;font-weight:600;color:var(--xr-text);margin:0 0 6px}
-.xr .xr-card span{display:block;font-size:.85rem;color:var(--xr-dim);line-height:1.6}
-.xr .xr-card i{display:inline-block;font-style:normal;font-size:.78rem;color:var(--xr-accent);margin-top:10px}
-.xr .xr-qr{margin-top:48px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;background:var(--xr-card);border:1px solid var(--xr-border);border-radius:14px;padding:24px 28px}
-.xr .xr-qr img{width:132px;height:132px;border-radius:10px;border:1px solid var(--xr-border);background:#fff;flex-shrink:0}
-.xr .xr-qr b{display:block;font-size:1.05rem;color:var(--xr-text);margin:0 0 6px}
-.xr .xr-qr p{font-size:.88rem;color:var(--xr-dim);line-height:1.7;margin:0}
-@media(max-width:640px){.xr{padding:56px 16px 40px}.xr .xr-qr{flex-direction:column;align-items:flex-start}}
-  </style>
-  <div class="xr-wrap">
-    <div class="xr-label">ikevss · 项目网络</div>
-    <h2 class="xr-title" id="xr-title">资源</h2>
-    <p class="xr-desc">这些都是我发布的项目官网，往下拉就能看到，互相之间都可以跳转。</p>
-    <div class="xr-grid">
-      <a class="xr-card" href="https://ikevss.github.io/"><b>ikevss 主页</b><span>所有官网的索引页</span><i>访问官网 →</i></a>
-      <a class="xr-card" href="https://ikevss.github.io/design-skillhub/"><b>Design SkillHub</b><span>说中文，让 AI 做设计</span><i>访问官网 →</i></a>
-      <a class="xr-card" href="https://ikevss.github.io/ai-pm-handbook/"><b>产品经理 AI Coding 手册</b><span>从传统 PM 到 AI 原生 PM 的转型指南</span><i>访问官网 →</i></a>
-      <a class="xr-card" href="https://ikevss.github.io/ikevss-tencentmeeting/"><b>腾讯会议 · 邀约洞察</b><span>从建会到复盘，一个对话框走完全程</span><i>访问官网 →</i></a>
-      <a class="xr-card" href="https://ikevss.github.io/ikevss-c-cleaner/"><b>C 盘清理</b><span>把 C 盘的呼吸空间还给你</span><i>访问官网 →</i></a>
-      <a class="xr-card" href="https://ikevss.github.io/zh-friendly/"><b>Agent 技能中文化</b><span>英文技能名，一眼看懂</span><i>访问官网 →</i></a>
-    </div>
-    <div class="xr-qr">
-      <img src="feishu-qr.png" alt="飞书交流群二维码" loading="lazy">
-      <div><b>飞书交流群</b><p>扫码加入飞书交流群，聊聊 AI 工具、分享使用经验。<br>有问题群里问，回复比邮件快。</p></div>
-    </div>
-  </div>
-</section>
 <script>(function(){
 document.querySelectorAll('.xr-drop-trigger').forEach(function(btn){
   var panel = btn.parentElement.querySelector('.xr-drop-panel');
   if(!panel) return;
-  btn.addEventListener('mouseenter',function(){panel.style.display='block'});
-  btn.addEventListener('click',function(e){e.preventDefault();panel.style.display=panel.style.display==='block'?'none':'block'});
-  btn.parentElement.addEventListener('mouseleave',function(){panel.style.display='none'});
-  panel.addEventListener('mouseenter',function(e){e.stopPropagation();panel.style.display='block'});
+  btn.setAttribute('tabindex','0');btn.setAttribute('role','button');btn.setAttribute('aria-haspopup','true');btn.setAttribute('aria-expanded','false');
+  function show(){panel.style.display='block';btn.setAttribute('aria-expanded','true')}
+  function hide(){panel.style.display='none';btn.setAttribute('aria-expanded','false')}
+  btn.addEventListener('mouseenter',show);
+  btn.addEventListener('click',function(e){e.preventDefault();panel.style.display==='block'?hide():show()});
+  btn.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();panel.style.display==='block'?hide():show()}});
+  btn.parentElement.addEventListener('mouseleave',hide);
+  panel.addEventListener('mouseenter',function(e){e.stopPropagation();show()});
+  panel.addEventListener('focusin',function(e){e.stopPropagation();show()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')hide()});
 });
 })();</script>
 </body>
