@@ -206,6 +206,25 @@ tbody tr:hover{background:#F8F6F2}
 
 
 
+/* ===== TOP NAVBAR ===== */
+.top-nav{position:sticky;top:0;z-index:100;background:transparent;backdrop-filter:none;border-bottom:1px solid transparent;padding:0;transition:background .25s,border-color .25s,box-shadow .25s}
+.top-nav.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom-color:var(--line);box-shadow:0 1px 8px rgba(31,41,55,.04)}
+.top-nav .nav-inner{display:flex;align-items:center;max-width:1320px;margin:0 auto;padding:0 32px;height:52px;gap:6px}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-weight:700;font-size:15px;font-family:'Outfit','PingFang SC',sans-serif;margin-right:20px;flex-shrink:0;letter-spacing:-.01em}
+.nav-logo svg{width:24px;height:24px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:2px;overflow-x:auto;flex:1}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{font-size:13px;font-weight:500;color:var(--ink3);text-decoration:none;padding:6px 12px;border-radius:8px;white-space:nowrap;transition:all .15s;letter-spacing:.02em}
+.nav-links a:hover{color:var(--pri);background:var(--pri-l)}
+.nav-actions{display:flex;align-items:center;gap:8px;margin-left:12px;flex-shrink:0}
+.nav-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;transition:all .15s;white-space:nowrap;font-family:'Outfit','PingFang SC',sans-serif}
+.nav-btn svg{width:14px;height:14px}
+.nav-btn-gh{background:#1f2937;color:#fff}
+.nav-btn-gh:hover{background:#111827;color:#fff}
+.nav-btn-outline{border:1.5px solid var(--line);color:var(--ink)}
+.nav-btn-outline:hover{border-color:var(--pri);color:var(--pri);background:var(--pri-l)}
+@media(max-width:900px){.nav-links{display:none}.top-nav .nav-inner{padding:0 16px}}
+
 /* FOUNDATION — 桩基理论 */
 .foundation-wrap{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:44px 40px;margin:40px 0}
 .foundation-5{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
@@ -242,18 +261,18 @@ tbody tr:hover{background:#F8F6F2}
 <main>
 <nav class="top-nav" aria-label="主导航">
 <div class="nav-inner">
-<a class="nav-logo" href="#sec-overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M8 12h8"/></svg>AI Agent 资产手册</a>
+<a class="nav-logo" href="#sec-overview"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="navg" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#4338CA"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5.5" fill="url(#navg)"/><path d="M8 17h8M9 13h6M10.5 9h3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>AI Agent 资产手册</a>
 <div class="nav-links">
 <a href="#sec-overview">概览</a>
 <a href="#sec-arch">架构</a>
-<a href="#sec-struct">资产结构</a>
-<a href="#sec-fivepiles">落地形态</a>
+<a href="#sec-struct">结构</a>
+<a href="#sec-fivepiles">形态</a>
 <a href="#sec-roles">角色</a>
-<a href="#sec-assets">资产明细</a>
-<a href="#sec-landing">落地对照</a>
-<a href="#sec-pm">PM 案例</a>
-<a href="#sec-focus">聚焦指南</a>
-<a href="#sec-guides">实操指南</a>
+<a href="#sec-assets">明细</a>
+<a href="#sec-landing">对照</a>
+<a href="#sec-pm">案例</a>
+<a href="#sec-focus">聚焦</a>
+<a href="#sec-guides">指南</a>
 </div>
 <div class="nav-actions">
 <span style="position:relative;display:inline-flex">
@@ -649,6 +668,7 @@ tbody tr:hover{background:#F8F6F2}
 </section>
 
 <!-- PM CASE -->
+<!-- PM CASE -->
 <section id="sec-pm">
 <div class="pm-section">
 <div class="section-label">案例：AI 时代新范式下的 PM</div>
@@ -657,25 +677,23 @@ tbody tr:hover{background:#F8F6F2}
 <div class="pm-layer-group">
 <div class="pm-layer-title"><i data-lucide="anchor" style="color:#D97706"></i> 定方向 — 这个项目是什么、给谁用、不放什么进来 <span class="pm-layer-tag" style="color:#D97706;background:#FFFBEB">项目一开始定好，很少改</span></div>
 <div class="pm-grid">
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="file-text"></i></div><h4>项目 Brief（brief.md）</h4><div class="pm-card-body">谁在用、解决什么痛点、跟别人有什么不一样、这次不做哪些。文件 <strong>brief.md</strong> 放项目根目录。以前写几十页 PRD，现在一页纸就够了——AI 不需要被说服，它需要方向 + 边界。</div></div>
-</div>
-<<h4>项目上下文（AGENTS.md）</h4><div class="pm-card-body">用户画像、使用场景、业务常用词。写进 <strong>AGENTS.md</strong>（或 CLAUDE.md），AI 每次自动加载——不用反复解释"我们产品是干嘛的"。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="file-text"></i></div><h4>项目 Brief（brief.md）</h4></div><div class="pm-card-body">谁在用、解决什么痛点、跟别人有什么不一样、这次不做哪些。文件 <strong>brief.md</strong> 放项目根目录。以前写几十页 PRD，现在一页纸就够了——AI 不需要被说服，它需要方向 + 边界。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#D97706,#EA580C)"><i data-lucide="users"></i></div><h4>项目上下文（AGENTS.md）</h4></div><div class="pm-card-body">用户画像、使用场景、业务常用词。写进 <strong>AGENTS.md</strong>（或 CLAUDE.md），AI 每次自动加载——不用反复解释"我们产品是干嘛的"。</div></div>
 </div></div>
 <div class="pm-layer-group">
 <div class="pm-layer-title"><i data-lucide="trending-up" style="color:#0D9488"></i> 做功能 — 一个功能一个功能来，每次说清楚"要什么"和"不能怎样" <span class="pm-layer-tag" style="color:#0D9488;background:#CCFBF1">每做一个功能就补</span></div>
 <div class="pm-grid">
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="message-circle"></i></div><h4>功能规格（specs/*.md）</h4><div class="pm-card-body">别写需求文档。每功能建一个 <strong>specs/功能名.md</strong>：一句话描述 + 截图 + 几条绝对不能干的事。AI 自己搞定交互和代码实现——PM 不用画 UI。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="alert-triangle"></i></div><h4>异常场景（同 spec 文件）</h4><div class="pm-card-body">AI 最容易只做 happy path。每功能顺手写一句：搜不到/断网/空数据/没权限时各长什么样。写在同一份 <strong>specs/功能名.md</strong> 里就行。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="message-circle"></i></div><h4>功能规格（specs/*.md）</h4></div><div class="pm-card-body">别写需求文档。每功能建一个 <strong>specs/功能名.md</strong>：一句话描述 + 截图 + 几条绝对不能干的事。AI 自己搞定交互和代码实现——PM 不用画 UI。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#0D9488,#14B8A6)"><i data-lucide="alert-triangle"></i></div><h4>异常场景（同 spec 文件）</h4></div><div class="pm-card-body">AI 最容易只做 happy path。每功能顺手写一句：搜不到/断网/空数据/没权限时各长什么样。写在同一份 <strong>specs/功能名.md</strong> 里就行。</div></div>
 </div></div>
 <div class="pm-layer-group">
 <div class="pm-layer-title"><i data-lucide="check-circle" style="color:#7C3AED"></i> 验收 — PM 说了算：能不能上线 <span class="pm-layer-tag" style="color:#7C3AED;background:#F5F3FF">每次做完都要跑</span></div>
 <div class="pm-grid">
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="check-check"></i></div><h4>验收清单（checklist/*.md）</h4><div class="pm-card-body">别写 GWT、别写 BDD——PM 不用学那些。就写"打开哪→点哪→看到什么算过关"。文件 <strong>checklist/功能名.md</strong>，AI 做一条、验一条、打勾——打完就上线。</div></div>
-<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="thumbs-up"></i></div><h4>发布判定（你说了算）</h4><div class="pm-card-body">AI 说"做完了"不等于真的做完了。PM 打开看：能用→通过；不太对→截图让 AI 改；完全不是你要的→打回去、把话说更清楚。判定标准永远是验收清单上的那几条。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="check-check"></i></div><h4>验收清单（checklist/*.md）</h4></div><div class="pm-card-body">别写 GWT、别写 BDD——PM 不用学那些。就写"打开哪→点哪→看到什么算过关"。文件 <strong>checklist/功能名.md</strong>，AI 做一条、验一条、打勾——打完就上线。</div></div>
+<div class="pm-card"><div class="pm-card-head"><div class="pm-card-icon" style="background:linear-gradient(135deg,#7C3AED,#8B5CF6)"><i data-lucide="thumbs-up"></i></div><h4>发布判定（你说了算）</h4></div><div class="pm-card-body">AI 说"做完了"不等于真的做完了。PM 打开看：能用→通过；不太对→截图让 AI 改；完全不是你要的→打回去、把话说更清楚。判定标准永远是验收清单上的那几条。</div></div>
 </div></div>
 </div>
 </section>
-
 <!-- FOCUS MODULES -->
 <section id="sec-focus">
 <div class="pm-section">
@@ -787,6 +805,12 @@ tbody tr:hover{background:#F8F6F2}
 
 <script>
 if(typeof lucide!=='undefined'){lucide.createIcons()}
+(function(){
+var nav=document.querySelector('.top-nav');
+var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>8)};
+window.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+})();
 document.body.classList.add('icons-ready');
 (function(){
   var btns=document.querySelectorAll('.tab-btn'),panels=document.querySelectorAll('.tab-panel'),timer=null,locked=null;
