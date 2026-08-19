@@ -160,12 +160,18 @@ ul.arg li b{color:var(--text-1)}
 .role-card.on .r-icon{background:rgba(40,184,148,.15);color:var(--primary)}
 /* ---- 看板 ---- */
 .board{padding:32px;margin-bottom:18px;border-radius:22px;background:#fff;border:1px solid var(--hairline);box-shadow:0 4px 16px rgba(0,0,0,.06)}
-.board .b-tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.board .duty{font-size:15px;color:var(--text-2);line-height:1.95;margin:0 0 16px}
-.board .duty b{color:var(--text-1)}
-.board .fy{margin:0 0 18px;font-size:13px;color:var(--text-3);padding:12px 16px;border-radius:12px;background:rgba(217,119,6,.06);border:1px solid rgba(217,119,6,.15)}
+.role-panel{border-radius:22px;background:#fff;border:1px solid var(--hairline);box-shadow:0 2px 8px rgba(0,0,0,.04);overflow:hidden}
+.rp-top{padding:32px 32px 0}
+.rp-divider{height:1px;background:var(--hairline-soft);margin:0 32px}
+.rp-bottom{padding:20px 32px 28px}
+.rp-bound-title{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.b-tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.rs-duty{font-size:15px;color:var(--text-2);line-height:1.95;margin:0 0 16px}
+.rs-duty b{color:var(--text-1)}
+.rs-fy{margin:0 0 18px;font-size:13px;color:var(--text-3);padding:12px 16px;border-radius:12px;background:rgba(217,119,6,.06);border:1px solid rgba(217,119,6,.15)}
 .blist{display:flex;flex-wrap:wrap;gap:10px}
-.bitem{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border-radius:999px;font-size:13.5px;font-weight:600;color:var(--emerald);background:rgba(5,150,105,.08);border:1px solid rgba(5,150,105,.2)}
+.bitem{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border-radius:999px;font-size:13.5px;font-weight:600;color:var(--emerald);background:rgba(5,150,105,.08);border:1px solid rgba(5,150,105,.2);cursor:pointer;transition:all .4s var(--ease)}
+.bitem:hover{background:rgba(5,150,105,.15);transform:translateY(-1px);box-shadow:0 4px 12px rgba(5,150,105,.15)}
 /* ---- 边界说明 ---- */
 .bound{padding:28px 30px;border-radius:22px;background:#fff;border:1px solid var(--hairline);box-shadow:0 2px 8px rgba(0,0,0,.04)}
 .bound h4{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px;display:flex;align-items:center;gap:8px}
@@ -504,11 +510,17 @@ tr.row.flash .cell-need{animation:cellPulse 1.5s var(--ease)}
   </div>
   <div class="scope-note reveal"><svg class="ic"><use href="#i-info"/></svg><span><b>选择角色即切换全页视角</b>——下方职责看板、边界说明，以及「资产清单」中 21×5 维护矩阵的 ✓/— 列，都会随所选角色同步更新。</span></div>
   <div class="role-grid reveal" id="roleCards"></div>
-  <div class="shell reveal"><div class="board core" id="board"></div></div>
-  <div class="shell reveal"><div class="bound core-soft">
-    <h4><svg class="ic"><use href="#i-git-fork"/></svg>共需资产的边界说明 · 多人 ✓ 时谁负责什么</h4>
-    <ul id="boundList"></ul>
-  </div></div>
+  <div class="shell reveal">
+    <div class="role-panel" id="rolePanel">
+      <div class="rp-top" id="rpTop"></div>
+      <div class="rp-divider"></div>
+      <div class="rp-bottom">
+        <div class="blist"></div>
+        <h4 class="rp-bound-title"><svg class="ic"><use href="#i-git-fork"/></svg>共需资产的边界说明 · 多人 ✓ 时谁负责什么</h4>
+        <ul id="boundList"></ul>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ============ 资产清单 ============ -->
@@ -741,15 +753,16 @@ function renderGroups(){
 function renderBoard(){
   const r = ROLES.find(x=>x.id===curRole);
   const list = ASSETS.filter(a=>a.needed[curRole]);
-  const fy = r.fy?`<div class="fy">费曼：${r.fy}</div>`:'';
-  document.getElementById('board').innerHTML = `
+  const fy = r.fy?`<div class="rs-fy">费曼：${r.fy}</div>`:'';
+  document.getElementById('rpTop').innerHTML = `
     <div class="b-tag">${icon(r.icon)}当前角色：${r.name} · 需维护 ${list.length} 项</div>
-    <p class="duty">${r.duty}</p>${fy}
-    <div class="blist">${list.map(a=>`<span class="bitem">${icon(IC[a.id])}${a.name}</span>`).join('')}</div>`;
+    <p class="rs-duty">${r.duty}</p>${fy}
+    <div class="blist" id="blist">${list.map(a=>`<span class="bitem" onclick="openDrawer('${a.id}')" tabindex="0" role="button">${icon(IC[a.id])}${a.name}</span>`).join('')}</div>`;
   const notes = ASSETS.filter(a=>a.owners && a.owners[curRole]);
   document.getElementById('boundList').innerHTML = notes.length
     ? notes.map(a=>`<li><b>${a.name}</b>：${a.owners[curRole]}</li>`).join('')
     : '<li>（当前角色无多人共需资产）</li>';
+  makeKeyboardActivatable('.bitem');
 }
 function renderTabs(){
   const tabs = [{id:'all',label:'全部 21 项'},...GROUPS.map(g=>({id:g.id,label:`${g.name} ${g.count}`}))];
@@ -833,8 +846,8 @@ function flashChangedCells(oldNeeded,newNeeded){
   document.querySelectorAll('#tableBody tr.row').forEach(tr=>{
     if(changed.has(tr.dataset.id)) tr.classList.add('flash');
   });
-  const b=document.getElementById('board');
-  b.classList.remove('pulse'); void b.offsetWidth; b.classList.add('pulse');
+  const panel=document.getElementById('rolePanel');
+  if(panel){panel.classList.remove('pulse');void panel.offsetWidth;panel.classList.add('pulse')}
 }
 function setRole(id){
   const changed=prevRole!==null && prevRole!==id;
